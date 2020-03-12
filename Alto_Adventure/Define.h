@@ -3,8 +3,8 @@
 #ifndef __DEFINE_H__
 #define __DEFINE_H__
 
-#define WINCX 800
-#define WINCY 600
+#define WINCX 1280
+#define WINCY 720
 
 #define OBJ_NOEVENT 0
 #define OBJ_DEAD 1
