@@ -19,8 +19,8 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo.vPos = { 200.f, 300.f, 0.f };
-	m_tInfo.vSize = { 50.f, 100.f, 0.f };
+	m_tInfo.vPos = { 100.f, 300.f, 0.f };
+	m_tInfo.vSize = { 20.f, 40.f, 0.f };
 	m_tInfo.vDir = { 1.f, -1.f, 0.f };
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
 
@@ -89,6 +89,7 @@ void CPlayer::Release()
 
 void CPlayer::Update_Size()
 {
+	// 앉았을 때 일어섰을 때 크기 조절
 	//원점 기준 좌상단 좌표 
 	m_vOrigin[0] = { -m_tInfo.vSize.x * 0.5f,-m_tInfo.vSize.y * 0.5f, 0.f };
 	//원점 기준 우상단 좌표. 
@@ -101,33 +102,26 @@ void CPlayer::Update_Size()
 
 void CPlayer::Key_Check()
 {
-
 	if (!m_bFall)
 	{
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LEFT))
-		{
 			m_fAngle -= 7.5f;
-		}
 
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
-		{
 			m_fAngle += 7.5f;
-		}
 	}
 
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
-	{
 		m_bJump = true;
-	}
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
 	{
-		m_tInfo.vSize.y = 50.f;
+		m_tInfo.vSize.y = 25.f;
 		Update_Size();
 	}
 	else
 	{
-		m_tInfo.vSize.y = 100.f;
+		m_tInfo.vSize.y = 40.f;
 		Update_Size();
 	}
 }
@@ -135,41 +129,42 @@ void CPlayer::Key_Check()
 void CPlayer::Jump()
 {
 	float fY = 0.f;
-	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x)*0.5f, (m_vPoint[2].y + m_vPoint[3].y)*0.5f, 0.f };
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y));
+	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x) * 0.5f, (m_vPoint[2].y + m_vPoint[3].y) * 0.5f, 0.f };
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y), &m_fAngle);
 
-	if (bLineCol)
-	{
+	// 플레이어가 회전했을 때 변경된 바닥에서 플레이어 중심까지의 거리
+	m_fRotHeight = (m_tInfo.vSize.y * 0.5f) * cosf(D3DXToRadian(m_fAngle));
+
 		if (m_bJump)
 		{
-			m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel
-				- 9.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
+			m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel - 9.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
+ 			m_fJumpAccel += 0.2f;
 
-			m_fJumpAccel += 0.2f;
-
-			if (bLineCol && fY < m_tInfo.vPos.y + (m_tInfo.vSize.y *0.5f))
+ 			if (bLineCol && fY + 2.f < vBottomPoint.y)
 			{
 				m_bJump = false;
 				m_fJumpAccel = 0.f;
-				m_tInfo.vPos.y = fY - (m_tInfo.vSize.y *0.5f);
+				//m_tInfo.vPos.y = fY - (m_tInfo.vSize.y * 0.5f);
+				m_tInfo.vPos.y = fY - m_fRotHeight;
 			}
 		}
-	}
 }
 
 void CPlayer::Fall()
 {
 	float fY = 0.f;
-	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x)*0.5f, (m_vPoint[2].y + m_vPoint[3].y)*0.5f, 0.f };
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y));
+	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x) * 0.5f, (m_vPoint[2].y + m_vPoint[3].y) * 0.5f, 0.f };
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y), &m_fAngle);
+	
+	// 플레이어가 회전했을 때 변경된 바닥에서 플레이어 중심까지의 거리
+	m_fRotHeight = (m_tInfo.vSize.y * 0.5f) * cosf(D3DXToRadian(m_fAngle));
 
 	if (!m_bJump && bLineCol)
 	{
-		if (  vBottomPoint.y + 1 < fY) // 소수점 때문에 일어나는 떨림 방지
-		{
+		if ( vBottomPoint.y + 1.f /*소수점 때문에 일어나는 떨림 방지*/ 
+			< fY ) 
 			m_bFall = true;
-		}
-
+	
 		if (m_bFall)
 		{
 			m_tInfo.vPos.y = m_tInfo.vPos.y - ( -5.8f * m_fJumpAccel * m_fJumpAccel * 0.5f ) ;
@@ -178,13 +173,14 @@ void CPlayer::Fall()
 			if (vBottomPoint.y >= fY)
 			{
 				m_fJumpAccel = 0.f;
-				m_tInfo.vPos.y = fY - (m_tInfo.vSize.y * 0.5f);
+				//m_tInfo.vPos.y = fY - (m_tInfo.vSize.y * 0.5f);
+				m_tInfo.vPos.y = fY - m_fRotHeight;
 				m_bFall = false;
 			}
 		}
 		else
 		{
-			m_tInfo.vPos.y = fY - (m_tInfo.vSize.y *0.5f);
+			m_tInfo.vPos.y = fY - m_fRotHeight;
 			m_bFall = false;
 		}
 	}

@@ -12,15 +12,12 @@ private:
 
 public:
 	void Initialize();
+	void Update();
 	void Render(HDC _DC);
 	void Release();
 
 public:
-	bool Collision_Line(float _x, float* _y, int _PlayerBottom);
-
-private:
-	void Load_Line();
-
+	bool Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle);
 
 public:
 	static CLineMgr* Get_Instance()

@@ -36,6 +36,6 @@ https://www.vectorstock.com/
 효과
 UI(스코어 돈 높이)
 카메라 이동(Scroll)
-베이지안 곡선
+베이어 곡선
 
 

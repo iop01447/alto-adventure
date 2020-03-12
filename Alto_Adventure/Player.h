@@ -29,14 +29,16 @@ public:
 
 private:
 	//RECT m_tRect; 
-	D3DXVECTOR3 m_vPoint[4]; // Q
-	D3DXVECTOR3 m_vOrigin[4]; // P
+	D3DXVECTOR3		m_vPoint[4]; // Q
+	D3DXVECTOR3		m_vOrigin[4]; // P
 
-	bool m_bJump;
-	bool m_bFall;
+	bool			m_bJump;
+	bool			m_bFall;
 
 	float			m_fJumpPower;	// 점프 파워
 	float			m_fJumpAccel;	// 점프 진행 시간
+
+	float			m_fRotHeight;
 };
 
 #endif // !__PLAYER_H__

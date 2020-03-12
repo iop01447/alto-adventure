@@ -15,11 +15,16 @@ typedef struct tagInfo
 
 typedef struct tagLinePos
 {
-	tagLinePos() { ZeroMemory(this, sizeof(tagLinePos)); }
-	tagLinePos(float _x, float _y) : fX(_x), fY(_y) {}
+	tagLinePos() { ZeroMemory(this, sizeof(D3DXVECTOR3)); }
+	tagLinePos(float _x, float _y) 
+	{
+		vPoint = { _x, _y, 0.f };
+	}
 
-	float	fX;
-	float	fY;
+	D3DXVECTOR3 vPoint;
+
+	//float	fX;
+	//float	fY;
 }LINEPOS;
 
 typedef struct tagLineInfo
@@ -28,9 +33,11 @@ typedef struct tagLineInfo
 	tagLineInfo(LINEPOS& _tLeft, LINEPOS& _tRight)
 		: tLeftPos(_tLeft), tRightPos(_tRight) {}
 
+	LINEPOS			tLeftPos;
+	LINEPOS			tRightPos;
 
-	LINEPOS		tLeftPos;
-	LINEPOS		tRightPos;
+	D3DXVECTOR3		vLook;
+
 }LINEINFO;
 
 #endif // !__STRUCT_H__

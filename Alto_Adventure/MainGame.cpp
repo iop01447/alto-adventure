@@ -15,7 +15,6 @@ CMainGame::CMainGame()
 {
 }
 
-
 CMainGame::~CMainGame()
 {
 	Release();
@@ -40,6 +39,7 @@ void CMainGame::Update()
 {
 	//CSceneMgr::Get_Instance()->Update();
 	CObjMgr::Get_Instance()->Update();
+	CLineMgr::Get_Instance()->Update();
 	CKeyMgr::Get_Instance()->Key_Update();
 }
 
