@@ -43,7 +43,7 @@ bool CLineMgr::Collision_Line(float _x, float* _y, int _PlayerBottom)
 
 	CLine* pTargetLine = nullptr;
 
-	float fDis = 55555.f;
+	float fDis = -1.f;
 
 	for (auto& pLine : m_listLine)
 	{
@@ -51,6 +51,12 @@ bool CLineMgr::Collision_Line(float _x, float* _y, int _PlayerBottom)
 			&& _x <= pLine->Get_Info().tRightPos.fX)
 		{
 			float y = pLine->Get_Info().tLeftPos.fY;
+
+			if (0 > fDis)
+			{
+				pTargetLine = pLine;
+				fDis = abs(_PlayerBottom - y);
+			}
 
 			if (_PlayerBottom <= y)
 			{

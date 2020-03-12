@@ -44,8 +44,6 @@ int CPlayer::Update()
 {
 	Key_Check();
 
-
-
 	D3DXMATRIX matScale, matRotZ, matTrance;
 	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
 	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
@@ -103,14 +101,23 @@ void CPlayer::Update_Size()
 
 void CPlayer::Key_Check()
 {
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LEFT))
+
+	if (!m_bFall)
 	{
-		m_fAngle -= 7.5f;
+		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LEFT))
+		{
+			m_fAngle -= 7.5f;
+		}
+
+		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
+		{
+			m_fAngle += 7.5f;
+		}
 	}
 
-	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
+	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
 	{
-		m_fAngle += 7.5f;
+		m_bJump = true;
 	}
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
@@ -129,23 +136,23 @@ void CPlayer::Jump()
 {
 	float fY = 0.f;
 	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x)*0.5f, (m_vPoint[2].y + m_vPoint[3].y)*0.5f, 0.f };
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, vBottomPoint.y);
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y));
 
 	if (bLineCol)
 	{
 		if (m_bJump)
 		{
-			//m_tInfo.fY -= m_fJumpPower * m_fJumpAccel
-			//	- 9.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
+			m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel
+				- 9.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
 
-			//m_fJumpAccel += 0.2f;
+			m_fJumpAccel += 0.2f;
 
-			//if (bLineCol && fY < m_tInfo.fY + (m_tInfo.iCY >> 1))
-			//{
-			//	m_bJump = false;
-			//	m_fJumpAccel = 0.f;
-			//	m_tInfo.fY = fY - (m_tInfo.iCY >> 1);
-			//}
+			if (bLineCol && fY < m_tInfo.vPos.y + (m_tInfo.vSize.y *0.5f))
+			{
+				m_bJump = false;
+				m_fJumpAccel = 0.f;
+				m_tInfo.vPos.y = fY - (m_tInfo.vSize.y *0.5f);
+			}
 		}
 	}
 }
@@ -154,11 +161,11 @@ void CPlayer::Fall()
 {
 	float fY = 0.f;
 	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x)*0.5f, (m_vPoint[2].y + m_vPoint[3].y)*0.5f, 0.f };
-	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, vBottomPoint.y);
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y));
 
-	if (bLineCol)
+	if (!m_bJump && bLineCol)
 	{
-		if (vBottomPoint.y < fY)
+		if (  vBottomPoint.y + 1 < fY) // 소수점 때문에 일어나는 떨림 방지
 		{
 			m_bFall = true;
 		}
@@ -168,10 +175,10 @@ void CPlayer::Fall()
 			m_tInfo.vPos.y = m_tInfo.vPos.y - ( -5.8f * m_fJumpAccel * m_fJumpAccel * 0.5f ) ;
 			m_fJumpAccel += 0.2f;
 
-			if (vBottomPoint.y > fY)
+			if (vBottomPoint.y >= fY)
 			{
 				m_fJumpAccel = 0.f;
-				m_tInfo.vPos.y = fY - (m_tInfo.vSize.y *0.5f);
+				m_tInfo.vPos.y = fY - (m_tInfo.vSize.y * 0.5f);
 				m_bFall = false;
 			}
 		}
@@ -180,11 +187,6 @@ void CPlayer::Fall()
 			m_tInfo.vPos.y = fY - (m_tInfo.vSize.y *0.5f);
 			m_bFall = false;
 		}
-	}
-	else
-	{
-		m_tInfo.vPos.y = fY - (m_tInfo.vSize.y *0.5f);
-		m_bFall = false;
 	}
 }
 

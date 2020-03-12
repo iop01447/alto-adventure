@@ -111,7 +111,7 @@
     <ClInclude Include="BmpMgr.h">
       <Filter>97.Manager\05.BmpMgr</Filter>
     </ClInclude>
-    <ClInclude Include="E:\쥬신아카데미\01.API\15. 200220_이미지회전_이미지좌우반전\API_FrameWork\MyBitmap.h">
+    <ClInclude Include="MyBitmap.h">
       <Filter>03.MyBitmap</Filter>
     </ClInclude>
   </ItemGroup>
@@ -152,7 +152,7 @@
     <ClCompile Include="BmpMgr.cpp">
       <Filter>97.Manager\05.BmpMgr</Filter>
     </ClCompile>
-    <ClCompile Include="E:\쥬신아카데미\01.API\15. 200220_이미지회전_이미지좌우반전\API_FrameWork\MyBitmap.cpp">
+    <ClCompile Include="MyBitmap.cpp">
       <Filter>03.MyBitmap</Filter>
     </ClCompile>
   </ItemGroup>
