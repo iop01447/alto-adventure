@@ -18,12 +18,18 @@ public:
 	void Render(HDC _DC);
 
 public:
+	void Set_SpeedX(float _fSpeed) { m_fSpeedX = _fSpeed; }
+	void Set_SpeedY() { m_fSpeedY = -m_fSpeedY; }
+
+public:
 	const LINEINFO& Get_Info() const { return m_tInfo; }
 	const float& Get_Angle() const { return m_fAngle; }
 
 private:
 	LINEINFO		m_tInfo;
-	float			m_fAngle; // Line의 각도 
+	float			m_fAngle;	// Line의 각도
+	float			m_fSpeedX;	// X 방향 진행 속도
+	float			m_fSpeedY;  // Y 방향 진행 속도 
 };
 
 

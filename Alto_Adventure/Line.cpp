@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "Line.h"
-#include "ScrollMgr.h"
 
+#include "ScrollMgr.h"
+#include "ObjMgr.h"
 
 CLine::CLine()
 {
@@ -36,16 +37,26 @@ void CLine::Initialize()
 
 	if (m_tInfo.tRightPos.vPoint.y < m_tInfo.tLeftPos.vPoint.y)
 		m_fAngle = -m_fAngle;
+
+	m_fSpeedX = 0;
+	m_fSpeedY = 1.5f;
 }
 
 void CLine::Update()
 {
-	// 라인 각도에 따라서 진행 속도 다르게
-	m_tInfo.tLeftPos.vPoint.x -= 2.f;
-	m_tInfo.tRightPos.vPoint.x -= 2.f;
+	m_tInfo.tLeftPos.vPoint.x -= m_fSpeedX;
+	m_tInfo.tRightPos.vPoint.x -= m_fSpeedX;
 
-	m_tInfo.tLeftPos.vPoint.y -= 1.5f;
-	m_tInfo.tRightPos.vPoint.y -= 1.5f;
+	if (200.f > CObjMgr::Get_Instance()->Get_Top())
+	{
+		m_fSpeedY = -1.f;
+	}
+	else if(500.f < CObjMgr::Get_Instance()->Get_Top())
+	{
+		m_fSpeedY = 1.5f;
+	}
+	m_tInfo.tLeftPos.vPoint.y -= m_fSpeedY;
+	m_tInfo.tRightPos.vPoint.y -= m_fSpeedY;
 }
 
 void CLine::Render(HDC _DC)

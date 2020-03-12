@@ -47,6 +47,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	CMainGame	mainGame;
 	mainGame.Initialize();
 
+	srand(unsigned(time(NULL)));
+
 	// 기본 메시지 루프입니다.
 	while (WM_QUIT != msg.message)
 	{

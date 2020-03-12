@@ -16,12 +16,20 @@ CLineMgr::~CLineMgr()
 
 void CLineMgr::Initialize()
 {
-//////////////test///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	LINEPOS tLine[5] = { {0.f, 450.f}, {500.f, 750.f}, {800.f, 880.f}, {1000.f, 1100.f},{ 1500.f, 1300.f } };
-	m_listLine.emplace_back(new CLine(tLine[0], tLine[1]));
-	m_listLine.emplace_back(new CLine(tLine[1], tLine[2]));
-	m_listLine.emplace_back(new CLine(tLine[2], tLine[3]));
-	m_listLine.emplace_back(new CLine(tLine[3], tLine[4]));
+//////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	LINEPOS tLine[50] = { /*{0.f, 450.f}, {500.f, 750.f}, {800.f, 880.f}, {1000.f, 1100.f},{ 1500.f, 1300.f }*/ };
+
+	tLine[0] = { 0.f, 450.f };
+	for (int i = 1; i < 50; ++i)
+	{
+		tLine[i] = { float(tLine[i - 1].vPoint.x + (WINCX >> 1)), float(tLine[i - 1].vPoint.y + (rand() % 300) + 200) };
+		m_listLine.emplace_back(new CLine(tLine[i-1], tLine[i]));
+	}
+
+	//m_listLine.emplace_back(new CLine(tLine[0], tLine[1]));
+	//m_listLine.emplace_back(new CLine(tLine[1], tLine[2]));
+	//m_listLine.emplace_back(new CLine(tLine[2], tLine[3]));
+	//m_listLine.emplace_back(new CLine(tLine[3], tLine[4]));
 
 	for (auto& pLine : m_listLine)
 		pLine->Initialize();
@@ -89,6 +97,9 @@ bool CLineMgr::Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fA
 
 	*_y = ((y2 - y1) / (x2 - x1)) * (_x - x1) + y1;
 	*_fAngle = pTargetLine->Get_Angle();
+
+	for (auto& pLine : m_listLine)
+		pLine->Set_SpeedX(pTargetLine->Get_Angle() / 15.f);
 
 	return true;
 }

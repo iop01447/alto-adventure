@@ -9,6 +9,7 @@
 #include <functional>
 #include <algorithm>
 
+#include <time.h>
 #include <iostream>
 
 using namespace std;

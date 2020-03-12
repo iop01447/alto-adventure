@@ -29,8 +29,7 @@ public:
 
 private:
 	//RECT m_tRect; 
-	D3DXVECTOR3		m_vPoint[4]; // Q
-	D3DXVECTOR3		m_vOrigin[4]; // P
+
 
 	bool			m_bJump;
 	bool			m_bFall;

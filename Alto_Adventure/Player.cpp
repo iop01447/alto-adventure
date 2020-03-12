@@ -132,7 +132,7 @@ void CPlayer::Jump()
 	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x) * 0.5f, (m_vPoint[2].y + m_vPoint[3].y) * 0.5f, 0.f };
 	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y), &m_fAngle);
 
-	// 플레이어가 회전했을 때 변경된 바닥에서 플레이어 중심까지의 거리
+	// 플레이어가 회전했을 때 줄어든 바닥에서 플레이어 중심까지의 거리
 	m_fRotHeight = (m_tInfo.vSize.y * 0.5f) * cosf(D3DXToRadian(m_fAngle));
 
 		if (m_bJump)
@@ -144,7 +144,6 @@ void CPlayer::Jump()
 			{
 				m_bJump = false;
 				m_fJumpAccel = 0.f;
-				//m_tInfo.vPos.y = fY - (m_tInfo.vSize.y * 0.5f);
 				m_tInfo.vPos.y = fY - m_fRotHeight;
 			}
 		}
@@ -156,13 +155,14 @@ void CPlayer::Fall()
 	D3DXVECTOR3 vBottomPoint = { (m_vPoint[2].x + m_vPoint[3].x) * 0.5f, (m_vPoint[2].y + m_vPoint[3].y) * 0.5f, 0.f };
 	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(vBottomPoint.x, &fY, int(vBottomPoint.y), &m_fAngle);
 	
-	// 플레이어가 회전했을 때 변경된 바닥에서 플레이어 중심까지의 거리
+	// 플레이어가 회전했을 때 줄어든 바닥에서 플레이어 중심까지의 거리
 	m_fRotHeight = (m_tInfo.vSize.y * 0.5f) * cosf(D3DXToRadian(m_fAngle));
 
 	if (!m_bJump && bLineCol)
 	{
-		if ( vBottomPoint.y + 1.f /*소수점 때문에 일어나는 떨림 방지*/ 
-			< fY ) 
+		if (/*소수점 때문에 일어나는 떨림 방지*/  
+			vBottomPoint.y + 3.f < fY 
+		) 
 			m_bFall = true;
 	
 		if (m_bFall)
@@ -173,7 +173,6 @@ void CPlayer::Fall()
 			if (vBottomPoint.y >= fY)
 			{
 				m_fJumpAccel = 0.f;
-				//m_tInfo.vPos.y = fY - (m_tInfo.vSize.y * 0.5f);
 				m_tInfo.vPos.y = fY - m_fRotHeight;
 				m_bFall = false;
 			}
