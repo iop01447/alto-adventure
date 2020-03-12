@@ -43,6 +43,9 @@
     <Filter Include="97.Manager\05.BmpMgr">
       <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.Manager\06.BackgroundMgr">
+      <UniqueIdentifier>{bd4349aa-80fa-47cf-907d-cea2df3019f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -114,6 +117,9 @@
     <ClInclude Include="MyBitmap.h">
       <Filter>03.MyBitmap</Filter>
     </ClInclude>
+    <ClInclude Include="BackgroundMgr.h">
+      <Filter>97.Manager\06.BackgroundMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp">
@@ -154,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="MyBitmap.cpp">
       <Filter>03.MyBitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundMgr.cpp">
+      <Filter>97.Manager\06.BackgroundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

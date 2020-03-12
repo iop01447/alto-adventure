@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Alto_Adventure.h" />
+    <ClInclude Include="BackgroundMgr.h" />
     <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Define.h" />
@@ -173,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp" />
+    <ClCompile Include="BackgroundMgr.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
