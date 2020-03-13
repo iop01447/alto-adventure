@@ -110,7 +110,11 @@ void CPlayer::Key_Check()
 		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
 			m_fAngle += 7.5f;
 	}
+	// if( 플레이어 점프 중 && 스페이스바 Pressing )
+	//		캐릭터 회전
 
+
+	// 캐릭터 점프 중일 때 라인의 각도 보다 조금더 몸 세우고 내려오면서 다시 맵 각도에 맞게 몸 다시 눕힘
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
 		m_bJump = true;
 
@@ -158,30 +162,10 @@ void CPlayer::Fall()
 	// 플레이어가 회전했을 때 줄어든 바닥에서 플레이어 중심까지의 거리
 	m_fRotHeight = (m_tInfo.vSize.y * 0.5f) * cosf(D3DXToRadian(m_fAngle));
 
+	// 조건 맞으면 떨어지지말고 그냥 바로 라인 위로 올라타게 수정
 	if (!m_bJump && bLineCol)
 	{
-		if (/*소수점 때문에 일어나는 떨림 방지*/  
-			vBottomPoint.y + 3.f < fY 
-		) 
-			m_bFall = true;
-	
-		if (m_bFall)
-		{
-			m_tInfo.vPos.y = m_tInfo.vPos.y - ( -5.8f * m_fJumpAccel * m_fJumpAccel * 0.5f ) ;
-			m_fJumpAccel += 0.2f;
-
-			if (vBottomPoint.y >= fY)
-			{
-				m_fJumpAccel = 0.f;
-				m_tInfo.vPos.y = fY - m_fRotHeight;
-				m_bFall = false;
-			}
-		}
-		else
-		{
-			m_tInfo.vPos.y = fY - m_fRotHeight;
-			m_bFall = false;
-		}
+		m_tInfo.vPos.y = fY - m_fRotHeight;
 	}
 }
 

@@ -19,18 +19,44 @@ void CLineMgr::Initialize()
 //////////////test맵 생성///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	LINEPOS tLine[50] = { /*{0.f, 450.f}, {500.f, 750.f}, {800.f, 880.f}, {1000.f, 1100.f},{ 1500.f, 1300.f }*/ };
 
-	tLine[0] = { 0.f, 450.f };
-	for (int i = 1; i < 50; ++i)
+	tLine[0] = { -(WINCX >> 1), 250.f };
+	for (int i = 1; i < 8; ++i)
 	{
-		tLine[i] = { float(tLine[i - 1].vPoint.x + (WINCX >> 1)), float(tLine[i - 1].vPoint.y + (rand() % 300) + 200) };
-		m_listLine.emplace_back(new CLine(tLine[i-1], tLine[i]));
+		tLine[i] = { float(tLine[i - 1].vPoint.x + (WINCX >> 1)), float(tLine[i - 1].vPoint.y + (rand() % 300) + 100) };
+		//m_listLine.emplace_back(new CLine(tLine[i-1], tLine[i]));
 	}
 
-	//m_listLine.emplace_back(new CLine(tLine[0], tLine[1]));
-	//m_listLine.emplace_back(new CLine(tLine[1], tLine[2]));
-	//m_listLine.emplace_back(new CLine(tLine[2], tLine[3]));
-	//m_listLine.emplace_back(new CLine(tLine[3], tLine[4]));
+	D3DXVECTOR3 vPoint1, vPoint2;
+	for (int i = 0; i < 5; ++i)
+	{
+		for (int j = 0; j < (WINCX >> 1)-1; j+=5)
+		{
+			D3DXVec3CatmullRom(&vPoint1, &tLine[i].vPoint, &tLine[i + 1].vPoint, &tLine[i + 2].vPoint, &tLine[i + 3].vPoint, (float(j) / (WINCX>>1)));
+			D3DXVec3CatmullRom(&vPoint2, &tLine[i].vPoint, &tLine[i + 1].vPoint, &tLine[i + 2].vPoint, &tLine[i + 3].vPoint, (float(j+5) / (WINCX >> 1)));
 
+			m_listLine.emplace_back(new CLine(LINEPOS(vPoint1.x, vPoint1.y), LINEPOS(vPoint2.x, vPoint2.y)));
+		}
+	}
+	/*
+	//D3DXVec3CatmullRom(
+	//	D3DXVECTOR3* pOut,        // Result
+	//	CONST D3DXVECTOR3* pV1,   
+	//	CONST D3DXVECTOR3* pV2,
+	//	CONST D3DXVECTOR3* pV3,
+	//	CONST D3DXVECTOR3* pV4,
+	//	FLOAT s
+	//)
+
+	위에 4개의 입력 되는 점이 있습니다.
+	pV1, pV2, pV3, pV4 여기서 가중계수 s의 값은 0 ~ 1.0f 사이의 값을 넣게 됩니다.
+	s값이 0에 가까울수록 pV2의 가까운 점이 나오게 되며,
+	s값이 1에 가까울수록 pV3의 가까운 점이 나오게 됩니다.
+
+	다시 말해서  pV1, pV4의 값은 pV2 에서 pV3의 사이 곡선을 그리는데 영향을 주게 됩니다.
+	하지만 실제로 구해지는 곡선의 구간은 pV2 ~ pV3 라는걸 잊지 마시면 됩니다
+	*/
+
+	//생성된 라인들의 각도 계산 > 플레이어 속도에 적용
 	for (auto& pLine : m_listLine)
 		pLine->Initialize();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
