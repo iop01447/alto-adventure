@@ -13,4 +13,36 @@
 
 #define PI 3.141592f
 
+#define NOCOPY(ClassName)						\
+private:										\
+	ClassName(ClassName& rObj) {};				\
+	void operator=(ClassName& rObj) {}
+
+#define DECLARE_SINGLETON(ClassName)			\
+public:											\
+static ClassName* Get_Instance()				\
+{												\
+	if (nullptr == m_pInstance)					\
+		m_pInstance = new ClassName;			\
+	return m_pInstance;							\
+}												\
+static void Destroy_Instance()					\
+{												\
+	if (m_pInstance)							\
+	{											\
+		delete m_pInstance;						\
+		m_pInstance = nullptr;					\
+	}											\
+}												\
+NOCOPY(ClassName)								\
+private:										\
+	static ClassName* m_pInstance;				
+
+
+#define IMPLEMENT_SINGLETON(ClassName)			\
+ClassName* ClassName::m_pInstance = nullptr;
+
+#define GET_INSTANCE(ClassName)					\
+ClassName::Get_Instance()
+
 #endif // !__DEFINE_H__

@@ -19,29 +19,47 @@
     <Filter Include="02.Line">
       <UniqueIdentifier>{8a28886e-afb8-47de-8d7c-56a040cf3b7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="03.MyBitmap">
-      <UniqueIdentifier>{24be7fda-65a4-4226-8f3c-a07f878ead38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="97.Manager">
+    <Filter Include="96.Manager">
       <UniqueIdentifier>{cabbe903-0476-47c9-8f69-51ff763384c6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\00.CollisionMgr">
+    <Filter Include="96.Manager\00.CollisionMgr">
       <UniqueIdentifier>{bd852726-90d3-494a-947c-8179ea5d84a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\01.KeyMgr">
+    <Filter Include="96.Manager\01.KeyMgr">
       <UniqueIdentifier>{62317ca3-7eb0-4004-8796-483fde214516}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\02.LineMgr">
+    <Filter Include="96.Manager\02.LineMgr">
       <UniqueIdentifier>{92f8130f-29e8-4ad7-8084-1f35434c5d9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\03.ObjMgr">
+    <Filter Include="96.Manager\03.ObjMgr">
       <UniqueIdentifier>{f3525b06-2575-4297-86a2-4276f83f9463}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\04.ScrollMgr">
+    <Filter Include="96.Manager\04.ScrollMgr">
       <UniqueIdentifier>{419d8fb2-0b11-456f-bcd5-cfc5576ee434}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\05.BmpMgr">
+    <Filter Include="96.Manager\06.BackgroundMgr">
+      <UniqueIdentifier>{bd4349aa-80fa-47cf-907d-cea2df3019f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Device">
+      <UniqueIdentifier>{ada567e0-acb2-4aef-b6eb-b03e648cfdce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03.Bitmap">
+      <UniqueIdentifier>{11267dfb-75de-4c55-aaef-3bb283fc02c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Texture">
+      <UniqueIdentifier>{24be7fda-65a4-4226-8f3c-a07f878ead38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Texture\MultiTex">
+      <UniqueIdentifier>{bbd13c83-24aa-437e-af86-f85ed7808e1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04.Texture\SingleTex">
+      <UniqueIdentifier>{9e4f19b2-8644-41c0-ba1a-d20875d28680}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\06.TextureMgr">
       <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\05.BmpMgr">
+      <UniqueIdentifier>{594a8b79-e895-4b42-be80-de1d5287a19b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,28 +109,46 @@
       <Filter>01.Obj\00.Player</Filter>
     </ClInclude>
     <ClInclude Include="CollisionMgr.h">
-      <Filter>97.Manager\00.CollisionMgr</Filter>
+      <Filter>96.Manager\00.CollisionMgr</Filter>
     </ClInclude>
     <ClInclude Include="KeyMgr.h">
-      <Filter>97.Manager\01.KeyMgr</Filter>
+      <Filter>96.Manager\01.KeyMgr</Filter>
     </ClInclude>
     <ClInclude Include="LineMgr.h">
-      <Filter>97.Manager\02.LineMgr</Filter>
+      <Filter>96.Manager\02.LineMgr</Filter>
     </ClInclude>
     <ClInclude Include="ObjMgr.h">
-      <Filter>97.Manager\03.ObjMgr</Filter>
+      <Filter>96.Manager\03.ObjMgr</Filter>
     </ClInclude>
     <ClInclude Include="ScrollMgr.h">
-      <Filter>97.Manager\04.ScrollMgr</Filter>
+      <Filter>96.Manager\04.ScrollMgr</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>02.Line</Filter>
     </ClInclude>
-    <ClInclude Include="BmpMgr.h">
-      <Filter>97.Manager\05.BmpMgr</Filter>
+    <ClInclude Include="BackgroundMgr.h">
+      <Filter>96.Manager\06.BackgroundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>04.Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiTex.h">
+      <Filter>04.Texture\MultiTex</Filter>
+    </ClInclude>
+    <ClInclude Include="SingleTex.h">
+      <Filter>04.Texture\SingleTex</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMgr.h">
+      <Filter>96.Manager\06.TextureMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Device.h">
+      <Filter>97.Device</Filter>
     </ClInclude>
     <ClInclude Include="MyBitmap.h">
-      <Filter>03.MyBitmap</Filter>
+      <Filter>03.Bitmap</Filter>
+    </ClInclude>
+    <ClInclude Include="BmpMgr.h">
+      <Filter>96.Manager\05.BmpMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -132,28 +168,46 @@
       <Filter>01.Obj\00.Player</Filter>
     </ClCompile>
     <ClCompile Include="CollisionMgr.cpp">
-      <Filter>97.Manager\00.CollisionMgr</Filter>
+      <Filter>96.Manager\00.CollisionMgr</Filter>
     </ClCompile>
     <ClCompile Include="KeyMgr.cpp">
-      <Filter>97.Manager\01.KeyMgr</Filter>
+      <Filter>96.Manager\01.KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="LineMgr.cpp">
-      <Filter>97.Manager\02.LineMgr</Filter>
+      <Filter>96.Manager\02.LineMgr</Filter>
     </ClCompile>
     <ClCompile Include="ObjMgr.cpp">
-      <Filter>97.Manager\03.ObjMgr</Filter>
+      <Filter>96.Manager\03.ObjMgr</Filter>
     </ClCompile>
     <ClCompile Include="ScrollMgr.cpp">
-      <Filter>97.Manager\04.ScrollMgr</Filter>
+      <Filter>96.Manager\04.ScrollMgr</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>02.Line</Filter>
     </ClCompile>
-    <ClCompile Include="BmpMgr.cpp">
-      <Filter>97.Manager\05.BmpMgr</Filter>
+    <ClCompile Include="BackgroundMgr.cpp">
+      <Filter>96.Manager\06.BackgroundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>04.Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiTex.cpp">
+      <Filter>04.Texture\MultiTex</Filter>
+    </ClCompile>
+    <ClCompile Include="SingleTex.cpp">
+      <Filter>04.Texture\SingleTex</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMgr.cpp">
+      <Filter>96.Manager\06.TextureMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Device.cpp">
+      <Filter>97.Device</Filter>
     </ClCompile>
     <ClCompile Include="MyBitmap.cpp">
-      <Filter>03.MyBitmap</Filter>
+      <Filter>03.Bitmap</Filter>
+    </ClCompile>
+    <ClCompile Include="BmpMgr.cpp">
+      <Filter>96.Manager\05.BmpMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
