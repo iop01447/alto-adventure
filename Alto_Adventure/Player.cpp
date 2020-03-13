@@ -20,7 +20,6 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	//GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/player.png", L"Cube");
 	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/player/%d.png", L"Player", L"Idle", 1);
 
 	m_tInfo.vPos = { 100.f, 300.f, 0.f };
@@ -90,13 +89,13 @@ void CPlayer::Render(HDC _DC)
 
 	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", 0);
 
-	float fCenterX = pTexInfo->tImageInfo.Width / 2.f;
+	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 
 	D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
-	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(0));
-	D3DXMatrixTranslation(&matTrans, 400.f, 300.f, 0.f);
+	D3DXMatrixScaling(&matScale, 0.3f, 0.3f, 0.f);
+	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
+	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
 	matWorld = matScale * matRotZ * matTrans;
 	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);

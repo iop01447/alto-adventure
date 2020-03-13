@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "Player.h"
+#include "Device.h"
 
 #include "CollisionMgr.h"
 #include "ObjMgr.h"
@@ -9,6 +10,8 @@
 #include "BmpMgr.h"
 #include "ScrollMgr.h"
 
+
+LPD3DXLINE g_pLine;
 
 CMainGame::CMainGame()
 	: m_dwTime(GetTickCount()), m_iFPS(0), m_szFPS(L"")
@@ -29,6 +32,9 @@ void CMainGame::Initialize()
 		MessageBox(g_hWnd, L"InitDevice Failed", L"", MB_OK);
 		return;
 	}
+
+	D3DXCreateLine(GET_INSTANCE(CDevice)->Get_Device(), &g_pLine);
+	g_pLine->SetWidth(5);
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"Back.bmp", L"Back");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"BackBuffer.bmp", L"BackBuffer");
@@ -65,7 +71,7 @@ void CMainGame::Render()
 
 	////CSceneMgr::Get_Instance()->Render(hBackBuffer);
 
-	//CLineMgr::Get_Instance()->Render(hBackBuffer);
+	
 	//BitBlt(m_DC, 0, 0, WINCX, WINCY, hBackBuffer, 0, 0, SRCCOPY);
 
 
@@ -82,6 +88,13 @@ void CMainGame::Render()
 	CDevice::Get_Instance()->Render_Begin();
 	
 	CObjMgr::Get_Instance()->Render(hBackBuffer);
+	//CLineMgr::Get_Instance()->Render(hBackBuffer);
+
+	g_pLine->Begin();
+
+	g_pLine->Draw(GET_INSTANCE(CLineMgr)->Get_PointList(), GET_INSTANCE(CLineMgr)->Get_PointCnt(), D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	g_pLine->End();
 
 	CDevice::Get_Instance()->Render_End();
 

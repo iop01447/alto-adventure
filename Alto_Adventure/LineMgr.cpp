@@ -17,7 +17,10 @@ CLineMgr::~CLineMgr()
 void CLineMgr::Initialize()
 {
 //////////////test맵 생성///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	LINEPOS tLine[50] = { /*{0.f, 450.f}, {500.f, 750.f}, {800.f, 880.f}, {1000.f, 1100.f},{ 1500.f, 1300.f }*/ };
+	m_iPointCnt = 0;
+	m_vPointList = nullptr;
+
+	LINEPOS tLine[10] = { /*{0.f, 450.f}, {500.f, 750.f}, {800.f, 880.f}, {1000.f, 1100.f},{ 1500.f, 1300.f }*/ };
 
 	tLine[0] = { -(WINCX >> 1), 250.f };
 	for (int i = 1; i < 8; ++i)
@@ -35,8 +38,12 @@ void CLineMgr::Initialize()
 			D3DXVec3CatmullRom(&vPoint2, &tLine[i].vPoint, &tLine[i + 1].vPoint, &tLine[i + 2].vPoint, &tLine[i + 3].vPoint, (float(j+5) / (WINCX >> 1)));
 
 			m_listLine.emplace_back(new CLine(LINEPOS(vPoint1.x, vPoint1.y), LINEPOS(vPoint2.x, vPoint2.y)));
+			++m_iPointCnt;
 		}
 	}
+
+	m_vPointList = new D3DXVECTOR2[m_iPointCnt];
+
 	/*
 	//D3DXVec3CatmullRom(
 	//	D3DXVECTOR3* pOut,        // Result
@@ -57,15 +64,41 @@ void CLineMgr::Initialize()
 	*/
 
 	//생성된 라인들의 각도 계산 > 플레이어 속도에 적용
+
+	int  i = 0;
 	for (auto& pLine : m_listLine)
+	{
 		pLine->Initialize();
+		m_vPointList[i].x = pLine->Get_Info().tLeftPos.vPoint.x;
+		m_vPointList[i].y = pLine->Get_Info().tLeftPos.vPoint.y;
+		++i;
+	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }
 
 void CLineMgr::Update()
 {
+	m_iPointCnt = 0;
+
 	for (auto& pLine : m_listLine)
+	{
 		pLine->Update();
+		++m_iPointCnt;
+	}
+
+	delete[] m_vPointList;
+	m_vPointList = nullptr;
+
+	m_vPointList = new D3DXVECTOR2[m_iPointCnt];
+
+	int  i = 0;
+	for (auto& pLine : m_listLine)
+	{
+		//pLine->Initialize();
+		m_vPointList[i].x = pLine->Get_Info().tLeftPos.vPoint.x;
+		m_vPointList[i].y = pLine->Get_Info().tLeftPos.vPoint.y;
+		++i;
+	}
 }
 
 void CLineMgr::Render(HDC _DC)
@@ -77,6 +110,10 @@ void CLineMgr::Render(HDC _DC)
 void CLineMgr::Release()
 {
 	for_each(m_listLine.begin(), m_listLine.end(), Safe_Delete<CLine*>);
+	
+	delete[] m_vPointList;
+	m_vPointList = nullptr;
+
 	m_listLine.clear();
 }
 

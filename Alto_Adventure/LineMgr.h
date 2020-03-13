@@ -20,6 +20,9 @@ public:
 	bool Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle);
 
 public:
+	const D3DXVECTOR2* Get_PointList() const { return m_vPointList; }
+	const int& Get_PointCnt() const { return m_iPointCnt; }
+public:
 	static CLineMgr* Get_Instance()
 	{
 		if (!m_pInstance)
@@ -33,6 +36,8 @@ public:
 
 private:
 	list<CLine*>		m_listLine;
+	D3DXVECTOR2*        m_vPointList;
+	int					m_iPointCnt;
 	static CLineMgr*	m_pInstance;
 };
 

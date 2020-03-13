@@ -20,6 +20,9 @@ using namespace std;
 #include <d3dx9.h>
 //D3DXVec3CatmullRom()을 사용하기 위한 헤더
 #include <D3dx9math.h>
+//ID3DXLine() 를 사용하기 위한 헤더
+#include <D3dx9core.h>
+
 #pragma comment(lib, "d3dx9.lib")
 
 #include <d3d9.h>

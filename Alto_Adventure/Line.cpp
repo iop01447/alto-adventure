@@ -1,8 +1,11 @@
 #include "stdafx.h"
 #include "Line.h"
 
+#include "Device.h"
+
 #include "ScrollMgr.h"
 #include "ObjMgr.h"
+#include "LineMgr.h"
 
 CLine::CLine()
 {
@@ -61,9 +64,15 @@ void CLine::Update()
 
 void CLine::Render(HDC _DC)
 {
-	float fScrollX = CScrollMgr::Get_Instance()->Get_ScrollX();
-	float fScrollY = CScrollMgr::Get_Instance()->Get_ScrollY();
+	//float fScrollX = CScrollMgr::Get_Instance()->Get_ScrollX();
+	//float fScrollY = CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	MoveToEx(_DC, (int)(m_tInfo.tLeftPos.vPoint.x + fScrollX), (int)(m_tInfo.tLeftPos.vPoint.y + fScrollY), nullptr);
-	LineTo(_DC, (int)(m_tInfo.tRightPos.vPoint.x + fScrollX), (int)(m_tInfo.tRightPos.vPoint.y + fScrollY));
+	//MoveToEx(_DC, (int)(m_tInfo.tLeftPos.vPoint.x + fScrollX), (int)(m_tInfo.tLeftPos.vPoint.y + fScrollY), nullptr);
+	//LineTo(_DC, (int)(m_tInfo.tRightPos.vPoint.x + fScrollX), (int)(m_tInfo.tRightPos.vPoint.y + fScrollY));
+
+	//LPD3DXLINE* pLine;
+
+	//D3DXCreateLine(GET_INSTANCE(CDevice), &pLine);
+
+	// http://egloos.zum.com/aslike/v/2781048
 }
