@@ -12,6 +12,8 @@
 #include <time.h>
 #include <iostream>
 
+#include <assert.h>
+
 using namespace std;
 
 #include <windows.h>
@@ -29,5 +31,7 @@ using namespace std;
 #include "Enum.h"
 #include "AbstractFactory.h"
 #include "Functor.h"
+
+#include "Device.h"
 
 #endif // !__INCLUDE_H__

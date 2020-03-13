@@ -8,6 +8,7 @@
 #include "KeyMgr.h"
 #include "BmpMgr.h"
 #include "ScrollMgr.h"
+#include "BackgroundMgr.h"
 
 
 CMainGame::CMainGame()
@@ -47,6 +48,7 @@ void CMainGame::Update()
 	CObjMgr::Get_Instance()->Update();
 	CLineMgr::Get_Instance()->Update();
 	CKeyMgr::Get_Instance()->Key_Update();
+	GET_INSTANCE(CBackgroundMgr)->Update();
 }
 
 void CMainGame::Late_Update()
@@ -81,7 +83,8 @@ void CMainGame::Render()
 
 	CDevice::Get_Instance()->Render_Begin();
 	
-	CObjMgr::Get_Instance()->Render(hBackBuffer);
+	//CObjMgr::Get_Instance()->Render(hBackBuffer);
+	//GET_INSTANCE(CBackgroundMgr)->Render();
 
 	CDevice::Get_Instance()->Render_End();
 
@@ -95,6 +98,7 @@ void CMainGame::Release()
 	CBmpMgr::Destroy_Instance();
 	//CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
+	CBackgroundMgr::Destroy_Instance();
 
 	ReleaseDC(g_hWnd, m_DC);
 }
