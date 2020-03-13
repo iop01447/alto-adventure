@@ -1,6 +1,9 @@
 #pragma once
+
+class CTriangle;
 class CBackgroundMgr
 {
+	DECLARE_SINGLETON(CBackgroundMgr)
 private:
 	CBackgroundMgr();
 	~CBackgroundMgr();
@@ -8,24 +11,17 @@ private:
 public:
 	void Initialize();
 	void Update();
-	void Render(HDC _DC);
-
-public:
-	static CBackgroundMgr* Get_Instance()
-	{
-		if (!m_pInstance)
-			m_pInstance = new CBackgroundMgr;
-		return m_pInstance;
-	}
-
-	static void Destroy_Instance()
-	{
-		if (m_pInstance)
-			delete m_pInstance;
-		m_pInstance = nullptr;
-	}
+	void Render();
+	void Release();
 
 private:
-	static CBackgroundMgr* m_pInstance;
+	HRESULT InitVB();
+
+private:
+	vector<CTriangle*> m_vecMountain[3];
+	int m_MountainCnt{ 0 };
+
+	LPDIRECT3DVERTEXBUFFER9 m_pVB{ NULL };
+	vector<CUSTOMVERTEX> m_vecVertices;
 };
 

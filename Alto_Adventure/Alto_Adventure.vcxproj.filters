@@ -61,6 +61,9 @@
     <Filter Include="96.Manager\05.BmpMgr">
       <UniqueIdentifier>{594a8b79-e895-4b42-be80-de1d5287a19b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05.Triangle">
+      <UniqueIdentifier>{4bf80950-4fa8-4760-801e-bf750f07f2dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -150,6 +153,9 @@
     <ClInclude Include="BmpMgr.h">
       <Filter>96.Manager\05.BmpMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Triangle.h">
+      <Filter>05.Triangle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp">
@@ -208,6 +214,9 @@
     </ClCompile>
     <ClCompile Include="BmpMgr.cpp">
       <Filter>96.Manager\05.BmpMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle.cpp">
+      <Filter>05.Triangle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

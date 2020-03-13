@@ -49,4 +49,10 @@ typedef struct tagTexture
 	// 그림의 정보를 가지고 있을 구조체. 
 }TEXINFO;
 
+struct CUSTOMVERTEX
+{
+	float x, y, z, rhw;
+	DWORD color;
+};
+
 #endif // !__STRUCT_H__

@@ -9,6 +9,7 @@
 #include "KeyMgr.h"
 #include "BmpMgr.h"
 #include "ScrollMgr.h"
+#include "BackgroundMgr.h"
 
 
 LPD3DXLINE g_pLine;
@@ -29,7 +30,7 @@ void CMainGame::Initialize()
 
 	if (FAILED(CDevice::Get_Instance()->InitDevice()))
 	{
-		MessageBox(g_hWnd, L"InitDevice Failed", L"", MB_OK);
+		assert(false && "InitDevice Failed");
 		return;
 	}
 
@@ -53,6 +54,7 @@ void CMainGame::Update()
 	CObjMgr::Get_Instance()->Update();
 	CLineMgr::Get_Instance()->Update();
 	CKeyMgr::Get_Instance()->Key_Update();
+	GET_INSTANCE(CBackgroundMgr)->Update();
 }
 
 void CMainGame::Late_Update()
@@ -86,14 +88,11 @@ void CMainGame::Render()
 	//}
 
 	CDevice::Get_Instance()->Render_Begin();
-	
+
+	GET_INSTANCE(CBackgroundMgr)->Render();
 	CObjMgr::Get_Instance()->Render(hBackBuffer);
-	//CLineMgr::Get_Instance()->Render(hBackBuffer);
-
 	g_pLine->Begin();
-
 	g_pLine->Draw(GET_INSTANCE(CLineMgr)->Get_PointList(), GET_INSTANCE(CLineMgr)->Get_PointCnt(), D3DCOLOR_ARGB(255, 255, 255, 255));
-
 	g_pLine->End();
 
 	CDevice::Get_Instance()->Render_End();
@@ -108,6 +107,7 @@ void CMainGame::Release()
 	CBmpMgr::Destroy_Instance();
 	//CSceneMgr::Destroy_Instance();
 	CObjMgr::Destroy_Instance();
+	CBackgroundMgr::Destroy_Instance();
 
 	ReleaseDC(g_hWnd, m_DC);
 }

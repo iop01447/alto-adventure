@@ -36,6 +36,7 @@ HRESULT CMultiTex::InsertTexture(const wstring & wstrFilePath, const wstring & w
 		{
 			wstring ErrMsg = wstring(szFullPath) + L" Load Failed"; 
 			MessageBox(g_hWnd, ErrMsg.c_str(), L"", MB_OK);
+			assert(false);
 			Safe_Delete(pTexInfo);
 			return E_FAIL; 
 		}
@@ -55,7 +56,7 @@ HRESULT CMultiTex::InsertTexture(const wstring & wstrFilePath, const wstring & w
 			, &pTexInfo->pTexture
 			)))
 		{
-			MessageBox(g_hWnd, L"Create texture Failed!", L"", MB_OK);
+			assert(false && "Create texture Failed!");
 			Safe_Delete(pTexInfo);
 			return E_FAIL; 
 		}
