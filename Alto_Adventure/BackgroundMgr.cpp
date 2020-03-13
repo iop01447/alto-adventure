@@ -136,3 +136,5 @@ HRESULT CBackgroundMgr::InitVB()
 
 	return S_OK;
 }
+
+// http://blog.naver.com/PostView.nhn?blogId=swryu02&logNo=220680527175

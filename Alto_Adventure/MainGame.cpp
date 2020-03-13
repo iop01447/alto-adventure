@@ -84,7 +84,7 @@ void CMainGame::Render()
 	CDevice::Get_Instance()->Render_Begin();
 	
 	//CObjMgr::Get_Instance()->Render(hBackBuffer);
-	//GET_INSTANCE(CBackgroundMgr)->Render();
+	GET_INSTANCE(CBackgroundMgr)->Render();
 
 	CDevice::Get_Instance()->Render_End();
 
