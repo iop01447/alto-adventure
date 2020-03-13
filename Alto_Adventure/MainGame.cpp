@@ -24,6 +24,12 @@ void CMainGame::Initialize()
 {
 	m_DC = GetDC(g_hWnd);
 
+	if (FAILED(CDevice::Get_Instance()->InitDevice()))
+	{
+		MessageBox(g_hWnd, L"InitDevice Failed", L"", MB_OK);
+		return;
+	}
+
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"Back.bmp", L"Back");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"BackBuffer.bmp", L"BackBuffer");
 
@@ -53,26 +59,32 @@ void CMainGame::Late_Update()
 
 void CMainGame::Render()
 {
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"BackBuffer");
+	//HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"BackBuffer");
 	HDC hBackBuffer = CBmpMgr::Get_Instance()->Find_Image(L"Back");
-	BitBlt(hBackBuffer, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
+	//BitBlt(hBackBuffer, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
 
-	//CSceneMgr::Get_Instance()->Render(hBackBuffer);
+	////CSceneMgr::Get_Instance()->Render(hBackBuffer);
+
+	//CLineMgr::Get_Instance()->Render(hBackBuffer);
+	//BitBlt(m_DC, 0, 0, WINCX, WINCY, hBackBuffer, 0, 0, SRCCOPY);
+
+
+	//++m_iFPS;
+	//if (m_dwTime + 1000 < GetTickCount())
+	//{
+	//	swprintf_s(m_szFPS, L"FPS: %d", m_iFPS);
+	//	SetWindowText(g_hWnd, m_szFPS);
+
+	//	m_iFPS = 0;
+	//	m_dwTime = GetTickCount();
+	//}
+
+	CDevice::Get_Instance()->Render_Begin();
+	
 	CObjMgr::Get_Instance()->Render(hBackBuffer);
 
-	CLineMgr::Get_Instance()->Render(hBackBuffer);
-	BitBlt(m_DC, 0, 0, WINCX, WINCY, hBackBuffer, 0, 0, SRCCOPY);
+	CDevice::Get_Instance()->Render_End();
 
-
-	++m_iFPS;
-	if (m_dwTime + 1000 < GetTickCount())
-	{
-		swprintf_s(m_szFPS, L"FPS: %d", m_iFPS);
-		SetWindowText(g_hWnd, m_szFPS);
-
-		m_iFPS = 0;
-		m_dwTime = GetTickCount();
-	}
 }
 
 void CMainGame::Release()

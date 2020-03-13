@@ -40,4 +40,13 @@ typedef struct tagLineInfo
 
 }LINEINFO;
 
+typedef struct tagTexture
+{
+	LPDIRECT3DTEXTURE9 pTexture;
+	// 예전에 썼던 hBitmap 역할을 할 com 객체, 그림 한 장을 관리 제어 하기 위해 사용된다. 
+
+	D3DXIMAGE_INFO tImageInfo;
+	// 그림의 정보를 가지고 있을 구조체. 
+}TEXINFO;
+
 #endif // !__STRUCT_H__
