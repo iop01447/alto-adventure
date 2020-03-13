@@ -47,6 +47,7 @@ HRESULT CTextureMgr::InsertTexture(TEXID eTexID, const wstring & wstrFilePath, c
 		{
 			wstring ErrMsg = wstrObjectKey + L" Insert Failed"; 
 			MessageBox(g_hWnd, ErrMsg.c_str(), L"", MB_OK);
+			assert(false);
 			return E_FAIL; 
 		}
 		m_mapTexture.emplace(wstrObjectKey, pTexture);
@@ -57,6 +58,7 @@ HRESULT CTextureMgr::InsertTexture(TEXID eTexID, const wstring & wstrFilePath, c
 		{
 			wstring ErrMsg = wstrStateKey + L" Insert Failed";
 			MessageBox(g_hWnd, ErrMsg.c_str(), L"", MB_OK);
+			assert(false);
 			return E_FAIL; 
 		}
 	}

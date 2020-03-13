@@ -33,7 +33,7 @@ HRESULT CDevice::InitDevice()
 		, &DeviceCaps
 	)))
 	{
-		MessageBox(g_hWnd, L"GetDeviceCaps Failed!", L"", MB_OK);
+		assert(false && "GetDeviceCaps Failed!");
 		return E_FAIL; 
 	}
 
@@ -92,12 +92,12 @@ HRESULT CDevice::InitDevice()
 
 	if (FAILED(m_p3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, g_hWnd, vp,&d3dpp, &m_pDevice)))
 	{
-		MessageBox(g_hWnd, L"CreateDevice Func Failed!", L"", MB_OK);
+		assert(false && L"CreateDevice Func Failed!");
 		return E_FAIL; 
 	}
 	if (FAILED(D3DXCreateSprite(m_pDevice, &m_pSprite)))
 	{
-		MessageBox(g_hWnd, L"CreateSprite Func Failed!", L"", MB_OK);
+		assert(false && L"CreateSprite Func Failed!");
 		return E_FAIL; 
 	}
 	return S_OK;

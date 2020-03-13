@@ -21,6 +21,7 @@ HRESULT CSingleTex::InsertTexture(const wstring & wstrFilePath, const wstring & 
 	{
 		wstring wstrFailed = wstrFilePath + L" Load ImageInfo Failed"; 
 		MessageBox(g_hWnd, wstrFailed.c_str(), L"", MB_OK);
+		assert(false);
 		return E_FAIL; 
 	}
 	// 다음이시간에투비컨티뉴...ㅋㅋㅋㅋ
@@ -41,7 +42,7 @@ HRESULT CSingleTex::InsertTexture(const wstring & wstrFilePath, const wstring & 
 	,&m_tTexInfo.pTexture// 최종 결과물이 pTexture에 들어간다. 이건 TexInfo안에 보면 LPDirec3dTexture9 이라는 객체 
 		)))
 	{
-		MessageBox(g_hWnd, L"Create Texture Failed", L"", MB_OK);
+		assert(false && "Create Texture Failed");
 		return E_FAIL;
 	}
 

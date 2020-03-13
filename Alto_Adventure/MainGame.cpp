@@ -26,7 +26,7 @@ void CMainGame::Initialize()
 
 	if (FAILED(CDevice::Get_Instance()->InitDevice()))
 	{
-		MessageBox(g_hWnd, L"InitDevice Failed", L"", MB_OK);
+		assert(false && "InitDevice Failed");
 		return;
 	}
 
