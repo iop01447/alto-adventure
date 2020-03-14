@@ -18,7 +18,7 @@ public:
 	virtual void Initialize();
 	virtual int Update();
 	virtual void Late_Update();
-	virtual void Render(HDC _DC);
+	virtual void Render();
 	virtual void Release();
 
 public:
@@ -29,7 +29,6 @@ public:
 
 private:
 	//RECT m_tRect; 
-
 
 	bool			m_bJump;
 	bool			m_bFall;

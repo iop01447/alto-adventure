@@ -87,14 +87,11 @@ void CLineMgr::Update()
 	}
 
 	delete[] m_vPointList;
-	m_vPointList = nullptr;
-
 	m_vPointList = new D3DXVECTOR2[m_iPointCnt];
 
 	int  i = 0;
 	for (auto& pLine : m_listLine)
 	{
-		//pLine->Initialize();
 		m_vPointList[i].x = pLine->Get_Info().tLeftPos.vPoint.x;
 		m_vPointList[i].y = pLine->Get_Info().tLeftPos.vPoint.y;
 		++i;

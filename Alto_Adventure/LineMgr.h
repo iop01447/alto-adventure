@@ -3,7 +3,8 @@
 #ifndef __LINEMGR_H__
 #define __LINEMGR_H__
 
-class CLine;
+#include "Line.h"
+
 class CLineMgr
 {
 private:
@@ -22,6 +23,7 @@ public:
 public:
 	const D3DXVECTOR2* Get_PointList() const { return m_vPointList; }
 	const int& Get_PointCnt() const { return m_iPointCnt; }
+	const float& Get_SpeedY() const { return m_listLine.front()->Get_SpeedY(); }
 public:
 	static CLineMgr* Get_Instance()
 	{

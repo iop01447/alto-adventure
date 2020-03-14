@@ -59,14 +59,14 @@ void CObjMgr::Late_Update()
 	//CCollisionMgr::Collision_RectEx(m_listObj[OBJID::MONSTER], m_listObj[OBJID::PLAYER]);
 }
 
-void CObjMgr::Render(HDC _DC)
+void CObjMgr::Render()
 {
 	for (int i = 0; i < OBJID::END; ++i)
 	{
 		for (auto& pObj : m_listObj[i])
 		{
 
-			pObj->Render(_DC);
+			pObj->Render();
 		}
 	}
 }
