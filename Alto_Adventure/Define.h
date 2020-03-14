@@ -47,6 +47,4 @@ ClassName::Get_Instance()
 
 #define D3DFMT_CUSTOMVERTEX (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 
-#define ARGB(a,r,g,b) ((DWORD)(b) | ((DWORD)(g) << 8) | ((DWORD)(r) << 16)| ((DWORD)(a) << 24))
-
 #endif // !__DEFINE_H__

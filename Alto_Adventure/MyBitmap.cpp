@@ -38,7 +38,6 @@ void CMyBitmap::Load_Bmp(const TCHAR * _pFilePath)
 	// SelectObject() 도구를 선택해주는 함수이다.
 	// 단, GDI 오브젝트를 선택하기 전에 기존에 가지고 있던 도구를 반환한다.
 	m_hOldBmp = (HBITMAP)SelectObject(m_hMemDC, m_hBitmap);
-	//dfs
 }
 
 void CMyBitmap::Release()
