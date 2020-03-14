@@ -49,10 +49,7 @@ void CBackgroundMgr::Initialize()
 	}
 	m_vecVertices.resize(m_MountainCnt * 3);
 
-	/*m_vecMountain.push_back(new CTriangle(D3DXVECTOR3(400.f, 300.f, 0.f),
-		D3DXVECTOR3(200.f, 200.f, 1.f)));*/
-
-		// 2. 정점 버퍼를 생성하고 이에 대한 포인터를 가져온다
+	// 2. 정점 버퍼를 생성하고 이에 대한 포인터를 가져온다
 	if (FAILED(GET_INSTANCE(CDevice)->Get_Device()->CreateVertexBuffer(m_vecVertices.size() * sizeof(CUSTOMVERTEX), 0, D3DFMT_CUSTOMVERTEX, D3DPOOL_DEFAULT, &m_pVB, NULL)))
 	{
 		assert(false && "정점 버퍼 생성 실패");
@@ -66,7 +63,6 @@ void CBackgroundMgr::Initialize()
 void CBackgroundMgr::Update()
 {
 	for (int i = 0; i < 3; ++i) {
-		//for_each(m_vecMountain[i].begin(), m_vecMountain[i].end(), [](CTriangle* pMountain) {pMountain->Update(); });
 		for (auto mountain : m_vecMountain[i]) {
 			mountain->Update();
 		}
@@ -79,16 +75,9 @@ void CBackgroundMgr::Update()
 void CBackgroundMgr::Render()
 {
 	GET_INSTANCE(CDevice)->Get_Sprite()->End();
-	//GET_INSTANCE(CDevice)->Get_Device()->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
 	GET_INSTANCE(CDevice)->Get_Device()->SetFVF(D3DFMT_CUSTOMVERTEX);
 
-	//CUSTOMVERTEX vert[4] = {
-	//	{ 0.f, 0.f, 0.f, 0.f, D3DCOLOR_ARGB(255, 77, 134, 128) },
-	//	{ WINCX, 0.f, 0.f, 0.f, D3DCOLOR_ARGB(255, 77, 134, 128) },
-	//	{ 0.f, WINCY, 0.f, 0.f, D3DCOLOR_ARGB(255, 101, 150, 135) },
-	//	{ WINCX, WINCY, 0.f, 0.f, D3DCOLOR_ARGB(255, 101, 150, 135) }
-	//};
-
+	// 사각형 그리기
 	CUSTOMVERTEX vert[4] = {
 		{ 0.f, 0.f, 0.f, 1.f, m_vColor[1] },
 		{ WINCX, 0.f, 0.f, 1.f, m_vColor[1] },
@@ -99,6 +88,7 @@ void CBackgroundMgr::Render()
 	assert(!FAILED(hr));
 	GET_INSTANCE(CDevice)->Get_Sprite()->Begin(D3DXSPRITE_ALPHABLEND);
 
+	// 산들 그리기
 	GET_INSTANCE(CDevice)->Get_Device()->SetStreamSource(0, m_pVB, 0, sizeof(CUSTOMVERTEX));
 	GET_INSTANCE(CDevice)->Get_Device()->SetFVF(D3DFMT_CUSTOMVERTEX);
 	GET_INSTANCE(CDevice)->Get_Device()->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_MountainCnt);
@@ -154,9 +144,8 @@ HRESULT CBackgroundMgr::InitVB()
 
 	for (int k = 2; k >=0; --k) {
 		for (auto pTriangle : m_vecMountain[k]) {
-			D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
+			D3DXMATRIX matScale, matTrans, matWorld;
 			D3DXMatrixScaling(&matScale, pTriangle->m_tInfo.vSize.x, pTriangle->m_tInfo.vSize.y, 0.f);
-			//D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(0));
 			D3DXMatrixTranslation(&matTrans, pTriangle->m_tInfo.vPos.x, pTriangle->m_tInfo.vPos.y, 0.f);
 
 			matWorld = matScale * matTrans;
@@ -191,8 +180,10 @@ HRESULT CBackgroundMgr::InitVB()
 
 // http://blog.naver.com/PostView.nhn?blogId=swryu02&logNo=220680527175
 
-// H는 [0,360) 범위, S,V값은 각각 [0,1]범위를 갖는다.
-// R,G,B는 각각 [0,1]값을 갖는다.
+/* =====================================
+H는 [0,360) 범위, S,V값은 각각 [0,1]범위를 갖는다.
+R,G,B는 각각 [0,1]값을 갖는다.
+===================================== */
 void CBackgroundMgr::HSL_To_RGB(float h, float sl, float l, float *r, float *g, float *b)
 {
 	float v;
