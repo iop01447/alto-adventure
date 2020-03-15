@@ -15,6 +15,7 @@ CBigTree::~CBigTree()
 void CBigTree::Initialize()
 {
 	m_fReflection = rand() % 2 ? -1.f : 1.f;
+	m_eGroupID = GROUPID::BEFORE_GAMEOBJECT;
 }
 
 int CBigTree::Update()

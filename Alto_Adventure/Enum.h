@@ -11,7 +11,7 @@ namespace OBJID
 
 namespace GROUPID
 {
-	enum ID { BACKGROUND, GAMEOBJECT, EFFECT, UI, END };
+	enum ID { BACKGROUND, BEFORE_GAMEOBJECT, GAMEOBJECT, EFFECT, UI, END };
 }
 
 #endif // !__ENUM_H__

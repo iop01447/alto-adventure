@@ -16,6 +16,7 @@ CTree::~CTree()
 void CTree::Initialize()
 {
 	m_iID = rand() % 3;
+	m_eGroupID = GROUPID::BEFORE_GAMEOBJECT;
 }
 
 int CTree::Update()
