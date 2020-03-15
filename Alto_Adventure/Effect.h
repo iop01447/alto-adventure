@@ -18,7 +18,8 @@ public:
 	virtual void Release() override;
 
 private:
-	int		m_iAlphaValue;
+	int			m_iAlphaValue;
+	float		m_fSize;
 };
 
 #endif

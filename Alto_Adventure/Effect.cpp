@@ -8,7 +8,6 @@
 
 // 점프상태 아닐때 나오는 스키 뒤로 날라가는 눈 이펙트
 CEffect::CEffect()
-	:m_iAlphaValue(255)
 {
 	ZeroMemory(&m_vPoint, sizeof(D3DXVECTOR3) * 4);
 	ZeroMemory(&m_vOrigin, sizeof(D3DXVECTOR3) * 4);
@@ -39,6 +38,7 @@ void CEffect::Initialize()
 
 	m_fAngle = CObjMgr::Get_Instance()->Get_Obj(OBJID::PLAYER)->Get_Angle() + (rand() % 20) ;
 	m_fSpeed = float(rand() % 1 + 1);
+	m_iAlphaValue = 255;
 }
 
 int CEffect::Update()
@@ -46,25 +46,37 @@ int CEffect::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	D3DXMATRIX matScale, matRotZ, matTrance;
-	D3DXMatrixScaling(&matScale, 1.f, 1.f, 0.f);
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
-	D3DXMatrixTranslation(&matTrance, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
+	if (80 > m_iAlphaValue)
+	{
+		m_fSize = 0.02f;
+		m_tInfo.vPos.y -= 0.5f;
+	}
+	else if (145 > m_iAlphaValue)
+	{
+		m_fSize = 0.03f;
+		m_tInfo.vPos.y -= 0.4f;
+	}
+	else if (200 > m_iAlphaValue)
+	{
+		m_fSize = 0.04f;
+		m_tInfo.vPos.y -= 0.3f;
+	}
+	else if (235 > m_iAlphaValue)
+	{
+		m_fSize = 0.045f;
+		m_tInfo.vPos.y -= 0.2f;
+	}
+	else
+		m_fSize = 0.03f;
 
-	m_tInfo.matWorld = matScale * matRotZ * matTrance;
-
-	for (int i = 0; i < 4; ++i)
-		D3DXVec3TransformCoord(&m_vPoint[i], &m_vOrigin[i], &m_tInfo.matWorld);
+	m_iAlphaValue -= 5;
 
 	return OBJ_NOEVENT;
 }
 
 void CEffect::Late_Update()
 {
-	if (0 >= m_vPoint[0].x
-		|| 0 >= m_vPoint[1].x
-		|| 0 >= m_vPoint[2].x
-		|| 0 >= m_vPoint[3].x)
+	if (0 >= m_tInfo.vPos.x)
 		m_bDead = true;
 
 	if (0 >= m_iAlphaValue)
@@ -81,32 +93,8 @@ void CEffect::Render()
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 
-	float fSize;
-	if (80 > m_iAlphaValue)
-	{
-		fSize = 0.01f;
-		m_tInfo.vPos.y -= 0.5f;
-	}
-	else if (135 > m_iAlphaValue)
-	{
-		fSize = 0.015f;
-		m_tInfo.vPos.y -= 0.4f;
-	}
-	else if (175 > m_iAlphaValue)
-	{
-		fSize = 0.02f;
-		m_tInfo.vPos.y -= 0.3f;
-	}
-	else if (225 > m_iAlphaValue)
-	{
-		fSize = 0.025f;
-		m_tInfo.vPos.y -= 0.2f;
-	}
-	else
-		fSize = 0.03f;
-
 	D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
-	D3DXMatrixScaling(&matScale, fSize, fSize, 0.f);
+	D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
 	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
@@ -118,8 +106,6 @@ void CEffect::Render()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
 		D3DCOLOR_ARGB(m_iAlphaValue, 255, 255, 255));
-
-	m_iAlphaValue -= 5;
 }
 
 void CEffect::Release()

@@ -163,7 +163,7 @@ void CPlayer::Jump()
 	}
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
-		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 20, m_vPoint[3].y - 5));
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - 5));
 	}
 }
 
