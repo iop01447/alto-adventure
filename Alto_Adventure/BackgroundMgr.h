@@ -48,9 +48,6 @@ private:
 	int m_iNextSkyID{ 0 };
 
 	DWORD m_dwLastColorChange{ 0 };
-	DWORD m_dwColorChange{ 1000 };
-
-	DWORD m_dwLastStarSparkle{ 0 };
-	DWORD m_dwStarSparkle{ 1000 };
+	DWORD m_dwColorChange{ 5000 };
 };
 
