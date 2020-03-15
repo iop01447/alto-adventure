@@ -48,8 +48,8 @@ void CLine::Initialize()
 
 void CLine::Update()
 {
-	m_tInfo.tLeftPos.vPoint.x -= m_fSpeedX;
-	m_tInfo.tRightPos.vPoint.x -= m_fSpeedX;
+	m_tInfo.tLeftPos.vPoint.x -= (m_fSpeedX + GET_INSTANCE(CObjMgr)->Get_Speed());
+	m_tInfo.tRightPos.vPoint.x -= (m_fSpeedX + GET_INSTANCE(CObjMgr)->Get_Speed());
 
 	if (200.f > CObjMgr::Get_Instance()->Get_Top())
 	{

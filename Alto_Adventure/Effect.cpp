@@ -49,22 +49,22 @@ int CEffect::Update()
 	if (80 > m_iAlphaValue)
 	{
 		m_fSize = 0.02f;
-		m_tInfo.vPos.y -= 0.5f;
+		//m_tInfo.vPos.y -= 0.2f;
 	}
 	else if (145 > m_iAlphaValue)
 	{
 		m_fSize = 0.03f;
-		m_tInfo.vPos.y -= 0.4f;
+		//m_tInfo.vPos.y -= 0.2f;
 	}
 	else if (200 > m_iAlphaValue)
 	{
 		m_fSize = 0.04f;
-		m_tInfo.vPos.y -= 0.3f;
+		//m_tInfo.vPos.y -= 0.2f;
 	}
 	else if (235 > m_iAlphaValue)
 	{
 		m_fSize = 0.045f;
-		m_tInfo.vPos.y -= 0.2f;
+		//m_tInfo.vPos.y -= 0.2f;
 	}
 	else
 		m_fSize = 0.03f;
@@ -76,14 +76,12 @@ int CEffect::Update()
 
 void CEffect::Late_Update()
 {
-	if (0 >= m_tInfo.vPos.x)
-		m_bDead = true;
-
-	if (0 >= m_iAlphaValue)
+	if (0 >= m_tInfo.vPos.x
+		|| 0 >= m_iAlphaValue)
 		m_bDead = true;
 
 	m_tInfo.vPos.x -= 2;
-	m_tInfo.vPos.y -= (GET_INSTANCE(CLineMgr)->Get_SpeedY());
+	m_tInfo.vPos.y -= (GET_INSTANCE(CLineMgr)->Get_SpeedY() * 0.1f);
 }
 
 void CEffect::Render()
