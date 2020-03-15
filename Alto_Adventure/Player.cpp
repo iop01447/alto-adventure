@@ -141,18 +141,6 @@ void CPlayer::Update_Size()
 
 void CPlayer::Key_Check()
 {
-	if (!m_bFall)
-	{
-		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_LEFT))
-			m_fAngle -= 7.5f;
-
-		if (CKeyMgr::Get_Instance()->Key_Pressing(VK_RIGHT))
-			m_fAngle += 7.5f;
-	}
-	// if( 플레이어 점프 중 && 스페이스바 Pressing )
-	//		캐릭터 회전
-
-
 	// 캐릭터 점프 중일 때 라인의 각도 보다 조금더 몸 세우고 내려오면서 다시 맵 각도에 맞게 몸 다시 눕힘
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
 	{
@@ -195,7 +183,7 @@ void CPlayer::Jump()
 	}
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
-		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - 15));
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - (rand()%10 + 15)));
 	}
 }
 

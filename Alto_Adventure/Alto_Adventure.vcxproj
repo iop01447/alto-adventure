@@ -170,15 +170,19 @@
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MultiTex.h" />
     <ClInclude Include="MyBitmap.h" />
+    <ClInclude Include="MyMenu.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="Rock.h" />
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="SingleTex.h" />
     <ClInclude Include="SkyGradient.h" />
     <ClInclude Include="SoundMgr.h" />
+    <ClInclude Include="Stage.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="targetver.h" />
@@ -202,14 +206,18 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MultiTex.cpp" />
     <ClCompile Include="MyBitmap.cpp" />
+    <ClCompile Include="MyMenu.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="Rock.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="SingleTex.cpp" />
     <ClCompile Include="SkyGradient.cpp" />
     <ClCompile Include="SoundMgr.cpp" />
+    <ClCompile Include="Stage.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

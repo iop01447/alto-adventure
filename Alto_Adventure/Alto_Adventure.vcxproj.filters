@@ -37,6 +37,9 @@
     <Filter Include="96.Manager\04.ScrollMgr">
       <UniqueIdentifier>{419d8fb2-0b11-456f-bcd5-cfc5576ee434}</UniqueIdentifier>
     </Filter>
+    <Filter Include="96.Manager\06.BackgroundMgr">
+      <UniqueIdentifier>{bd4349aa-80fa-47cf-907d-cea2df3019f9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="97.Device">
       <UniqueIdentifier>{ada567e0-acb2-4aef-b6eb-b03e648cfdce}</UniqueIdentifier>
     </Filter>
@@ -74,10 +77,29 @@
       <UniqueIdentifier>{bd4349aa-80fa-47cf-907d-cea2df3019f9}</UniqueIdentifier>
     </Filter>
     <Filter Include="96.Manager\08.BackgroundMgr\01.Mountain">
+    <Filter Include="96.Manager\06.BackgroundMgr\01.Mountain">
       <UniqueIdentifier>{4bf80950-4fa8-4760-801e-bf750f07f2dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="96.Manager\08.BackgroundMgr\02.SkyGradient">
+    <Filter Include="96.Manager\06.BackgroundMgr\02.SkyGradient">
       <UniqueIdentifier>{d27395a0-828c-488f-a9be-f657f69a5e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\07.TextureMgr">
+      <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\08.SoundMgr">
+      <UniqueIdentifier>{ebfabec9-02da-4e16-af37-a98adbf8ed16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\09.SceneMgr">
+      <UniqueIdentifier>{39ea1f2c-2c96-4995-b4dc-77ed4796ce03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Scene">
+      <UniqueIdentifier>{c96f401e-8fa6-4785-aba0-d25dc636e668}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Scene\00.Menu">
+      <UniqueIdentifier>{c13c10e0-2f5e-44df-a8f0-c7cd7193468f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05.Scene\01.Stage">
+      <UniqueIdentifier>{f6fe5949-afa5-4d36-a921-8886d7d952d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="01.Obj\04.Tree">
       <UniqueIdentifier>{ab3c2c73-3518-4862-94e6-f968a9efde4d}</UniqueIdentifier>
@@ -151,7 +173,7 @@
       <Filter>02.Line</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundMgr.h">
-      <Filter>96.Manager\08.BackgroundMgr</Filter>
+      <Filter>96.Manager\06.BackgroundMgr</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>04.Texture</Filter>
@@ -184,11 +206,22 @@
       <Filter>96.Manager\08.BackgroundMgr\01.Mountain</Filter>
     </ClInclude>
     <ClInclude Include="SkyGradient.h">
-      <Filter>96.Manager\08.BackgroundMgr\02.SkyGradient</Filter>
+      <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
     </ClInclude>
     <ClInclude Include="SoundMgr.h">
-      <Filter>96.Manager\07.SoundMgr</Filter>
+      <Filter>96.Manager\08.SoundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>96.Manager\09.SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>05.Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>05.Scene\01.Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="MyMenu.h">
+      <Filter>05.Scene\00.Menu</Filter>
     <ClInclude Include="Rock.h">
       <Filter>01.Obj\03.Rock</Filter>
     </ClInclude>
@@ -234,7 +267,7 @@
       <Filter>02.Line</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundMgr.cpp">
-      <Filter>96.Manager\08.BackgroundMgr</Filter>
+      <Filter>96.Manager\06.BackgroundMgr</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>04.Texture</Filter>
@@ -264,16 +297,25 @@
       <Filter>01.Obj\02.Cloud</Filter>
     </ClCompile>
     <ClCompile Include="Mountain.cpp">
-      <Filter>96.Manager\08.BackgroundMgr\01.Mountain</Filter>
+      <Filter>96.Manager\06.BackgroundMgr\01.Mountain</Filter>
     </ClCompile>
     <ClCompile Include="SkyGradient.cpp">
-      <Filter>96.Manager\08.BackgroundMgr\02.SkyGradient</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundMgr.cpp">
-      <Filter>96.Manager\07.SoundMgr</Filter>
+      <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
     </ClCompile>
     <ClCompile Include="Rock.cpp">
       <Filter>01.Obj\03.Rock</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>96.Manager\09.SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>05.Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
+      <Filter>05.Scene\01.Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="MyMenu.cpp">
+      <Filter>05.Scene\00.Menu</Filter>
     </ClCompile>
     <ClCompile Include="Tree.cpp">
       <Filter>01.Obj\04.Tree</Filter>
