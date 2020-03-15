@@ -76,6 +76,9 @@
     <Filter Include="96.Manager\07.SoundMgr">
       <UniqueIdentifier>{2d68a3f8-5029-4eed-a7b2-c398620b7427}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Obj\03.Rock">
+      <UniqueIdentifier>{ced1dc14-aa7c-4f3e-98af-c4a9e1e42f49}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -180,6 +183,9 @@
     <ClInclude Include="SoundMgr.h">
       <Filter>96.Manager\07.SoundMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>01.Obj\03.Rock</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp">
@@ -253,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="SoundMgr.cpp">
       <Filter>96.Manager\07.SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>01.Obj\03.Rock</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

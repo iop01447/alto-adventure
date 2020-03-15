@@ -173,6 +173,7 @@
     <ClInclude Include="ObjMgr.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Rock.h" />
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="SingleTex.h" />
     <ClInclude Include="SkyGradient.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="SingleTex.cpp" />
     <ClCompile Include="SkyGradient.cpp" />

@@ -3,6 +3,7 @@
 #ifndef __OBJ_H__
 #define __OBJ_H__
 
+class CLine;
 class CObj
 {
 public:
@@ -32,6 +33,10 @@ public:
 
 public:
 	void Set_Pos(float _x, float _y);
+	void Set_Line(CLine* _line) { m_pLine = _line; }
+
+public:
+	void Fall();
 
 protected:
 	bool			m_bDead;
@@ -44,6 +49,8 @@ protected:
 
 	float			m_fAngle;
 	float			m_fSpeed;
+
+	CLine*			m_pLine{ nullptr };
 };
 
 #endif // !__OBJ_H__
