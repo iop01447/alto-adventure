@@ -15,7 +15,7 @@ public:
 public:
 	void Initialize(); // 각도 계산
 	void Update();
-	void Render(HDC _DC);
+	void Render();
 
 public:
 	void Set_SpeedX(float _fSpeed) { m_fSpeedX = _fSpeed; }

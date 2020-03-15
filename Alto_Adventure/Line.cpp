@@ -63,17 +63,10 @@ void CLine::Update()
 	m_tInfo.tRightPos.vPoint.y -= m_fSpeedY;
 }
 
-void CLine::Render(HDC _DC)
+void CLine::Render()
 {
-	//float fScrollX = CScrollMgr::Get_Instance()->Get_ScrollX();
-	//float fScrollY = CScrollMgr::Get_Instance()->Get_ScrollY();
-
-	//MoveToEx(_DC, (int)(m_tInfo.tLeftPos.vPoint.x + fScrollX), (int)(m_tInfo.tLeftPos.vPoint.y + fScrollY), nullptr);
-	//LineTo(_DC, (int)(m_tInfo.tRightPos.vPoint.x + fScrollX), (int)(m_tInfo.tRightPos.vPoint.y + fScrollY));
-
-	//LPD3DXLINE* pLine;
-
-	//D3DXCreateLine(GET_INSTANCE(CDevice), &pLine);
-
-	// http://egloos.zum.com/aslike/v/2781048
+	D3DXVECTOR2 vLineY[2];
+	vLineY[0] = { m_tInfo.tLeftPos.vPoint.x, m_tInfo.tLeftPos.vPoint.y};
+	vLineY[1] = { m_tInfo.tLeftPos.vPoint.x, WINCY };
+	g_pLine->Draw(vLineY, 2, D3DCOLOR_ARGB(255, 255, 255, 255)); // X√‡ ∂Û¿Œ
 }

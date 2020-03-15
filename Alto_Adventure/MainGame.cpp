@@ -67,33 +67,14 @@ void CMainGame::Late_Update()
 
 void CMainGame::Render()
 {
-	//HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"BackBuffer");
-	//HDC hBackBuffer = CBmpMgr::Get_Instance()->Find_Image(L"Back");
-	//BitBlt(hBackBuffer, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
-
-	////CSceneMgr::Get_Instance()->Render(hBackBuffer);
-
-	
-	//BitBlt(m_DC, 0, 0, WINCX, WINCY, hBackBuffer, 0, 0, SRCCOPY);
-
-
-	//++m_iFPS;
-	//if (m_dwTime + 1000 < GetTickCount())
-	//{
-	//	swprintf_s(m_szFPS, L"FPS: %d", m_iFPS);
-	//	SetWindowText(g_hWnd, m_szFPS);
-
-	//	m_iFPS = 0;
-	//	m_dwTime = GetTickCount();
-	//}
-
 	CDevice::Get_Instance()->Render_Begin();
 
 	GET_INSTANCE(CBackgroundMgr)->Render();
 	CObjMgr::Get_Instance()->Render();
-	g_pLine->Begin();
-	g_pLine->Draw(GET_INSTANCE(CLineMgr)->Get_PointList(), GET_INSTANCE(CLineMgr)->Get_PointCnt(), D3DCOLOR_ARGB(255, 255, 255, 255));
-	g_pLine->End();
+	CLineMgr::Get_Instance()->Render();
+	//g_pLine->Begin();
+	//g_pLine->Draw(GET_INSTANCE(CLineMgr)->Get_PointList(), GET_INSTANCE(CLineMgr)->Get_PointCnt(), D3DCOLOR_ARGB(255, 255, 255, 255));
+	//g_pLine->End();
 
 	CDevice::Get_Instance()->Render_End();
 
