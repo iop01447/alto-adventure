@@ -20,6 +20,7 @@ public:
 
 public:
 	bool Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle);
+	CLine* Collision_Line(float _x);
 
 public:
 	const float& Get_SpeedY() const { return m_listLine.front()->Get_SpeedY(); }
@@ -47,6 +48,8 @@ private:
 
 	static CLineMgr*	m_pInstance;
 
+	DWORD m_dwLastObjCreate{ 0 };
+	DWORD m_dwObjCreate{ 1000 };
 };
 
 

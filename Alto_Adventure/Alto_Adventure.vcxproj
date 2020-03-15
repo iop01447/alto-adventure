@@ -176,6 +176,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneMgr.h" />
+    <ClInclude Include="Rock.h" />
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="SingleTex.h" />
     <ClInclude Include="SkyGradient.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
+    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="SingleTex.cpp" />
     <ClCompile Include="SkyGradient.cpp" />

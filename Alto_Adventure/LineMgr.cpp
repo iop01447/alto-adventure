@@ -4,6 +4,10 @@
 #include "Line.h"
 #include "ObjMgr.h"
 
+#include "Rock.h"
+#include "AbstractFactory.h"
+#include "TextureMgr.h"
+
 
 CLineMgr* CLineMgr::m_pInstance = nullptr;
 
@@ -69,6 +73,8 @@ void CLineMgr::Initialize()
 		m_vecPointList.emplace_back(vPoint) ;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/rock/%d.png", L"Rock", L"Idle", 2);
 }
 
 void CLineMgr::Update()
@@ -125,6 +131,16 @@ void CLineMgr::Late_Update()
 			D3DXVECTOR2 vPoint = { pLine->Get_Info().tLeftPos.vPoint.x, pLine->Get_Info().tLeftPos.vPoint.y };
 			m_vecPointList.emplace_back(vPoint);
 		}
+
+		if (GetTickCount() - m_dwLastObjCreate > m_dwObjCreate) {
+			m_dwLastObjCreate = GetTickCount();
+
+			CObj* pObj = CAbstractFactory<CRock>::Create(m_vecLinePoint.back().x, m_vecLinePoint.back().y);
+			CObjMgr::Get_Instance()->Add_Object(OBJID::ROCK, pObj);
+			//pObj->Set_Line(m_listLine.back());
+
+			m_dwObjCreate = 1000 + rand() % 2000;
+		}
 	}
 }
 
@@ -156,7 +172,7 @@ void CLineMgr::Release()
 	m_listLine.clear();
 }
 
-  bool CLineMgr::Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle )
+ bool CLineMgr::Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle )
 {
 	if (m_listLine.empty())
 		return false;
@@ -205,6 +221,25 @@ void CLineMgr::Release()
 
 	return true;
 }
+
+ CLine * CLineMgr::Collision_Line(float _x)
+ {
+	 if (m_listLine.empty())
+		 return false;
+
+	 CLine* pTargetLine = nullptr;
+
+	 for (auto& pLine : m_listLine)
+	 {
+		 if (_x >= pLine->Get_Info().tLeftPos.vPoint.x
+			 && _x <= pLine->Get_Info().tRightPos.vPoint.x)
+		 {
+			 pTargetLine = pLine;
+		 }
+	 }
+
+	 return pTargetLine;
+ }
 
 void CLineMgr::Set_LinePoint(float _x, float _y)
 {

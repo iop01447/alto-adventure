@@ -55,6 +55,9 @@
     <Filter Include="04.Texture\SingleTex">
       <UniqueIdentifier>{9e4f19b2-8644-41c0-ba1a-d20875d28680}</UniqueIdentifier>
     </Filter>
+    <Filter Include="96.Manager\06.TextureMgr">
+      <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
+    </Filter>
     <Filter Include="96.Manager\05.BmpMgr">
       <UniqueIdentifier>{594a8b79-e895-4b42-be80-de1d5287a19b}</UniqueIdentifier>
     </Filter>
@@ -64,6 +67,16 @@
     <Filter Include="01.Obj\02.Cloud">
       <UniqueIdentifier>{cf3ec701-8a8d-482b-b78b-0ebb8491bd59}</UniqueIdentifier>
     </Filter>
+    <Filter Include="96.Manager\07.SoundMgr">
+      <UniqueIdentifier>{2d68a3f8-5029-4eed-a7b2-c398620b7427}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\03.Rock">
+      <UniqueIdentifier>{ced1dc14-aa7c-4f3e-98af-c4a9e1e42f49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\08.BackgroundMgr">
+      <UniqueIdentifier>{bd4349aa-80fa-47cf-907d-cea2df3019f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\08.BackgroundMgr\01.Mountain">
     <Filter Include="96.Manager\06.BackgroundMgr\01.Mountain">
       <UniqueIdentifier>{4bf80950-4fa8-4760-801e-bf750f07f2dc}</UniqueIdentifier>
     </Filter>
@@ -166,7 +179,7 @@
       <Filter>04.Texture\SingleTex</Filter>
     </ClInclude>
     <ClInclude Include="TextureMgr.h">
-      <Filter>96.Manager\07.TextureMgr</Filter>
+      <Filter>96.Manager\06.TextureMgr</Filter>
     </ClInclude>
     <ClInclude Include="Device.h">
       <Filter>97.Device</Filter>
@@ -203,6 +216,8 @@
     </ClInclude>
     <ClInclude Include="MyMenu.h">
       <Filter>05.Scene\00.Menu</Filter>
+    <ClInclude Include="Rock.h">
+      <Filter>01.Obj\03.Rock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +267,7 @@
       <Filter>04.Texture\SingleTex</Filter>
     </ClCompile>
     <ClCompile Include="TextureMgr.cpp">
-      <Filter>96.Manager\07.TextureMgr</Filter>
+      <Filter>96.Manager\06.TextureMgr</Filter>
     </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>97.Device</Filter>
@@ -275,8 +290,8 @@
     <ClCompile Include="SkyGradient.cpp">
       <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
     </ClCompile>
-    <ClCompile Include="SoundMgr.cpp">
-      <Filter>96.Manager\08.SoundMgr</Filter>
+    <ClCompile Include="Rock.cpp">
+      <Filter>01.Obj\03.Rock</Filter>
     </ClCompile>
     <ClCompile Include="SceneMgr.cpp">
       <Filter>96.Manager\09.SceneMgr</Filter>
