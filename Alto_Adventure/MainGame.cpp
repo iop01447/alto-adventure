@@ -11,6 +11,7 @@
 #include "ScrollMgr.h"
 #include "BackgroundMgr.h"
 #include "TextureMgr.h"
+#include "SoundMgr.h"
 
 LPD3DXLINE g_pLine;
 
@@ -46,6 +47,9 @@ void CMainGame::Initialize()
 	CLineMgr::Get_Instance()->Initialize();
 
 	//CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::SCENE_LOGO);
+
+	CSoundMgr::Get_Instance()->Initialize();
+	CSoundMgr::Get_Instance()->PlayBGM(L"bgm.mp3");
 }
 
 void CMainGame::Update()
@@ -93,4 +97,7 @@ void CMainGame::Release()
 
 	CObjMgr::Destroy_Instance();
 	ReleaseDC(g_hWnd, m_DC);
+
+	CSoundMgr::Get_Instance()->StopAll();
+	CSoundMgr::Destroy_Instance();
 }

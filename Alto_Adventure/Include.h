@@ -41,4 +41,8 @@ using namespace std;
 
 #include "Device.h"
 
+#include <io.h>
+#include "fmod.h"
+#pragma comment(lib, "fmodex_vc.lib")
+
 #endif // !__INCLUDE_H__
