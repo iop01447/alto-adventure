@@ -55,7 +55,7 @@ private:
 	DWORD m_dwLastObjCreate{ 0 };
 	DWORD m_dwObjCreate{ 500 };
 	DWORD m_dwLastObjIDChange{ 0 };
-	DWORD m_dwObjIDChange{ 10000 };
+	DWORD m_dwObjIDChange{ 5000 };
 
 	DWORD m_dwLastRockCreate{ 0 };
 	DWORD m_dwRockCreate{ 3000 };

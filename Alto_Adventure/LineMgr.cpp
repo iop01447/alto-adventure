@@ -28,6 +28,7 @@ void CLineMgr::Initialize()
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/rock/%d.png", L"Rock", L"Idle", 2);
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/tree/%d.png", L"Tree", L"Idle", 3);
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/big-tree.png", L"BigTree");
+	m_dwLastObjCreate = GetTickCount();
 
 //////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -262,7 +263,7 @@ void CLineMgr::Create_RockObj()
 void CLineMgr::Create_Object()
 {
 	static int obj_id{ 0 };
-	static vector<OBJID::ID> obj_list = { OBJID::TREE, OBJID::BIGTREE };
+	static vector<OBJID::ID> obj_list = { OBJID::TREE, OBJID::BIGTREE, OBJID::END };
 
 	if (GetTickCount() - m_dwLastObjIDChange > m_dwObjIDChange)
 	{
@@ -283,6 +284,8 @@ void CLineMgr::Create_Object()
 	case OBJID::BIGTREE:
 		pObj = CAbstractFactory<CBigTree>::Create(WINCX + 100, 0);
 		CObjMgr::Get_Instance()->Add_Object(OBJID::BIGTREE, pObj);
+		break;
+	case OBJID::END:
 		break;
 	}
 }
