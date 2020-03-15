@@ -52,9 +52,6 @@
     <Filter Include="04.Texture\SingleTex">
       <UniqueIdentifier>{9e4f19b2-8644-41c0-ba1a-d20875d28680}</UniqueIdentifier>
     </Filter>
-    <Filter Include="96.Manager\06.TextureMgr">
-      <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
-    </Filter>
     <Filter Include="96.Manager\05.BmpMgr">
       <UniqueIdentifier>{594a8b79-e895-4b42-be80-de1d5287a19b}</UniqueIdentifier>
     </Filter>
@@ -157,7 +154,7 @@
       <Filter>04.Texture\SingleTex</Filter>
     </ClInclude>
     <ClInclude Include="TextureMgr.h">
-      <Filter>96.Manager\06.TextureMgr</Filter>
+      <Filter>96.Manager\07.TextureMgr</Filter>
     </ClInclude>
     <ClInclude Include="Device.h">
       <Filter>97.Device</Filter>
