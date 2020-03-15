@@ -24,6 +24,7 @@ public:
 public:
 	const LINEINFO& Get_Info() const { return m_tInfo; }
 	const float& Get_Angle() const { return m_fAngle; }
+	const float& Get_SpeedX() const { return m_fSpeedX; }
 	const float& Get_SpeedY() const { return m_fSpeedY; }
 
 private:

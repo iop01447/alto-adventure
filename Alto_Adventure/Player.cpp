@@ -13,7 +13,6 @@ CPlayer::CPlayer()
 	:m_bJump(false)
 	, m_bFall(true)
 	, m_dwIdleTime(GetTickCount())
-	, m_iFrameNum(0)
 {
 	ZeroMemory(&m_vPoint, sizeof(D3DXVECTOR3) * 4);
 	ZeroMemory(&m_vOrigin, sizeof(D3DXVECTOR3) * 4);
@@ -74,19 +73,22 @@ void CPlayer::Late_Update()
 {
 	if (m_dwIdleTime + 2500 < GetTickCount())
 	{
-		m_iFrameNum = 1;
-		m_fSpeed = 5.f;
+		m_iPlayerState = 1;
+		// 앉은 자세로 바뀌었을 때 속도 4에서 시작
+		// 플레이어 최고 속도는 8까지
+		m_fSpeed = 8.f;
+
 	}
 	else
 	{
-		m_iFrameNum = 0;
+		m_iPlayerState = 0;
 		m_fSpeed = 1.f;
 	}
 }
 
 void CPlayer::Render()
 {
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iFrameNum);
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iPlayerState);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
@@ -179,7 +181,7 @@ void CPlayer::Jump()
 	}
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
-		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - 10));
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - 15));
 	}
 }
 

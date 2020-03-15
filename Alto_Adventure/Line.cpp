@@ -53,12 +53,22 @@ void CLine::Update()
 
 	if (200.f > CObjMgr::Get_Instance()->Get_Top())
 	{
-		m_fSpeedY = -1.f;
+		m_fSpeedY = -5.f;
 	}
 	else if(500.f < CObjMgr::Get_Instance()->Get_Top())
 	{
-		m_fSpeedY = 1.5f;
+		m_fSpeedY = 5.f;
 	}
+	else if (400.f < CObjMgr::Get_Instance()->Get_Top())
+	{
+		m_fSpeedY = 3.f;
+	}
+	else if (250.f < CObjMgr::Get_Instance()->Get_Top()
+		&& 300.f > CObjMgr::Get_Instance()->Get_Top())
+	{
+		m_fSpeedY = 0.f;
+	}
+
 	m_tInfo.tLeftPos.vPoint.y -= m_fSpeedY;
 	m_tInfo.tRightPos.vPoint.y -= m_fSpeedY;
 }

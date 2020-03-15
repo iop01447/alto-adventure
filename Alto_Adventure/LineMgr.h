@@ -14,6 +14,7 @@ private:
 public:
 	void Initialize();
 	void Update();
+	void Late_Update();
 	void Render();
 	void Release();
 
@@ -21,9 +22,11 @@ public:
 	bool Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle);
 
 public:
-	const D3DXVECTOR2* Get_PointList() const { return m_vPointList; }
-	const int& Get_PointCnt() const { return m_iPointCnt; }
 	const float& Get_SpeedY() const { return m_listLine.front()->Get_SpeedY(); }
+
+public:
+	void Set_LinePoint(float _x, float _y);
+
 public:
 	static CLineMgr* Get_Instance()
 	{
@@ -38,9 +41,12 @@ public:
 
 private:
 	list<CLine*>		m_listLine;
-	D3DXVECTOR2*        m_vPointList;
-	int					m_iPointCnt;
+	vector<D3DXVECTOR3> m_vecLinePoint;
+
+	vector<D3DXVECTOR2> m_vecPointList;
+
 	static CLineMgr*	m_pInstance;
+
 };
 
 

@@ -23,8 +23,6 @@ typedef struct tagLinePos
 
 	D3DXVECTOR3 vPoint;
 
-	//float	fX;
-	//float	fY;
 }LINEPOS;
 
 typedef struct tagLineInfo

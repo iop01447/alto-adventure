@@ -45,16 +45,32 @@ int CEffect::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	if (80 > m_iAlphaValue)
-		m_fSize = 0.02f;
-	else if (145 > m_iAlphaValue)
-		m_fSize = 0.03f;
-	else if (200 > m_iAlphaValue)
-		m_fSize = 0.04f;
-	else if (235 > m_iAlphaValue)
-		m_fSize = 0.045f;
+	if (!GET_INSTANCE(CObjMgr)->Get_Obj(OBJID::PLAYER)->Get_PlayerState())
+	{
+		if (80 > m_iAlphaValue)
+			m_fSize = 0.025f;
+		else if (145 > m_iAlphaValue)
+			m_fSize = 0.03f;
+		else if (200 > m_iAlphaValue)
+			m_fSize = 0.035f;
+		else if (235 > m_iAlphaValue)
+			m_fSize = 0.04f;
+		else
+			m_fSize = 0.03f;
+	}
 	else
-		m_fSize = 0.03f;
+	{
+		if (80 > m_iAlphaValue)
+			m_fSize = 0.035f;
+		else if (145 > m_iAlphaValue)
+			m_fSize = 0.04f;
+		else if (200 > m_iAlphaValue)
+			m_fSize = 0.045f;
+		else if (235 > m_iAlphaValue)
+			m_fSize = 0.05f;
+		else
+			m_fSize = 0.04f;
+	}
 
 	m_iAlphaValue -= 5;
 
@@ -80,7 +96,7 @@ void CEffect::Render()
 
 	D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
 	D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
+	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle + 45));
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
 	matWorld = matScale * matRotZ * matTrans;

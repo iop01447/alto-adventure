@@ -29,7 +29,6 @@ public:
 
 private:
 	//RECT m_tRect; 
-	int				m_iFrameNum;
 	bool			m_bJump;
 	bool			m_bFall;
 

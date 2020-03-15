@@ -19,6 +19,7 @@ public:
 	virtual void Release() = 0;
 
 public:
+	const int& Get_PlayerState() const { return m_iPlayerState; }
 	const INFO& Get_Info() const { return m_tInfo; }
 	const float& Get_Angle() const { return m_fAngle; }
 	const float& Get_Speed() const { return m_fSpeed; }
@@ -39,8 +40,10 @@ protected:
 	D3DXVECTOR3		m_vPoint[4]; // Q
 	D3DXVECTOR3		m_vOrigin[4]; // P
 
-	float m_fAngle;
-	float m_fSpeed;
+	int				m_iPlayerState;
+
+	float			m_fAngle;
+	float			m_fSpeed;
 };
 
 #endif // !__OBJ_H__
