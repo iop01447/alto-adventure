@@ -62,6 +62,7 @@ void CMainGame::Late_Update()
 	//CSceneMgr::Get_Instance()->Late_Update();
 	CKeyMgr::Get_Instance()->Key_Update();
 	CObjMgr::Get_Instance()->Late_Update();
+	CLineMgr::Get_Instance()->Late_Update();
 	CScrollMgr::Get_Instance()->Scroll_Lock();
 }
 

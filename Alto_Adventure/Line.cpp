@@ -61,6 +61,8 @@ void CLine::Update()
 	}
 	m_tInfo.tLeftPos.vPoint.y -= m_fSpeedY;
 	m_tInfo.tRightPos.vPoint.y -= m_fSpeedY;
+
+	
 }
 
 void CLine::Render()

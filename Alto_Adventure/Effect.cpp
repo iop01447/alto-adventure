@@ -46,9 +46,9 @@ int CEffect::Update()
 		return OBJ_DEAD;
 
 	if (80 > m_iAlphaValue)
-		m_fSize = 0.02f;
-	else if (145 > m_iAlphaValue)
 		m_fSize = 0.03f;
+	else if (145 > m_iAlphaValue)
+		m_fSize = 0.035f;
 	else if (200 > m_iAlphaValue)
 		m_fSize = 0.04f;
 	else if (235 > m_iAlphaValue)
@@ -80,7 +80,7 @@ void CEffect::Render()
 
 	D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
 	D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
+	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle + 45));
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
 	matWorld = matScale * matRotZ * matTrans;
