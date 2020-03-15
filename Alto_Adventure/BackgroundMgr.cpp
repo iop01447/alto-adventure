@@ -119,21 +119,26 @@ void CBackgroundMgr::Update_Color()
 	}
 
 	if (d == 1) {
-
 		m_dwLastColorChange = GetTickCount();
+
+		for (int i = 0; i < 3; ++i)
+			m_vPreColor[i] = m_vNextColor[i];
 
 		float r{ 0 }, g{ 0 }, b{ 0 };
 		float h = float(rand() % 360);
 		float s = 0.4f + (rand() % 30) / 100.f;
 
-		for (int i = 0; i < 3; ++i)
-			m_vPreColor[i] = m_vNextColor[i];
-
 		// »ê ²ÀÁö
 		HSL_To_RGB(h, s + 0.2f, 0.4f, &m_vNextColor[0].r, &m_vNextColor[0].g, &m_vNextColor[0].b);
+
 		// ¸Ê À§
+		h = float(rand() % 360);
+		s = 0.4f + (rand() % 30) / 100.f;
 		HSL_To_RGB(h, s, 0.2f + 0.2f, &m_vNextColor[1].r, &m_vNextColor[1].g, &m_vNextColor[1].b);
+
 		// ¸Ê ¹Ù´Ú & »ê ¹Ù´Ú
+		h = float(rand() % 360);
+		s = 0.4f + (rand() % 30) / 100.f;
 		HSL_To_RGB(h, s, 0.2f + 0.6f, &m_vNextColor[2].r, &m_vNextColor[2].g, &m_vNextColor[2].b);
 	}
 }
