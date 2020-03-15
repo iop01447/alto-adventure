@@ -10,7 +10,10 @@
 
 
 CPlayer::CPlayer()
-	:m_bJump(false), m_bFall(true)
+	:m_bJump(false)
+	, m_bFall(true)
+	, m_dwIdleTime(GetTickCount())
+	, m_iFrameNum(0)
 {
 	ZeroMemory(&m_vPoint, sizeof(D3DXVECTOR3) * 4);
 	ZeroMemory(&m_vOrigin, sizeof(D3DXVECTOR3) * 4);
@@ -23,7 +26,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/player/%d.png", L"Player", L"Idle", 1);
+	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/player/%d.png", L"Player", L"Idle", 2);   // 0.일어선 자세 1.활강 자세
 	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/White%d.png", L"SnowEffect", L"Snow", 1);
 
 	m_tInfo.vPos = { 150.f, 300.f, 0.f };
@@ -69,11 +72,15 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
+	if (m_dwIdleTime + 2500 < GetTickCount())
+		m_iFrameNum = 1;
+	else
+		m_iFrameNum = 0;
 }
 
 void CPlayer::Render()
 {
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", 0);
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iFrameNum);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
@@ -126,7 +133,10 @@ void CPlayer::Key_Check()
 
 	// 캐릭터 점프 중일 때 라인의 각도 보다 조금더 몸 세우고 내려오면서 다시 맵 각도에 맞게 몸 다시 눕힘
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
+	{
 		m_bJump = true;
+		m_dwIdleTime = GetTickCount();
+	}
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
 	{

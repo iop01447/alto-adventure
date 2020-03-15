@@ -7,6 +7,7 @@
 #include "ObjMgr.h"
 #include "LineMgr.h"
 
+
 CLine::CLine()
 {
 }

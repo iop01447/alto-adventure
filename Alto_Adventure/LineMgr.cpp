@@ -20,17 +20,17 @@ void CLineMgr::Initialize()
 	m_iPointCnt = 0;
 	m_vPointList = nullptr;
 
-	LINEPOS tLine[10] = { /*{0.f, 450.f}, {500.f, 750.f}, {800.f, 880.f}, {1000.f, 1100.f},{ 1500.f, 1300.f }*/ };
+	LINEPOS tLine[6] = { /*{0.f, 450.f}, {500.f, 750.f}, {800.f, 880.f}, {1000.f, 1100.f},{ 1500.f, 1300.f }*/ };
 
 	tLine[0] = { -(WINCX >> 1), 250.f };
-	for (int i = 1; i < 8; ++i)
+	for (int i = 1; i < 6; ++i)
 	{
 		tLine[i] = { float(tLine[i - 1].vPoint.x + (WINCX >> 1)), float(tLine[i - 1].vPoint.y + (rand() % 300) + 100) };
 		//m_listLine.emplace_back(new CLine(tLine[i-1], tLine[i]));
 	}
 
 	D3DXVECTOR3 vPoint1, vPoint2;
-	for (int i = 0; i < 5; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		for (int j = 0; j < (WINCX >> 1)-1; j+=5)
 		{

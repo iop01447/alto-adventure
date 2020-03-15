@@ -29,14 +29,17 @@ public:
 
 private:
 	//RECT m_tRect; 
-
+	int				m_iFrameNum;
 	bool			m_bJump;
 	bool			m_bFall;
 
 	float			m_fJumpPower;	// 점프 파워
 	float			m_fJumpAccel;	// 점프 진행 시간
 
-	float			m_fRotHeight;
+	float			m_fRotHeight; // 캐릭터가 회전하면서 바뀐 중점~bottom 까지의 거리
+
+	DWORD			m_dwIdleTime;
+
 };
 
 #endif // !__PLAYER_H__
