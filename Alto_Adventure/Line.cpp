@@ -68,5 +68,5 @@ void CLine::Render()
 	D3DXVECTOR2 vLineY[2];
 	vLineY[0] = { m_tInfo.tLeftPos.vPoint.x, m_tInfo.tLeftPos.vPoint.y};
 	vLineY[1] = { m_tInfo.tLeftPos.vPoint.x, WINCY };
-	g_pLine->Draw(vLineY, 2, D3DCOLOR_ARGB(255, 255, 255, 255)); // X축 라인
+	g_pLine->Draw(vLineY, 2, D3DCOLOR_ARGB(255, 255, 255, 255)); // Y축 라인
 }
