@@ -1,10 +1,10 @@
 #pragma once
-class CTriangle
+class CMountain
 {
 public:
-	CTriangle();
-	CTriangle(const D3DXVECTOR3& _vPos, const D3DXVECTOR3& _vSize, float _fSpeed);
-	~CTriangle();
+	CMountain();
+	CMountain(const D3DXVECTOR3& _vPos, const D3DXVECTOR3& _vSize, float _fSpeed);
+	~CMountain();
 
 public:
 	void Initialize();

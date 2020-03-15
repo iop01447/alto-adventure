@@ -47,4 +47,6 @@ ClassName::Get_Instance()
 
 #define D3DFMT_CUSTOMVERTEX (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 
+#define EPSILON 0.000001
+
 #endif // !__DEFINE_H__

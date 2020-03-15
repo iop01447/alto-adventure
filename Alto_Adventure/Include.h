@@ -13,6 +13,7 @@
 #include <iostream>
 
 #include <assert.h>
+#include <iterator>
 
 using namespace std;
 

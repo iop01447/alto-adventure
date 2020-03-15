@@ -94,6 +94,7 @@ void CMainGame::Render()
 	g_pLine->Begin();
 	g_pLine->Draw(GET_INSTANCE(CLineMgr)->Get_PointList(), GET_INSTANCE(CLineMgr)->Get_PointCnt(), D3DCOLOR_ARGB(255, 255, 255, 255));
 	g_pLine->End();
+	//GET_INSTANCE(CBackgroundMgr)->Render_Forward(0.5f); // 반투명하게 안그려져서 포기, 이유는 모르겠다.
 
 	CDevice::Get_Instance()->Render_End();
 

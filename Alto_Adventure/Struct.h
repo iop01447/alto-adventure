@@ -52,7 +52,20 @@ typedef struct tagTexture
 struct CUSTOMVERTEX
 {
 	float x, y, z, rhw;
-	DWORD color;
+	D3DCOLOR color;
+
+	CUSTOMVERTEX(){}
+	CUSTOMVERTEX(float _x, float _y, float _z, float _w, D3DCOLOR _color)
+		:x(_x), y(_y), z(_z), rhw(_w), color(_color) {}
+};
+
+struct GRADIENT
+{
+	D3DCOLOR color;
+	float percent; // 0~1 ªÁ¿Ã
+
+	GRADIENT(D3DCOLOR _color, float _percent)
+		: color(_color), percent(_percent) {}
 };
 
 #endif // !__STRUCT_H__

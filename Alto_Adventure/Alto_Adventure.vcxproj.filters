@@ -61,11 +61,17 @@
     <Filter Include="96.Manager\05.BmpMgr">
       <UniqueIdentifier>{594a8b79-e895-4b42-be80-de1d5287a19b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05.Triangle">
-      <UniqueIdentifier>{4bf80950-4fa8-4760-801e-bf750f07f2dc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Obj\01.Effect">
       <UniqueIdentifier>{6dcc9e94-6022-4b08-8424-32d6ad7bca21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\02.Cloud">
+      <UniqueIdentifier>{cf3ec701-8a8d-482b-b78b-0ebb8491bd59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\06.BackgroundMgr\01.Mountain">
+      <UniqueIdentifier>{4bf80950-4fa8-4760-801e-bf750f07f2dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\06.BackgroundMgr\02.SkyGradient">
+      <UniqueIdentifier>{d27395a0-828c-488f-a9be-f657f69a5e52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,11 +162,17 @@
     <ClInclude Include="BmpMgr.h">
       <Filter>96.Manager\05.BmpMgr</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>05.Triangle</Filter>
-    </ClInclude>
     <ClInclude Include="Effect.h">
       <Filter>01.Obj\01.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <Filter>01.Obj\02.Cloud</Filter>
+    </ClInclude>
+    <ClInclude Include="Mountain.h">
+      <Filter>96.Manager\06.BackgroundMgr\01.Mountain</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyGradient.h">
+      <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -221,11 +233,17 @@
     <ClCompile Include="BmpMgr.cpp">
       <Filter>96.Manager\05.BmpMgr</Filter>
     </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>05.Triangle</Filter>
-    </ClCompile>
     <ClCompile Include="Effect.cpp">
       <Filter>01.Obj\01.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
+      <Filter>01.Obj\02.Cloud</Filter>
+    </ClCompile>
+    <ClCompile Include="Mountain.cpp">
+      <Filter>96.Manager\06.BackgroundMgr\01.Mountain</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyGradient.cpp">
+      <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -124,7 +124,7 @@ void CDevice::Render_Begin()
 	// 우리가 이제 그림을 그릴때 어떻게 할거냐 . 
 	// 그림그리는 순서 - 후면버퍼를 지운다 -> 후면버퍼에 그림을 그린다 -> 후면버퍼와 전면 버퍼를 교체한다. 
 
-	m_pDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, D3DCOLOR_ARGB(255, 0, 0, 255), 0, 0);
+	m_pDevice->Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, D3DCOLOR_ARGB(255, 255, 255, 255), 0, 0);
 	m_pDevice->BeginScene();
 	// 스프라이트 객체를 사용해서 그림을 그리겠다 라는 것을 넣어줘야 한다. 
 	m_pSprite->Begin(D3DXSPRITE_ALPHABLEND);

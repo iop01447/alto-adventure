@@ -2,7 +2,8 @@
 #include "BackgroundMgr.h"
 #include "BmpMgr.h"
 #include "TextureMgr.h"
-#include "Triangle.h"
+#include "Mountain.h"
+#include "SkyGradient.h"
 
 IMPLEMENT_SINGLETON(CBackgroundMgr);
 
@@ -23,6 +24,7 @@ void CBackgroundMgr::Initialize()
 
 	int size[] = { 3,4,7 };
 
+	// Mountain
 	// 맨 앞에서 맨 뒤 순으로 배치
 	for (int i = 0; i < 3; ++i) {
 		for (int j = 0; j < size[i]; ++j) {
@@ -38,7 +40,7 @@ void CBackgroundMgr::Initialize()
 
 			float fSpeed = (3 - i)*1.f;
 
-			m_vecMountain[i].push_back(new CTriangle(D3DXVECTOR3(fPosX, fPosY, 0.f),
+			m_vecMountain[i].push_back(new CMountain(D3DXVECTOR3(fPosX, fPosY, 0.f),
 				D3DXVECTOR3(fScaleX, fScaleY, 1.f), fSpeed));
 		}
 		random_shuffle(m_vecMountain[i].begin(), m_vecMountain[i].end());
@@ -55,9 +57,10 @@ void CBackgroundMgr::Initialize()
 		assert(false && "정점 버퍼 생성 실패");
 	}
 
+	Init_SkyGradient();
+
 	Update_Color();
-	for (int i = 0; i < 3; ++i)
-		m_vPreColor[i] = m_vNextColor[i];
+	m_vPreColor = m_vNextColor;
 }
 
 void CBackgroundMgr::Update()
@@ -74,23 +77,14 @@ void CBackgroundMgr::Update()
 
 void CBackgroundMgr::Render()
 {
-	GET_INSTANCE(CDevice)->Get_Sprite()->End();
 	GET_INSTANCE(CDevice)->Get_Device()->SetFVF(D3DFMT_CUSTOMVERTEX);
 
 	// 사각형 그리기
-	CUSTOMVERTEX vert[4] = {
-		{ 0.f, 0.f, 0.f, 1.f, m_vColor[1] },
-		{ WINCX, 0.f, 0.f, 1.f, m_vColor[1] },
-		{ 0.f, WINCY, 0.f, 1.f, m_vColor[2] },
-		{ WINCX, WINCY, 0.f, 1.f, m_vColor[2] }
-	};
-	HRESULT hr = GET_INSTANCE(CDevice)->Get_Device()->DrawPrimitiveUP(D3DPT_TRIANGLESTRIP, 2, vert, sizeof(CUSTOMVERTEX)); // D3DPT_TRIANGLESTRIP
-	assert(!FAILED(hr));
-	GET_INSTANCE(CDevice)->Get_Sprite()->Begin(D3DXSPRITE_ALPHABLEND);
+	m_vSkyGradient[m_iPreSkyID]->Render();
+	m_vSkyGradient[m_iNextSkyID]->Render();
 
 	// 산들 그리기
 	GET_INSTANCE(CDevice)->Get_Device()->SetStreamSource(0, m_pVB, 0, sizeof(CUSTOMVERTEX));
-	GET_INSTANCE(CDevice)->Get_Device()->SetFVF(D3DFMT_CUSTOMVERTEX);
 	GET_INSTANCE(CDevice)->Get_Device()->DrawPrimitive(D3DPT_TRIANGLELIST, 0, m_MountainCnt);
 }
 
@@ -100,10 +94,46 @@ void CBackgroundMgr::Release()
 		m_pVB->Release();
 
 	for (int i = 0; i < 3; ++i) {
-		for_each(m_vecMountain[i].begin(), m_vecMountain[i].end(), Safe_Delete<CTriangle*>);
+		for_each(m_vecMountain[i].begin(), m_vecMountain[i].end(), Safe_Delete<CMountain*>);
 		m_vecMountain[i].clear();
 		m_vecMountain[i].shrink_to_fit();
 	}
+}
+
+void CBackgroundMgr::Render_Forward(float a)
+{
+	GET_INSTANCE(CDevice)->Get_Device()->SetFVF(D3DFMT_CUSTOMVERTEX);
+	m_vSkyGradient[m_iPreSkyID]->Render_Alpha(a);
+	m_vSkyGradient[m_iNextSkyID]->Render_Alpha(a);
+}
+
+void CBackgroundMgr::Init_SkyGradient()
+{
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff00000c, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff020111, 0.85f), GRADIENT(0xff191621, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff020111, 0.6f), GRADIENT(0xff20202c, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff020111, 0.1f), GRADIENT(0xff3a3a52, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff20202c, 0.f), GRADIENT(0xff515175, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff40405c, 0.f), GRADIENT(0xff6f71aa, 0.8f), GRADIENT(0xff8a76ab, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff4a4969, 0.f), GRADIENT(0xff7072ab, 0.5f), GRADIENT(0xffcd82a0, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff757abf, 0.f), GRADIENT(0xff8583be, 0.6f), GRADIENT(0xffeab0d1, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff82addb, 0.f), GRADIENT(0xffebb2b1, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff94c5f8, 0.1f), GRADIENT(0xffa6e6ff, 0.7f), GRADIENT(0xffb1b5ea, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xffb7eaff, 0.f), GRADIENT(0xff94dfff, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff9be2fe, 0.f), GRADIENT(0xff38a3d1, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff90dffe, 0.f), GRADIENT(0xff38a3d1, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff57c1eb, 0.f), GRADIENT(0xff246fa8, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff2d91c2, 0.f), GRADIENT(0xff1e528e, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff2473ab, 0.f), GRADIENT(0xff1e528e, 0.7f), GRADIENT(0xff5b7983, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff1e528e, 0.f), GRADIENT(0xff265889, 0.5f), GRADIENT(0xff9da671, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff1e528e, 0.f), GRADIENT(0xff728a7c, 0.5f), GRADIENT(0xffe9ce5d, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff154277, 0.f), GRADIENT(0xff576e71, 0.3f), GRADIENT(0xffe1c45e, 0.7f), GRADIENT(0xffb26339, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff163C52, 0.f), GRADIENT(0xff4F4F47, 0.3f), GRADIENT(0xffC5752D, 0.6f), GRADIENT(0xffB7490F, 0.8f), GRADIENT(0xff2F1107, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff071B26, 0.f), GRADIENT(0xff071B26, 0.3f), GRADIENT(0xff8A3B12, 0.8f), GRADIENT(0xff240E03, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff010A10, 0.3f), GRADIENT(0xff59230B, 0.8f), GRADIENT(0xff2F1107, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff090401, 0.5f), GRADIENT(0xff4B1D06, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff00000c, 0.5f), GRADIENT(0xff150800, 1.f) }));
+	m_vSkyGradient.push_back(new CSkyGradient({ GRADIENT(0xff00000c, 1.f) }));
 }
 
 void CBackgroundMgr::Update_Color()
@@ -112,34 +142,31 @@ void CBackgroundMgr::Update_Color()
 	d = max(0, min(1, d));
 
 	for (int i = 0; i < 3; ++i) {
-		float r = m_vPreColor[i].r * (1 - d) + m_vNextColor[i].r * d;
-		float g = m_vPreColor[i].g * (1 - d) + m_vNextColor[i].g * d;
-		float b = m_vPreColor[i].b * (1 - d) + m_vNextColor[i].b * d;
-		m_vColor[i] = D3DCOLOR_ARGB(255, int(r * 255), int(g * 255), int(b * 255));
+		float r = m_vPreColor.r * (1 - d) + m_vNextColor.r * d;
+		float g = m_vPreColor.g * (1 - d) + m_vNextColor.g * d;
+		float b = m_vPreColor.b * (1 - d) + m_vNextColor.b * d;
+		m_vColor = D3DCOLOR_ARGB(255, int(r * 255), int(g * 255), int(b * 255));
 	}
+
+	m_vSkyGradient[m_iNextSkyID]->Set_Alpha(d);
 
 	if (d == 1) {
 		m_dwLastColorChange = GetTickCount();
 
-		for (int i = 0; i < 3; ++i)
-			m_vPreColor[i] = m_vNextColor[i];
+		m_iPreSkyID = m_iNextSkyID;
+		m_iNextSkyID = (m_iNextSkyID + 1) % m_vSkyGradient.size();
 
-		float r{ 0 }, g{ 0 }, b{ 0 };
-		float h = float(rand() % 360);
-		float s = 0.4f + (rand() % 30) / 100.f;
+		m_vSkyGradient[m_iPreSkyID]->Set_Alpha(1);
+		m_vSkyGradient[m_iNextSkyID]->Set_Alpha(0);
 
-		// 산 꼭지
-		HSL_To_RGB(h, s + 0.2f, 0.4f, &m_vNextColor[0].r, &m_vNextColor[0].g, &m_vNextColor[0].b);
+		m_vPreColor = m_vNextColor;
 
-		// 맵 위
-		h = float(rand() % 360);
-		s = 0.4f + (rand() % 30) / 100.f;
-		HSL_To_RGB(h, s, 0.2f + 0.2f, &m_vNextColor[1].r, &m_vNextColor[1].g, &m_vNextColor[1].b);
-
-		// 맵 바닥 & 산 바닥
-		h = float(rand() % 360);
-		s = 0.4f + (rand() % 30) / 100.f;
-		HSL_To_RGB(h, s, 0.2f + 0.6f, &m_vNextColor[2].r, &m_vNextColor[2].g, &m_vNextColor[2].b);
+		m_vNextColor.r = (m_vSkyGradient[m_iNextSkyID]->Get_Color() & D3DCOLOR_ARGB(0, 255, 0, 0)) >> 16;
+		m_vNextColor.r /= 255.f;
+		m_vNextColor.g = (m_vSkyGradient[m_iNextSkyID]->Get_Color() & D3DCOLOR_ARGB(0, 0, 255, 0)) >> 8;
+		m_vNextColor.g /= 255.f;
+		m_vNextColor.b = m_vSkyGradient[m_iNextSkyID]->Get_Color() & D3DCOLOR_ARGB(0, 0, 0, 255);
+		m_vNextColor.b /= 255.f;
 	}
 }
 
@@ -161,9 +188,10 @@ HRESULT CBackgroundMgr::InitVB()
 				D3DXVec3TransformCoord(&pTriangle->m_vPoint[j], &pTriangle->m_vOrigin[j], &matWorld);
 			}
 
-			m_vecVertices[i] = { pTriangle->m_vPoint[0].x, pTriangle->m_vPoint[0].y, pTriangle->m_vPoint[0].z, 1.f, m_vColor[0] }; // 위쪽
-			m_vecVertices[i + 1] = { pTriangle->m_vPoint[1].x, pTriangle->m_vPoint[1].y, pTriangle->m_vPoint[1].z, 1.f, m_vColor[2] & D3DCOLOR_ARGB(0,255,255,255) }; // 오른쪽 
-			m_vecVertices[i + 2] = { pTriangle->m_vPoint[2].x, pTriangle->m_vPoint[2].y, pTriangle->m_vPoint[2].z, 1.f, m_vColor[2] & D3DCOLOR_ARGB(0,255,255,255) }; // 왼쪽
+			m_vecVertices[i] = { pTriangle->m_vPoint[0].x, pTriangle->m_vPoint[0].y, pTriangle->m_vPoint[0].z, 1.f, m_vColor }; // 위쪽
+			m_vecVertices[i + 1] = { pTriangle->m_vPoint[1].x, pTriangle->m_vPoint[1].y, pTriangle->m_vPoint[1].z, 1.f, m_vColor & D3DCOLOR_ARGB(0,255,255,255) }; // 오른쪽 
+			m_vecVertices[i + 2] = { pTriangle->m_vPoint[2].x, pTriangle->m_vPoint[2].y, pTriangle->m_vPoint[2].z, 1.f, m_vColor & D3DCOLOR_ARGB(0,255,255,255) }; // 왼쪽
+
 			i += 3;
 		}
 	}
