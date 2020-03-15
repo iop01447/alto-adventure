@@ -153,6 +153,7 @@
     <ClInclude Include="Alto_Adventure.h" />
     <ClInclude Include="BackgroundMgr.h" />
     <ClInclude Include="BmpMgr.h" />
+    <ClInclude Include="Cloud.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Device.h" />
@@ -174,17 +175,19 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScrollMgr.h" />
     <ClInclude Include="SingleTex.h" />
+    <ClInclude Include="SkyGradient.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Struct.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureMgr.h" />
-    <ClInclude Include="Triangle.h" />
+    <ClInclude Include="Mountain.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp" />
     <ClCompile Include="BackgroundMgr.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
+    <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
@@ -199,6 +202,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ScrollMgr.cpp" />
     <ClCompile Include="SingleTex.cpp" />
+    <ClCompile Include="SkyGradient.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -207,7 +211,7 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureMgr.cpp" />
-    <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Mountain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Alto_Adventure.rc" />

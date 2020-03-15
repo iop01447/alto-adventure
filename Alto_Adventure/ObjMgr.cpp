@@ -65,7 +65,6 @@ void CObjMgr::Render()
 	{
 		for (auto& pObj : m_listObj[i])
 		{
-
 			pObj->Render();
 		}
 	}
