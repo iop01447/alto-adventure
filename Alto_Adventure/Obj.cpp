@@ -28,15 +28,15 @@ void CObj::Fall()
 	if (m_pLine)
 	{
 		m_tInfo.vPos.x = m_pLine->Get_Info().tRightPos.vPoint.x;
-		m_tInfo.vPos.y = m_pLine->Get_Info().tRightPos.vPoint.y - m_tInfo.vSize.y / 4.f;
+		m_tInfo.vPos.y = m_pLine->Get_Info().tRightPos.vPoint.y - m_tInfo.vSize.y / 2.f + 10.f;
 		return;
 	}
 }
 
 void CObj::Update_Rect()
 {
-	m_tRect.left = m_tInfo.vPos.x - m_tInfo.vSize.x / 2.f;
-	m_tRect.right = m_tInfo.vPos.x + m_tInfo.vSize.x / 2.f;
-	m_tRect.top = m_tInfo.vPos.y - m_tInfo.vSize.y / 2.f;
-	m_tRect.bottom = m_tInfo.vPos.y + m_tInfo.vSize.y / 2.f;
+	m_tRect.left = LONG(m_tInfo.vPos.x - m_tInfo.vSize.x / 2.f);
+	m_tRect.right = LONG(m_tInfo.vPos.x + m_tInfo.vSize.x / 2.f);
+	m_tRect.top = LONG(m_tInfo.vPos.y - m_tInfo.vSize.y / 2.f);
+	m_tRect.bottom = LONG(m_tInfo.vPos.y + m_tInfo.vSize.y / 2.f);
 }

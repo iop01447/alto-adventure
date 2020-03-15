@@ -31,6 +31,10 @@ using namespace std;
 #include <d3d9.h>
 #pragma comment(lib, "d3d9.lib")
 
+#include <io.h>
+#include "fmod.h"
+#pragma comment(lib, "fmodex_vc.lib")
+
 #include "Define.h"
 #include "Extern.h"
 #include "Struct.h"
@@ -41,8 +45,5 @@ using namespace std;
 
 #include "Device.h"
 
-#include <io.h>
-#include "fmod.h"
-#pragma comment(lib, "fmodex_vc.lib")
 
 #endif // !__INCLUDE_H__

@@ -79,6 +79,12 @@
     <Filter Include="96.Manager\08.BackgroundMgr\02.SkyGradient">
       <UniqueIdentifier>{d27395a0-828c-488f-a9be-f657f69a5e52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Obj\04.Tree">
+      <UniqueIdentifier>{ab3c2c73-3518-4862-94e6-f968a9efde4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\05.BigTree">
+      <UniqueIdentifier>{2c9e69b1-8b7f-48f4-99c6-e64b5a13f412}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -186,6 +192,12 @@
     <ClInclude Include="Rock.h">
       <Filter>01.Obj\03.Rock</Filter>
     </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>01.Obj\04.Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="BigTree.h">
+      <Filter>01.Obj\05.BigTree</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp">
@@ -262,6 +274,12 @@
     </ClCompile>
     <ClCompile Include="Rock.cpp">
       <Filter>01.Obj\03.Rock</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>01.Obj\04.Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="BigTree.cpp">
+      <Filter>01.Obj\05.BigTree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

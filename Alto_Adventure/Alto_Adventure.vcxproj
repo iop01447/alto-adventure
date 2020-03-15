@@ -152,6 +152,7 @@
     <ClInclude Include="AbstractFactory.h" />
     <ClInclude Include="Alto_Adventure.h" />
     <ClInclude Include="BackgroundMgr.h" />
+    <ClInclude Include="BigTree.h" />
     <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="CollisionMgr.h" />
@@ -184,10 +185,12 @@
     <ClInclude Include="Texture.h" />
     <ClInclude Include="TextureMgr.h" />
     <ClInclude Include="Mountain.h" />
+    <ClInclude Include="Tree.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp" />
     <ClCompile Include="BackgroundMgr.cpp" />
+    <ClCompile Include="BigTree.cpp" />
     <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
@@ -216,6 +219,7 @@
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureMgr.cpp" />
     <ClCompile Include="Mountain.cpp" />
+    <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Alto_Adventure.rc" />

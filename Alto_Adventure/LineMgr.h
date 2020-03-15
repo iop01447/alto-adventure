@@ -28,6 +28,9 @@ public:
 public:
 	void Set_LinePoint(float _x, float _y);
 
+private:
+	void Create_Object();
+
 public:
 	static CLineMgr* Get_Instance()
 	{
