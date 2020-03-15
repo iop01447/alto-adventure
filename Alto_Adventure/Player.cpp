@@ -74,7 +74,10 @@ void CPlayer::Late_Update()
 	if (m_dwIdleTime + 2500 < GetTickCount())
 	{
 		m_iPlayerState = 1;
-		m_fSpeed = 5.f;
+		// 앉은 자세로 바뀌었을 때 속도 4에서 시작
+		// 플레이어 최고 속도는 8까지
+		m_fSpeed = 8.f;
+
 	}
 	else
 	{
