@@ -4,8 +4,11 @@
 #include "TextureMgr.h"
 #include "Mountain.h"
 #include "SkyGradient.h"
+#include "ObjMgr.h"
+#include "Cloud.h"
 
 IMPLEMENT_SINGLETON(CBackgroundMgr);
+
 
 CBackgroundMgr::CBackgroundMgr()
 {
@@ -22,6 +25,8 @@ void CBackgroundMgr::Initialize()
 {
 	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/cloud/%d.png", L"Cloud", L"Idle", 23);
 	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/star.png", L"Star");
+	for(int i=0; i<5; ++i)
+		CObjMgr::Get_Instance()->Add_Object(OBJID::CLOUD, CAbstractFactory<CCloud>::Create());
 
 	int size[] = { 3,4,7 };
 
@@ -176,7 +181,6 @@ void CBackgroundMgr::Update_Color()
 
 void CBackgroundMgr::Render_Stars()
 {
-	float fMaxAlpha{ 0 };
 	float fAlpha{ 0 };
 	
 	// MaxAlpha 값 구하기
@@ -188,22 +192,14 @@ void CBackgroundMgr::Render_Stars()
 	{
 		d += m_iPreSkyID / 6.f;
 	}
-	else if (m_iPreSkyID >= m_vecSkyGradient.size() - 6)
+	else if (m_iPreSkyID >= int(m_vecSkyGradient.size() - 6))
 	{
 		d = (m_vecSkyGradient.size() - m_iPreSkyID) / 6.f - d;
 	}
 	else
 		return;
 
-	fMaxAlpha = 1 * (1 - d) + 0 * d;
-	
-	// Alpha 값 구하기
-	d = (GetTickCount() - m_dwLastStarSparkle) / (float)m_dwStarSparkle;
-	d = max(0, min(1, d));
-
-	if (d == 1) {
-		m_dwLastStarSparkle = GetTickCount();
-	}
+	fAlpha = 1 * (1 - d) + 0 * d;
 
 	// 그리기
 	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Star");
@@ -225,7 +221,7 @@ void CBackgroundMgr::Render_Stars()
 				nullptr,
 				&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 				nullptr,
-				D3DCOLOR_ARGB(int(fAlpha), 255, 255, 255));
+				D3DCOLOR_ARGB(int(fAlpha*255.f), 255, 255, 255));
 		}
 	}
 }

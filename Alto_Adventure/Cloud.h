@@ -13,5 +13,8 @@ public:
 	virtual void Late_Update() override;
 	virtual void Render() override;
 	virtual void Release() override;
+
+private:
+	int m_iID{ 0 };
 };
 
