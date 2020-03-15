@@ -55,9 +55,6 @@
     <Filter Include="04.Texture\SingleTex">
       <UniqueIdentifier>{9e4f19b2-8644-41c0-ba1a-d20875d28680}</UniqueIdentifier>
     </Filter>
-    <Filter Include="96.Manager\06.TextureMgr">
-      <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
-    </Filter>
     <Filter Include="96.Manager\05.BmpMgr">
       <UniqueIdentifier>{594a8b79-e895-4b42-be80-de1d5287a19b}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,12 @@
     </Filter>
     <Filter Include="96.Manager\06.BackgroundMgr\02.SkyGradient">
       <UniqueIdentifier>{d27395a0-828c-488f-a9be-f657f69a5e52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\07.TextureMgr">
+      <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\08.SoundMgr">
+      <UniqueIdentifier>{ebfabec9-02da-4e16-af37-a98adbf8ed16}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -151,7 +154,7 @@
       <Filter>04.Texture\SingleTex</Filter>
     </ClInclude>
     <ClInclude Include="TextureMgr.h">
-      <Filter>96.Manager\06.TextureMgr</Filter>
+      <Filter>96.Manager\07.TextureMgr</Filter>
     </ClInclude>
     <ClInclude Include="Device.h">
       <Filter>97.Device</Filter>
@@ -173,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="SkyGradient.h">
       <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>96.Manager\08.SoundMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -222,7 +228,7 @@
       <Filter>04.Texture\SingleTex</Filter>
     </ClCompile>
     <ClCompile Include="TextureMgr.cpp">
-      <Filter>96.Manager\06.TextureMgr</Filter>
+      <Filter>96.Manager\07.TextureMgr</Filter>
     </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>97.Device</Filter>
@@ -244,6 +250,9 @@
     </ClCompile>
     <ClCompile Include="SkyGradient.cpp">
       <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>96.Manager\08.SoundMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
