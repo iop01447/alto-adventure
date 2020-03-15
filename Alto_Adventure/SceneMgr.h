@@ -3,7 +3,7 @@
 #ifndef __SCENEMGR_H__
 #define __SCENEMGR_H__
 
-class Scene;
+class CScene;
 class CSceneMgr
 {
 private:
@@ -11,13 +11,16 @@ private:
 	~CSceneMgr();
 
 public:
-	enum SCENEID { SCENE_LOGO, SCENE_MENU, SCENE_STAGE, SCENE_EDIT, SCENE_END };
+	enum SCENEID { SCENE_MENU, SCENE_STAGE, SCENE_END };
 
 public:
-	void Update(DWORD time);
+	void Update();
 	void Late_Update();
-	void Render(HDC _DC);
+	void Render();
 	void Release();
+
+public:
+	SCENEID Get_Scene() { return m_eCurScene; }
 
 public:
 	void Scene_Change(SCENEID _eScene);
@@ -36,10 +39,11 @@ public:
 
 private:
 	static CSceneMgr*	m_pInstance;
-	Scene*				m_pScene;
+	CScene*				m_pScene;
 
 	SCENEID				m_ePreScene;
 	SCENEID				m_eCurScene;
+
 };
 
 
