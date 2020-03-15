@@ -44,7 +44,7 @@ void CPlayer::Initialize()
 	m_vOrigin[3] = { -m_tInfo.vSize.x * 0.5f, m_tInfo.vSize.y * 0.5f, 0.f };
 
 	m_fAngle = 0.f;
-	m_fSpeed = 5.f;
+	m_fSpeed = 1.f;
 
 	m_fJumpPower = 12.f;
 	m_fJumpAccel = 0.f;
@@ -73,9 +73,15 @@ int CPlayer::Update()
 void CPlayer::Late_Update()
 {
 	if (m_dwIdleTime + 2500 < GetTickCount())
+	{
 		m_iFrameNum = 1;
+		m_fSpeed = 5.f;
+	}
 	else
+	{
 		m_iFrameNum = 0;
+		m_fSpeed = 1.f;
+	}
 }
 
 void CPlayer::Render()
@@ -173,7 +179,7 @@ void CPlayer::Jump()
 	}
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
-		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - 5));
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - 10));
 	}
 }
 

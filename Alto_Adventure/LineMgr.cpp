@@ -24,25 +24,21 @@ void CLineMgr::Initialize()
 
 	tLine[0] = { -(WINCX >> 1), 250.f };
 	for (int i = 1; i < 6; ++i)
-	{
 		tLine[i] = { float(tLine[i - 1].vPoint.x + (WINCX >> 1)), float(tLine[i - 1].vPoint.y + (rand() % 300) + 100) };
-		//m_listLine.emplace_back(new CLine(tLine[i-1], tLine[i]));
-	}
+	
 
 	D3DXVECTOR3 vPoint1, vPoint2;
 	for (int i = 0; i < 3; ++i)
 	{
-		for (int j = 0; j < (WINCX >> 1)-1; j+=5)
+		for (int j = 0; j < (WINCX >> 1)-1; j+=3)
 		{
 			D3DXVec3CatmullRom(&vPoint1, &tLine[i].vPoint, &tLine[i + 1].vPoint, &tLine[i + 2].vPoint, &tLine[i + 3].vPoint, (float(j) / (WINCX>>1)));
-			D3DXVec3CatmullRom(&vPoint2, &tLine[i].vPoint, &tLine[i + 1].vPoint, &tLine[i + 2].vPoint, &tLine[i + 3].vPoint, (float(j+5) / (WINCX >> 1)));
+			D3DXVec3CatmullRom(&vPoint2, &tLine[i].vPoint, &tLine[i + 1].vPoint, &tLine[i + 2].vPoint, &tLine[i + 3].vPoint, (float(j+3) / (WINCX >> 1)));
 
 			m_listLine.emplace_back(new CLine(LINEPOS(vPoint1.x, vPoint1.y), LINEPOS(vPoint2.x, vPoint2.y)));
 			++m_iPointCnt;
 		}
 	}
-
-	m_vPointList = new D3DXVECTOR2[m_iPointCnt];
 
 	/*
 	//D3DXVec3CatmullRom(
@@ -63,7 +59,7 @@ void CLineMgr::Initialize()
 	하지만 실제로 구해지는 곡선의 구간은 pV2 ~ pV3 라는걸 잊지 마시면 됩니다
 	*/
 
-	//생성된 라인들의 각도 계산 > 플레이어 속도에 적용
+	m_vPointList = new D3DXVECTOR2[m_iPointCnt];
 
 	int  i = 0;
 	for (auto& pLine : m_listLine)
@@ -98,10 +94,16 @@ void CLineMgr::Update()
 	}
 }
 
-void CLineMgr::Render(HDC _DC)
+void CLineMgr::Render()
 {
-	for (auto& pLine : m_listLine)
-		pLine->Render(_DC);
+	g_pLine->Begin();
+
+	g_pLine->Draw(m_vPointList, m_iPointCnt, D3DCOLOR_ARGB(255, 255, 255, 255)); // X축 라인
+
+	for (auto& pLine : m_listLine) 
+		pLine->Render(); // Y축 라인
+
+	g_pLine->End();
 }
 
 void CLineMgr::Release()

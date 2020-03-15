@@ -22,6 +22,7 @@ public:
 	CObj* Get_Target(CObj* _pObj, OBJID::ID _eID);
 	CObj* Get_Obj(OBJID::ID _eID) { return m_listObj[_eID].front() ; }
 	float Get_Top() { return  m_listObj[OBJID::PLAYER].front()->Get_Top() ; }
+	float Get_Speed() {	return m_listObj[OBJID::PLAYER].front()->Get_Speed();	}
 public:
 	void Delete_ID(OBJID::ID _eID);
 

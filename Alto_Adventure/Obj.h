@@ -21,7 +21,8 @@ public:
 public:
 	const INFO& Get_Info() const { return m_tInfo; }
 	const float& Get_Angle() const { return m_fAngle; }
-	float Get_Top() 
+	const float& Get_Speed() const { return m_fSpeed; }
+	const float& Get_Top() const 
 	{ 
 		if (m_vPoint[0].y > m_vPoint[1].y) 
 			return m_vPoint[1].y;
