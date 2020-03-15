@@ -30,17 +30,23 @@ public:
 			return m_vPoint[1].y;
 		return m_vPoint[0].y;
 	}
+	OBJID::ID Get_ObjID() { return m_eObjID; }
+	const RECT& Get_Rect() { return m_tRect; }
 
 public:
 	void Set_Pos(float _x, float _y);
 	void Set_Line(CLine* _line) { m_pLine = _line; }
+	void Set_ObjID(OBJID::ID _eID) { m_eObjID = _eID; }
 
 public:
 	void Fall();
+	virtual void Collision(CObj* _pObj) {};
+	void Update_Rect();
 
 protected:
 	bool			m_bDead;
 	INFO			m_tInfo;
+	RECT			m_tRect;
 
 	D3DXVECTOR3		m_vPoint[4]; // Q
 	D3DXVECTOR3		m_vOrigin[4]; // P
@@ -51,6 +57,8 @@ protected:
 	float			m_fSpeed;
 
 	CLine*			m_pLine{ nullptr };
+
+	OBJID::ID		m_eObjID{ OBJID::END };
 };
 
 #endif // !__OBJ_H__

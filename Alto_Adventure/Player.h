@@ -20,6 +20,8 @@ public:
 	virtual void Late_Update();
 	virtual void Render();
 	virtual void Release();
+	
+	virtual void Collision(CObj* pOther) override;
 
 public:
 	void Update_Size();

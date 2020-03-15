@@ -51,6 +51,7 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
+	Update_Rect();
 	Key_Check();
 
 	D3DXMATRIX matScale, matRotZ, matTrance;
@@ -95,6 +96,7 @@ void CPlayer::Render()
 
 	D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
 	D3DXMatrixScaling(&matScale, 0.3f, 0.3f, 0.f);
+	m_tInfo.vSize = { pTexInfo->tImageInfo.Width * 0.3f, pTexInfo->tImageInfo.Height * 0.3f, 0.f };
 	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle));
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
@@ -110,6 +112,18 @@ void CPlayer::Render()
 
 void CPlayer::Release()
 {
+}
+
+void CPlayer::Collision(CObj * pOther)
+{
+	switch (pOther->Get_ObjID())
+	{
+	case OBJID::ROCK:
+		///
+		break;
+	default:
+		break;
+	}
 }
 
 void CPlayer::Update_Size()

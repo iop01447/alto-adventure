@@ -22,6 +22,7 @@ void CRock::Initialize()
 int CRock::Update()
 {
 	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
+	Update_Rect();
 	Fall();
 
 	return OBJ_NOEVENT;
@@ -40,7 +41,7 @@ void CRock::Render()
 
 	D3DXMATRIX matScale, matTrans, matWorld;
 	D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
-	m_tInfo.vSize.y = pTexInfo->tImageInfo.Height * 0.1f;
+	m_tInfo.vSize = { pTexInfo->tImageInfo.Width * 0.1f, pTexInfo->tImageInfo.Height * 0.1f, 0.f };
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
 	matWorld = matScale * matTrans;
