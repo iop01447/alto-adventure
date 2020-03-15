@@ -15,7 +15,7 @@ public:
 	void Add_Object(OBJID::ID _eID, CObj* _pObj);
 	void Update();
 	void Late_Update();
-	void Render(HDC _DC);
+	void Render();
 	void Release();
 
 public:

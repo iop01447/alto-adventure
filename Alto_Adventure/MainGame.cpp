@@ -10,7 +10,7 @@
 #include "BmpMgr.h"
 #include "ScrollMgr.h"
 #include "BackgroundMgr.h"
-
+#include "TextureMgr.h"
 
 LPD3DXLINE g_pLine;
 
@@ -37,8 +37,8 @@ void CMainGame::Initialize()
 	D3DXCreateLine(GET_INSTANCE(CDevice)->Get_Device(), &g_pLine);
 	g_pLine->SetWidth(5);
 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"Back.bmp", L"Back");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"BackBuffer.bmp", L"BackBuffer");
+	//CBmpMgr::Get_Instance()->Insert_Bmp(L"Back.bmp", L"Back");
+	//CBmpMgr::Get_Instance()->Insert_Bmp(L"BackBuffer.bmp", L"BackBuffer");
 
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER, CAbstractFactory<CPlayer>::Create());
 
@@ -68,7 +68,7 @@ void CMainGame::Late_Update()
 void CMainGame::Render()
 {
 	//HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"BackBuffer");
-	HDC hBackBuffer = CBmpMgr::Get_Instance()->Find_Image(L"Back");
+	//HDC hBackBuffer = CBmpMgr::Get_Instance()->Find_Image(L"Back");
 	//BitBlt(hBackBuffer, 0, 0, WINCX, WINCY, hMemDC, 0, 0, SRCCOPY);
 
 	////CSceneMgr::Get_Instance()->Render(hBackBuffer);
@@ -90,7 +90,7 @@ void CMainGame::Render()
 	CDevice::Get_Instance()->Render_Begin();
 
 	GET_INSTANCE(CBackgroundMgr)->Render();
-	CObjMgr::Get_Instance()->Render(hBackBuffer);
+	CObjMgr::Get_Instance()->Render();
 	g_pLine->Begin();
 	g_pLine->Draw(GET_INSTANCE(CLineMgr)->Get_PointList(), GET_INSTANCE(CLineMgr)->Get_PointCnt(), D3DCOLOR_ARGB(255, 255, 255, 255));
 	g_pLine->End();
@@ -106,8 +106,9 @@ void CMainGame::Release()
 	CScrollMgr::Destroy_Instance();
 	CBmpMgr::Destroy_Instance();
 	//CSceneMgr::Destroy_Instance();
-	CObjMgr::Destroy_Instance();
+	CTextureMgr::Destroy_Instance();
 	CBackgroundMgr::Destroy_Instance();
 
+	CObjMgr::Destroy_Instance();
 	ReleaseDC(g_hWnd, m_DC);
 }

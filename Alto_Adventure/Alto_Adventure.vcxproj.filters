@@ -64,6 +64,9 @@
     <Filter Include="05.Triangle">
       <UniqueIdentifier>{4bf80950-4fa8-4760-801e-bf750f07f2dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01.Obj\01.Effect">
+      <UniqueIdentifier>{6dcc9e94-6022-4b08-8424-32d6ad7bca21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -156,6 +159,9 @@
     <ClInclude Include="Triangle.h">
       <Filter>05.Triangle</Filter>
     </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>01.Obj\01.Effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp">
@@ -217,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="Triangle.cpp">
       <Filter>05.Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>01.Obj\01.Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

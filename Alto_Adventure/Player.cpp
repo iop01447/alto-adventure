@@ -1,13 +1,19 @@
 #include "stdafx.h"
 #include "Player.h"
 
+#include "Effect.h"
+
 #include "KeyMgr.h"
+#include "ObjMgr.h"
 #include "LineMgr.h"
 #include "TextureMgr.h"
 
 
 CPlayer::CPlayer()
-	:m_bJump(false), m_bFall(true)
+	:m_bJump(false)
+	, m_bFall(true)
+	, m_dwIdleTime(GetTickCount())
+	, m_iFrameNum(0)
 {
 	ZeroMemory(&m_vPoint, sizeof(D3DXVECTOR3) * 4);
 	ZeroMemory(&m_vOrigin, sizeof(D3DXVECTOR3) * 4);
@@ -20,9 +26,10 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/player/%d.png", L"Player", L"Idle", 1);
+	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/player/%d.png", L"Player", L"Idle", 2);   // 0.일어선 자세 1.활강 자세
+	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/White%d.png", L"SnowEffect", L"Snow", 1);
 
-	m_tInfo.vPos = { 100.f, 300.f, 0.f };
+	m_tInfo.vPos = { 150.f, 300.f, 0.f };
 	m_tInfo.vSize = { 20.f, 40.f, 0.f };
 	m_tInfo.vDir = { 1.f, -1.f, 0.f };
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
@@ -39,7 +46,7 @@ void CPlayer::Initialize()
 	m_fAngle = 0.f;
 	m_fSpeed = 5.f;
 
-	m_fJumpPower = 20.f;
+	m_fJumpPower = 12.f;
 	m_fJumpAccel = 0.f;
 }
 
@@ -65,29 +72,15 @@ int CPlayer::Update()
 
 void CPlayer::Late_Update()
 {
+	if (m_dwIdleTime + 2500 < GetTickCount())
+		m_iFrameNum = 1;
+	else
+		m_iFrameNum = 0;
 }
 
-void CPlayer::Render(HDC _DC)
+void CPlayer::Render()
 {
-	MoveToEx(_DC, int(m_vPoint[1].x),int( m_vPoint[1].y), nullptr);
-
-	for (int i = 2; i < 4; ++i)
-		LineTo(_DC, int(m_vPoint[i].x), int(m_vPoint[i].y));
-	LineTo(_DC, int(m_vPoint[0].x), int(m_vPoint[0].y));
-
-	HPEN Brush, oldBrush;
-
-	Brush = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-	oldBrush = (HPEN)SelectObject(_DC, Brush);
-
-	LineTo(_DC, int(m_vPoint[1].x), int(m_vPoint[1].y));
-
-	SelectObject(_DC, oldBrush);
-	DeleteObject(Brush);
-
-	//////////////
-
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", 0);
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iFrameNum);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
@@ -140,7 +133,10 @@ void CPlayer::Key_Check()
 
 	// 캐릭터 점프 중일 때 라인의 각도 보다 조금더 몸 세우고 내려오면서 다시 맵 각도에 맞게 몸 다시 눕힘
 	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
+	{
 		m_bJump = true;
+		m_dwIdleTime = GetTickCount();
+	}
 
 	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_DOWN))
 	{
@@ -163,18 +159,22 @@ void CPlayer::Jump()
 	// 플레이어가 회전했을 때 줄어든 바닥에서 플레이어 중심까지의 거리
 	m_fRotHeight = (m_tInfo.vSize.y * 0.5f) * cosf(D3DXToRadian(m_fAngle));
 
-		if (m_bJump)
-		{
-			m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel - 9.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
- 			m_fJumpAccel += 0.2f;
+	if (m_bJump)
+	{
+		m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel - 6.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
+		m_fJumpAccel += 0.1f;
 
- 			if (bLineCol && fY + 2.f < vBottomPoint.y)
-			{
-				m_bJump = false;
-				m_fJumpAccel = 0.f;
-				m_tInfo.vPos.y = fY - m_fRotHeight;
-			}
+		if (bLineCol && fY + 5.f < vBottomPoint.y)
+		{
+			m_bJump = false;
+			m_fJumpAccel = 0.f;
+			m_tInfo.vPos.y = fY - m_fRotHeight;
 		}
+	}
+	else
+	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - 5));
+	}
 }
 
 void CPlayer::Fall()

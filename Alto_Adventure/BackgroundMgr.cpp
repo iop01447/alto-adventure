@@ -29,7 +29,7 @@ void CBackgroundMgr::Initialize()
 			float fSizeX = WINCX / float(size[i] - 1);
 
 			float fScaleX = fSizeX + rand() % 50;
-			float fScaleY = fSizeX*0.3f;
+			float fScaleY = fSizeX * 0.3f;
 			fScaleX *= 2.3f;
 			fScaleY *= 2.3f;
 
