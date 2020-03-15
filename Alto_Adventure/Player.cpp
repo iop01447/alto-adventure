@@ -13,7 +13,6 @@ CPlayer::CPlayer()
 	:m_bJump(false)
 	, m_bFall(true)
 	, m_dwIdleTime(GetTickCount())
-	, m_iFrameNum(0)
 {
 	ZeroMemory(&m_vPoint, sizeof(D3DXVECTOR3) * 4);
 	ZeroMemory(&m_vOrigin, sizeof(D3DXVECTOR3) * 4);
@@ -74,19 +73,19 @@ void CPlayer::Late_Update()
 {
 	if (m_dwIdleTime + 2500 < GetTickCount())
 	{
-		m_iFrameNum = 1;
+		m_iPlayerState = 1;
 		m_fSpeed = 5.f;
 	}
 	else
 	{
-		m_iFrameNum = 0;
+		m_iPlayerState = 0;
 		m_fSpeed = 1.f;
 	}
 }
 
 void CPlayer::Render()
 {
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iFrameNum);
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iPlayerState);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;

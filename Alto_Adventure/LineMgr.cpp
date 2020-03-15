@@ -26,7 +26,7 @@ void CLineMgr::Initialize()
 	// 랜덤으로 WINCX >> 1 만큼 떨어진 포인트 생성 후 m_vecLinePoint 에 저장(직선 데이터)
 	for (int i = 1; i < 6; ++i)
 	{
-		D3DXVECTOR3 vLinePoint = { float(m_vecLinePoint[i - 1].x + (WINCX >> 1)), float(m_vecLinePoint[i - 1].y + (rand() % 300) + 100) , 0.f };
+		D3DXVECTOR3 vLinePoint = { float(m_vecLinePoint[i - 1].x + (WINCX >> 1)), float(m_vecLinePoint[i - 1].y + (rand() % 100) + 100) , 0.f };
 		m_vecLinePoint.emplace_back(vLinePoint);
 	}
 
@@ -156,7 +156,7 @@ void CLineMgr::Release()
 	m_listLine.clear();
 }
 
-bool CLineMgr::Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle )
+  bool CLineMgr::Collision_Line(float _x, float* _y, int _PlayerBottom, float* _fAngle )
 {
 	if (m_listLine.empty())
 		return false;

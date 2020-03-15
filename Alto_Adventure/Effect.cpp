@@ -45,16 +45,32 @@ int CEffect::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	if (80 > m_iAlphaValue)
-		m_fSize = 0.03f;
-	else if (145 > m_iAlphaValue)
-		m_fSize = 0.035f;
-	else if (200 > m_iAlphaValue)
-		m_fSize = 0.04f;
-	else if (235 > m_iAlphaValue)
-		m_fSize = 0.045f;
+	if (!GET_INSTANCE(CObjMgr)->Get_Obj(OBJID::PLAYER)->Get_PlayerState())
+	{
+		if (80 > m_iAlphaValue)
+			m_fSize = 0.025f;
+		else if (145 > m_iAlphaValue)
+			m_fSize = 0.03f;
+		else if (200 > m_iAlphaValue)
+			m_fSize = 0.035f;
+		else if (235 > m_iAlphaValue)
+			m_fSize = 0.04f;
+		else
+			m_fSize = 0.03f;
+	}
 	else
-		m_fSize = 0.03f;
+	{
+		if (80 > m_iAlphaValue)
+			m_fSize = 0.035f;
+		else if (145 > m_iAlphaValue)
+			m_fSize = 0.04f;
+		else if (200 > m_iAlphaValue)
+			m_fSize = 0.045f;
+		else if (235 > m_iAlphaValue)
+			m_fSize = 0.05f;
+		else
+			m_fSize = 0.04f;
+	}
 
 	m_iAlphaValue -= 5;
 
