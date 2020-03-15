@@ -22,7 +22,6 @@ void CEffect::Initialize()
 {
 	INFO tInfo = CObjMgr::Get_Instance()->Get_Obj(OBJID::PLAYER)->Get_Info();
 
-	//m_tInfo.vPos = { tInfo.vPos.x - (tInfo.vSize.x * 0.5f), tInfo.vPos.y + (tInfo.vSize.y * 0.5f), 0.f };
 	m_tInfo.vSize = { float(rand()%2+2), float(rand()%2+2), 0.f };
 	m_tInfo.vDir = { 1.f, 0.f, 0.f };
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };
@@ -47,25 +46,13 @@ int CEffect::Update()
 		return OBJ_DEAD;
 
 	if (80 > m_iAlphaValue)
-	{
 		m_fSize = 0.02f;
-		//m_tInfo.vPos.y -= 0.2f;
-	}
 	else if (145 > m_iAlphaValue)
-	{
 		m_fSize = 0.03f;
-		//m_tInfo.vPos.y -= 0.2f;
-	}
 	else if (200 > m_iAlphaValue)
-	{
 		m_fSize = 0.04f;
-		//m_tInfo.vPos.y -= 0.2f;
-	}
 	else if (235 > m_iAlphaValue)
-	{
 		m_fSize = 0.045f;
-		//m_tInfo.vPos.y -= 0.2f;
-	}
 	else
 		m_fSize = 0.03f;
 
@@ -81,7 +68,7 @@ void CEffect::Late_Update()
 		m_bDead = true;
 
 	m_tInfo.vPos.x -= 2;
-	m_tInfo.vPos.y -= (GET_INSTANCE(CLineMgr)->Get_SpeedY() * 0.1f);
+	//m_tInfo.vPos.y -= (GET_INSTANCE(CLineMgr)->Get_SpeedY() * 0.1f);
 }
 
 void CEffect::Render()

@@ -44,7 +44,7 @@ void CPlayer::Initialize()
 	m_vOrigin[3] = { -m_tInfo.vSize.x * 0.5f, m_tInfo.vSize.y * 0.5f, 0.f };
 
 	m_fAngle = 0.f;
-	m_fSpeed = 5.f;
+	m_fSpeed = 1.f;
 
 	m_fJumpPower = 12.f;
 	m_fJumpAccel = 0.f;
@@ -73,9 +73,15 @@ int CPlayer::Update()
 void CPlayer::Late_Update()
 {
 	if (m_dwIdleTime + 2500 < GetTickCount())
+	{
 		m_iFrameNum = 1;
+		m_fSpeed = 5.f;
+	}
 	else
+	{
 		m_iFrameNum = 0;
+		m_fSpeed = 1.f;
+	}
 }
 
 void CPlayer::Render()
