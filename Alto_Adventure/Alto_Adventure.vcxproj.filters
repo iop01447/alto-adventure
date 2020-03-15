@@ -37,9 +37,6 @@
     <Filter Include="96.Manager\04.ScrollMgr">
       <UniqueIdentifier>{419d8fb2-0b11-456f-bcd5-cfc5576ee434}</UniqueIdentifier>
     </Filter>
-    <Filter Include="96.Manager\06.BackgroundMgr">
-      <UniqueIdentifier>{bd4349aa-80fa-47cf-907d-cea2df3019f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="97.Device">
       <UniqueIdentifier>{ada567e0-acb2-4aef-b6eb-b03e648cfdce}</UniqueIdentifier>
     </Filter>
@@ -64,17 +61,17 @@
     <Filter Include="01.Obj\02.Cloud">
       <UniqueIdentifier>{cf3ec701-8a8d-482b-b78b-0ebb8491bd59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="96.Manager\06.BackgroundMgr\01.Mountain">
+    <Filter Include="96.Manager\08.BackgroundMgr">
+      <UniqueIdentifier>{bd4349aa-80fa-47cf-907d-cea2df3019f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="96.Manager\08.BackgroundMgr\01.Mountain">
       <UniqueIdentifier>{4bf80950-4fa8-4760-801e-bf750f07f2dc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="96.Manager\06.BackgroundMgr\02.SkyGradient">
+    <Filter Include="96.Manager\08.BackgroundMgr\02.SkyGradient">
       <UniqueIdentifier>{d27395a0-828c-488f-a9be-f657f69a5e52}</UniqueIdentifier>
     </Filter>
-    <Filter Include="96.Manager\07.TextureMgr">
-      <UniqueIdentifier>{f677de8c-9bd2-40e2-b4cb-2d1f9f222888}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="96.Manager\08.SoundMgr">
-      <UniqueIdentifier>{ebfabec9-02da-4e16-af37-a98adbf8ed16}</UniqueIdentifier>
+    <Filter Include="96.Manager\07.SoundMgr">
+      <UniqueIdentifier>{2d68a3f8-5029-4eed-a7b2-c398620b7427}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,7 +139,7 @@
       <Filter>02.Line</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundMgr.h">
-      <Filter>96.Manager\06.BackgroundMgr</Filter>
+      <Filter>96.Manager\08.BackgroundMgr</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>04.Texture</Filter>
@@ -172,10 +169,13 @@
       <Filter>01.Obj\02.Cloud</Filter>
     </ClInclude>
     <ClInclude Include="Mountain.h">
-      <Filter>96.Manager\06.BackgroundMgr\01.Mountain</Filter>
+      <Filter>96.Manager\08.BackgroundMgr\01.Mountain</Filter>
     </ClInclude>
     <ClInclude Include="SkyGradient.h">
-      <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
+      <Filter>96.Manager\08.BackgroundMgr\02.SkyGradient</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>96.Manager\07.SoundMgr</Filter>
     </ClInclude>
     <ClInclude Include="SoundMgr.h">
       <Filter>96.Manager\08.SoundMgr</Filter>
@@ -216,7 +216,7 @@
       <Filter>02.Line</Filter>
     </ClCompile>
     <ClCompile Include="BackgroundMgr.cpp">
-      <Filter>96.Manager\06.BackgroundMgr</Filter>
+      <Filter>96.Manager\08.BackgroundMgr</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>04.Texture</Filter>
@@ -246,10 +246,13 @@
       <Filter>01.Obj\02.Cloud</Filter>
     </ClCompile>
     <ClCompile Include="Mountain.cpp">
-      <Filter>96.Manager\06.BackgroundMgr\01.Mountain</Filter>
+      <Filter>96.Manager\08.BackgroundMgr\01.Mountain</Filter>
     </ClCompile>
     <ClCompile Include="SkyGradient.cpp">
-      <Filter>96.Manager\06.BackgroundMgr\02.SkyGradient</Filter>
+      <Filter>96.Manager\08.BackgroundMgr\02.SkyGradient</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>96.Manager\07.SoundMgr</Filter>
     </ClCompile>
     <ClCompile Include="SoundMgr.cpp">
       <Filter>96.Manager\08.SoundMgr</Filter>
