@@ -42,7 +42,7 @@ void CLine::Initialize()
 	if (m_tInfo.tRightPos.vPoint.y < m_tInfo.tLeftPos.vPoint.y)
 		m_fAngle = -m_fAngle;
 
-	m_fSpeedX = 0;
+	m_fSpeedX = m_fAngle / 10.f;
 	m_fSpeedY = 1.5f;
 }
 

@@ -43,9 +43,9 @@ void CPlayer::Initialize()
 	m_vOrigin[3] = { -m_tInfo.vSize.x * 0.5f, m_tInfo.vSize.y * 0.5f, 0.f };
 
 	m_fAngle = 0.f;
-	m_fSpeed = 1.f;
+	m_fSpeed = 8.f;
 
-	m_fJumpPower = 12.f;
+	m_fJumpPower = 10.f;
 	m_fJumpAccel = 0.f;
 }
 
@@ -75,15 +75,18 @@ void CPlayer::Late_Update()
 	if (m_dwIdleTime + 2500 < GetTickCount())
 	{
 		m_iPlayerState = 1;
-		// 앉은 자세로 바뀌었을 때 속도 4에서 시작
-		// 플레이어 최고 속도는 8까지
-		m_fSpeed = 8.f;
-
 	}
 	else
 	{
 		m_iPlayerState = 0;
-		m_fSpeed = 1.f;
+	}
+	if (8.f > m_fSpeed)
+	{
+		m_fSpeed += 0.02f;
+	}
+	if (8.f < m_fSpeed)
+	{
+		m_fSpeed -= 0.02f;
 	}
 }
 
@@ -171,10 +174,11 @@ void CPlayer::Jump()
 
 	if (m_bJump)
 	{
-		m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel - 6.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
+		m_fSpeed += 0.02f;
+		m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel - 5.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
 		m_fJumpAccel += 0.1f;
 
-		if (bLineCol && fY + 5.f < vBottomPoint.y)
+		if (bLineCol && fY + 10.f < vBottomPoint.y)
 		{
 			m_bJump = false;
 			m_fJumpAccel = 0.f;
@@ -183,7 +187,7 @@ void CPlayer::Jump()
 	}
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
-		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 25, m_vPoint[3].y - (rand()%10 + 15)));
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 15, m_vPoint[3].y - (rand()%10 + 15)));
 	}
 }
 
