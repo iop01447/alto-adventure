@@ -14,6 +14,8 @@ public:
 	virtual void Render() override;
 	virtual void Release() override;
 
+	virtual void Collision(CObj* _pObj) override ;
+
 private:
 	int m_iID{ 0 };
 	BYTE m_byAlphaValue;
