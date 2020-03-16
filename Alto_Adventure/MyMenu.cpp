@@ -53,7 +53,7 @@ void CMyMenu::Render()
 		nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
-		D3DCOLOR_ARGB(255, 255, 255, 255));
+		D3DCOLOR_ARGB(128, 255, 255, 255));
 }
 
 void CMyMenu::Release()
