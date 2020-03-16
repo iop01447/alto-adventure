@@ -56,8 +56,7 @@ void CObjMgr::Late_Update()
 	}
 
 	CCollisionMgr::Collision_Rect(m_listObj[OBJID::PLAYER], m_listObj[OBJID::ROCK]);
-	//CCollisionMgr::Collision_Sphere(m_listObj[OBJID::MOUSE], m_listObj[OBJID::BULLET]);
-	//CCollisionMgr::Collision_RectEx(m_listObj[OBJID::MONSTER], m_listObj[OBJID::PLAYER]);
+	CCollisionMgr::Collision_Rect(m_listObj[OBJID::PLAYER], m_listObj[OBJID::COIN]);
 }
 
 void CObjMgr::Render()

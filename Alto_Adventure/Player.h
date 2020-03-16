@@ -30,6 +30,9 @@ public:
 	void Jump();
 	void Fall();
 
+public:
+	int Get_Coin() { return m_iCoin; }
+
 private:
 	//RECT m_tRect; 
 	bool			m_bJump;
@@ -46,6 +49,8 @@ private:
 	DWORD			m_dwFrontEffectTime;
 
 	BYTE			m_byColor[4];
+
+	int				m_iCoin{ 0 };
 
 };
 

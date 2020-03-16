@@ -9,6 +9,7 @@
 #include "Rock.h"
 #include "Tree.h"
 #include "BigTree.h"
+#include "Coin.h"
 
 
 
@@ -28,7 +29,8 @@ void CLineMgr::Initialize()
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/rock/%d.png", L"Rock", L"Idle", 2);
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/tree/%d.png", L"Tree", L"Idle", 3);
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/big-tree.png", L"BigTree");
-	m_dwLastObjCreate = GetTickCount();
+	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/coin.png", L"Coin");
+	m_dwLastBackObjCreate = GetTickCount();
 
 //////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
@@ -139,8 +141,8 @@ void CLineMgr::Late_Update()
 		}
 	}
 
-	Create_RockObj();
 	Create_Object();
+	Create_BackObject();
 }
 
 void CLineMgr::Render()
@@ -249,33 +251,50 @@ void CLineMgr::Set_LinePoint(float _x, float _y)
 	}
 }
 
-void CLineMgr::Create_RockObj()
-{
-	if (GetTickCount() - m_dwLastRockCreate < m_dwRockCreate) return;
-	m_dwLastRockCreate = GetTickCount();
-
-	CObj* pObj = CAbstractFactory<CRock>::Create(WINCX + 100, 0);
-	CObjMgr::Get_Instance()->Add_Object(OBJID::ROCK, pObj);
-
-	m_dwRockCreate = 3000 + rand() % 3000;
-}
-
 void CLineMgr::Create_Object()
 {
 	static int obj_id{ 0 };
-	static vector<OBJID::ID> obj_list = { OBJID::TREE, OBJID::BIGTREE, OBJID::END };
-
-	if (GetTickCount() - m_dwLastObjIDChange > m_dwObjIDChange)
-	{
-		obj_id = rand() % obj_list.size();
-		m_dwLastObjIDChange = GetTickCount();
-	}
+	static vector<OBJID::ID> obj_list = { OBJID::ROCK, OBJID::COIN };
 
 	if (GetTickCount() - m_dwLastObjCreate < m_dwObjCreate) return;
 	m_dwLastObjCreate = GetTickCount();
 
+	obj_id = rand() % obj_list.size();
+
 	CObj* pObj = nullptr;
 	switch (obj_list[obj_id])
+	{
+	case OBJID::ROCK:
+		pObj = CAbstractFactory<CRock>::Create(WINCX + 100, 0);
+		CObjMgr::Get_Instance()->Add_Object(OBJID::ROCK, pObj);
+		break;
+	case OBJID::COIN:
+		for (int i = 0; i < 5; ++i) {
+			pObj = CAbstractFactory<CCoin>::Create(WINCX + 10 + i*50, 0);
+			CObjMgr::Get_Instance()->Add_Object(OBJID::COIN, pObj);
+		}
+		break;
+	}
+
+	m_dwObjCreate = 3000 + rand() % 3000;
+}
+
+void CLineMgr::Create_BackObject()
+{
+	static int obj_id{ 0 };
+	static vector<OBJID::ID> back_obj_list = { OBJID::TREE, OBJID::BIGTREE, OBJID::END };
+
+	if (GetTickCount() - m_dwLastBackObjIDChange > m_dwBackObjIDChange)
+	{
+		obj_id = rand() % back_obj_list.size();
+		m_dwLastBackObjIDChange = GetTickCount();
+	}
+
+	if (GetTickCount() - m_dwLastBackObjCreate < m_dwBackObjCreate) return;
+	m_dwLastBackObjCreate = GetTickCount();
+
+	CObj* pObj = nullptr;
+	switch (back_obj_list[obj_id])
 	{
 	case OBJID::TREE:
 		pObj = CAbstractFactory<CTree>::Create(WINCX + 100, 0);

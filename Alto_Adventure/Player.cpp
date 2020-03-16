@@ -138,6 +138,9 @@ void CPlayer::Collision(CObj * pOther)
 		m_bHit = true;
 		m_dwHitEffectTime = GetTickCount();
 		break;
+	case OBJID::COIN:
+		++m_iCoin;
+		break;
 	default:
 		break;
 	}

@@ -100,11 +100,29 @@ HRESULT CDevice::InitDevice()
 		assert(false && L"CreateSprite Func Failed!");
 		return E_FAIL; 
 	}
+
+	D3DXFONT_DESCW tFontInfo;
+	ZeroMemory(&tFontInfo, sizeof(D3DXFONT_DESCW));
+	tFontInfo.Width = 15;
+	tFontInfo.Height = static_cast<int>(tFontInfo.Width * 2.083f);
+	tFontInfo.Weight = FW_NORMAL;
+	tFontInfo.CharSet = HANGEUL_CHARSET;
+	lstrcpy(tFontInfo.FaceName, L"Time New Roman");
+	// D3DXCreateFontIndirect - 폰트 구조체 정보를 토대로 폰트 객체를 생성하는 함수. 
+	if (FAILED(D3DXCreateFontIndirect(m_pDevice, &tFontInfo, &m_pFont)))
+	{
+		assert(false && L"CreateFont Failed!");
+		return E_FAIL;
+	}
+
 	return S_OK;
 }
 
 void CDevice::Release()
 {
+	if (m_pFont)
+		m_pFont->Release();
+
 	if (m_pSprite)
 		m_pSprite->Release();
 
