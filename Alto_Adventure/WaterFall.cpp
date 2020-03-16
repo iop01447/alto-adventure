@@ -15,7 +15,7 @@ CWaterFall::~CWaterFall()
 
 void CWaterFall::Initialize()
 {
-	m_tInfo.vScale = { 0.5f, 0.5f, 0.f };
+	m_tInfo.vScale = { 0.3f, 1.5f, 0.f };
 	m_eGroupID = GROUPID::FOREWORD_GAMEOBJECT;
 }
 
@@ -40,7 +40,7 @@ void CWaterFall::Render()
 {
 	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"SnowEffect", L"Snow", 0);
 	
-	float fAlpha = 0.5f;
+	float fAlpha = 0.7f;
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 
@@ -56,7 +56,22 @@ void CWaterFall::Render()
 		nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
-		D3DCOLOR_ARGB(int(255 * fAlpha), 255, 255, 255));
+		D3DCOLOR_ARGB(int(255 * fAlpha), 4, 52, 100));
+
+	for (int i = 0; i < 50; ++i) {
+		D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
+		D3DXMatrixTranslation(&matTrans, -50 + m_tInfo.vPos.x + rand() % 100
+			, rand() % WINCY, 0.f);
+
+		matWorld = matScale * matTrans;
+		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+		CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+			nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+			nullptr,
+			D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
 }
 
 void CWaterFall::Release()

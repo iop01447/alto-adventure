@@ -39,8 +39,8 @@ void CLineMgr::Initialize()
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/PowerUp.png", L"PowerUp");
 	m_dwLastBackObjCreate = GetTickCount();
 
-	CObj* pObj = CAbstractFactory<CWaterFall>::Create(WINCX / 2, WINCY / 2);
-	CObjMgr::Get_Instance()->Add_Object(OBJID::WATERFALL, pObj);
+	//CObj* pObj = CAbstractFactory<CWaterFall>::Create(WINCX / 2, WINCY / 2);
+	//CObjMgr::Get_Instance()->Add_Object(OBJID::WATERFALL, pObj);
 
 //////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
