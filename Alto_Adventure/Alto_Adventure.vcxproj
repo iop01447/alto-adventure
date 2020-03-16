@@ -161,12 +161,14 @@
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Extern.h" />
+    <ClInclude Include="FrontEffect.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Functor.h" />
     <ClInclude Include="Include.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineMgr.h" />
+    <ClInclude Include="Magnet.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MultiTex.h" />
     <ClInclude Include="MyMenu.h" />
@@ -200,9 +202,11 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="FrontEffect.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
+    <ClCompile Include="Magnet.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MultiTex.cpp" />
     <ClCompile Include="MyMenu.cpp" />

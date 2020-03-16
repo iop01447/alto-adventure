@@ -21,7 +21,7 @@ CMyMenu::~CMyMenu()
 void CMyMenu::Initialize()
 {
 	D3DXCreateLine(GET_INSTANCE(CDevice)->Get_Device(), &g_pLine);
-	g_pLine->SetWidth(5);
+	g_pLine->SetWidth(6);
 
 	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/Menu0.png", L"Menu", L"Menu", 1);
 	CSoundMgr::Get_Instance()->PlayBGM(L"MenuBGM.wav");

@@ -40,9 +40,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>01.Obj\00.Player</Filter>
     </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>01.Obj\01.Effect</Filter>
-    </ClCompile>
     <ClCompile Include="Cloud.cpp">
       <Filter>01.Obj\02.Cloud</Filter>
     </ClCompile>
@@ -91,8 +88,15 @@
     <ClCompile Include="TextureMgr.cpp">
       <Filter>97.Manager\08.TextureMgr</Filter>
     </ClCompile>
-    <ClCompile Include="UIMgr.cpp">
-      <Filter>97.Manager\09.UIMgr</Filter>
+    <ClCompile Include="Effect.cpp">
+      <Filter>01.Obj\01.Effect\01.BakEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontEffect.cpp">
+      <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMgr.cpp" />
+    <ClCompile Include="Magnet.cpp">
+      <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -165,9 +169,6 @@
     <ClInclude Include="Player.h">
       <Filter>01.Obj\00.Player</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>01.Obj\01.Effect</Filter>
-    </ClInclude>
     <ClInclude Include="Cloud.h">
       <Filter>01.Obj\02.Cloud</Filter>
     </ClInclude>
@@ -216,8 +217,15 @@
     <ClInclude Include="TextureMgr.h">
       <Filter>97.Manager\08.TextureMgr</Filter>
     </ClInclude>
-    <ClInclude Include="UIMgr.h">
-      <Filter>97.Manager\09.UIMgr</Filter>
+    <ClInclude Include="Effect.h">
+      <Filter>01.Obj\01.Effect\01.BakEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontEffect.h">
+      <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMgr.h" />
+    <ClInclude Include="Magnet.h">
+      <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -322,8 +330,17 @@
     <Filter Include="97.Manager\08.TextureMgr">
       <UniqueIdentifier>{67be9310-027b-4173-b6fb-573d61bb6d8b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\09.UIMgr">
-      <UniqueIdentifier>{26a646d3-9b10-4d11-a112-a1e014efb0f7}</UniqueIdentifier>
+    <Filter Include="01.Obj\01.Effect\00.FrontEffect">
+      <UniqueIdentifier>{c88411e1-aded-4558-8aea-329bc93bf72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\01.Effect\01.BakEffect">
+      <UniqueIdentifier>{68ea811b-bf3c-4b80-999c-f6264967087e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\07.Item">
+      <UniqueIdentifier>{b37c3c36-938e-47eb-a7fd-1461a6f7b2b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\07.Item\00.Magnet">
+      <UniqueIdentifier>{33925aa7-55ad-4601-8eae-a07773fa7262}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

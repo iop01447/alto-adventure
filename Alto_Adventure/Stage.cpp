@@ -8,6 +8,7 @@
 #include "ObjMgr.h"
 #include "LineMgr.h"
 #include "SoundMgr.h"
+#include "TextureMgr.h"
 #include "BackgroundMgr.h"
 
 
@@ -23,6 +24,7 @@ CStage::~CStage()
 
 void CStage::Initialize()
 {
+	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/PlayerFrontEffect0.png", L"FrontEffect", L"FrontEffect", 1);
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	//테스트용 라인
