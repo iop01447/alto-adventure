@@ -9,6 +9,7 @@
 
 
 CMyMenu::CMyMenu()
+	:bGameStartButton(false)
 {
 }
 
@@ -19,6 +20,9 @@ CMyMenu::~CMyMenu()
 
 void CMyMenu::Initialize()
 {
+	D3DXCreateLine(GET_INSTANCE(CDevice)->Get_Device(), &g_pLine);
+	g_pLine->SetWidth(5);
+
 	GET_INSTANCE(CTextureMgr)->InsertTexture(CTextureMgr::MULTITEX, L"../Image/Menu0.png", L"Menu", L"Menu", 1);
 	CSoundMgr::Get_Instance()->PlayBGM(L"MenuBGM.wav");
 }
@@ -29,7 +33,7 @@ void CMyMenu::Update()
 
 void CMyMenu::Late_Update()
 {
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_RETURN))
+	if (bGameStartButton && CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
 		CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::SCENE_STAGE);
 
 }
@@ -54,6 +58,39 @@ void CMyMenu::Render()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
 		D3DCOLOR_ARGB(128, 255, 255, 255));
+
+	RECT StartBotton = { 590, 595, 675, 645 };
+
+	POINT	pt = {};
+	GetCursorPos(&pt);
+	ScreenToClient(g_hWnd, &pt);
+
+	if (PtInRect(&StartBotton, pt))
+	{
+		D3DXVECTOR2 Point[5] = {};
+		Point[0].x = float(StartBotton.left);
+		Point[0].y = float(StartBotton.top);
+
+		Point[1].x = float(StartBotton.right);
+		Point[1].y = float(StartBotton.top);
+
+		Point[2].x = float(StartBotton.right);
+		Point[2].y = float(StartBotton.bottom);
+
+		Point[3].x = float(StartBotton.left);
+		Point[3].y = float(StartBotton.bottom);
+
+		Point[4].x = float(StartBotton.left);
+		Point[4].y = float(StartBotton.top);
+
+		g_pLine->Draw(Point, 5, D3DCOLOR_ARGB(255, 0, 0, 0));
+
+		bGameStartButton = true;
+	}
+	else
+	{
+		bGameStartButton = false;
+	}
 }
 
 void CMyMenu::Release()
