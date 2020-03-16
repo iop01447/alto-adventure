@@ -21,7 +21,7 @@ void CBigTree::Initialize()
 	m_zID = m_bToggle;
 	if (m_zID) {
 		m_eGroupID = GROUPID::FOREWORD_GAMEOBJECT;
-		m_tInfo.vScale = { 0.7f, 0.7f, 0.7f };
+		m_tInfo.vScale = { 1.f, 1.f, 1.f };
 	}
 	else {
 		m_eGroupID = GROUPID::BEFORE_GAMEOBJECT;
@@ -34,7 +34,7 @@ int CBigTree::Update()
 	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
 	Update_Rect();
 	if (Fall() && m_zID)
-		m_tInfo.vPos.y += 50;
+		m_tInfo.vPos.y += 200;
 	
 	return OBJ_NOEVENT;
 }
