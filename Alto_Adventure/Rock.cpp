@@ -22,7 +22,6 @@ void CRock::Initialize()
 	m_fJumpPower = 10.f;
 	m_fJumpAccel = 0.f;
 
-	m_fSpeed = rand() % 5 + 2;
 	Update_Rect();
 }
 

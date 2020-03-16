@@ -61,7 +61,7 @@ void CWaterFall::Render()
 	for (int i = 0; i < 50; ++i) {
 		D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
 		D3DXMatrixTranslation(&matTrans, -50 + m_tInfo.vPos.x + rand() % 100
-			, rand() % WINCY, 0.f);
+			, float(rand() % WINCY), 0.f);
 
 		matWorld = matScale * matTrans;
 		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
