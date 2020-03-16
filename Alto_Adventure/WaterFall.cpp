@@ -24,8 +24,9 @@ int CWaterFall::Update()
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	//m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
+	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
 	Update_Rect();
+	Update_ParticlePos();
 
 	return OBJ_NOEVENT;
 }
@@ -59,9 +60,9 @@ void CWaterFall::Render()
 		D3DCOLOR_ARGB(int(255 * fAlpha), 4, 52, 100));
 
 	for (int i = 0; i < 50; ++i) {
-		D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
-		D3DXMatrixTranslation(&matTrans, -50 + m_tInfo.vPos.x + rand() % 100
-			, float(rand() % WINCY), 0.f);
+		D3DXMatrixScaling(&matScale, 0.05f, 0.05f, 0.f);
+		D3DXMatrixTranslation(&matTrans, m_vParticlePos[i].x 
+			, m_vParticlePos[i].y, 0.f);
 
 		matWorld = matScale * matTrans;
 		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
@@ -70,10 +71,21 @@ void CWaterFall::Render()
 			nullptr,
 			&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 			nullptr,
-			D3DCOLOR_ARGB(255, 255, 255, 255));
+			D3DCOLOR_ARGB(int(255 * 0.8f), 255, 255, 255));
 	}
 }
 
 void CWaterFall::Release()
 {
+}
+
+void CWaterFall::Update_ParticlePos()
+{
+	if (GetTickCount() - m_dwLateParticleUpdate < m_dwParticleUpdate) return;
+	m_dwLateParticleUpdate = GetTickCount();
+
+
+	for (int i = 0; i < 50; ++i) {
+		m_vParticlePos[i] = { -80 + m_tInfo.vPos.x + rand() % 160, float(rand() % WINCY), 0.f };
+	}
 }
