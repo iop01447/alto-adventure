@@ -11,19 +11,16 @@ private:
 	~CSceneMgr();
 
 public:
-	enum SCENEID { SCENE_MENU, SCENE_STAGE, SCENE_END };
-
-public:
 	void Update();
 	void Late_Update();
 	void Render();
 	void Release();
 
 public:
-	SCENEID Get_Scene() { return m_eCurScene; }
+	SCENE::ID Get_Scene() { return m_eCurScene; }
 
 public:
-	void Scene_Change(SCENEID _eScene);
+	void Scene_Change(SCENE::ID _eScene);
 
 public:
 	static CSceneMgr* Get_Instance()
@@ -41,8 +38,8 @@ private:
 	static CSceneMgr*	m_pInstance;
 	CScene*				m_pScene;
 
-	SCENEID				m_ePreScene;
-	SCENEID				m_eCurScene;
+	SCENE::ID				m_ePreScene;
+	SCENE::ID				m_eCurScene;
 
 };
 

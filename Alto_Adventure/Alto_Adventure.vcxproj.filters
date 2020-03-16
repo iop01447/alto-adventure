@@ -98,6 +98,15 @@
     <ClCompile Include="Magnet.cpp">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClCompile>
+    <ClCompile Include="UIMgr.cpp">
+      <Filter>97.Manager\09.UIMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Heart.cpp">
+      <Filter>01.Obj\08.Heart</Filter>
+    </ClCompile>
+    <ClCompile Include="EndScene.cpp">
+      <Filter>93.Scene\02.EndScene</Filter>
+    </ClCompile>
     <ClCompile Include="PowerUp.cpp">
       <Filter>01.Obj\07.Item\01.PowerUp</Filter>
     </ClCompile>
@@ -230,6 +239,15 @@
     <ClInclude Include="Magnet.h">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClInclude>
+    <ClInclude Include="UIMgr.h">
+      <Filter>97.Manager\09.UIMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Heart.h">
+      <Filter>01.Obj\08.Heart</Filter>
+    </ClInclude>
+    <ClInclude Include="EndScene.h">
+      <Filter>93.Scene\02.EndScene</Filter>
+    </ClInclude>
     <ClInclude Include="PowerUp.h">
       <Filter>01.Obj\07.Item\01.PowerUp</Filter>
     </ClInclude>
@@ -345,8 +363,17 @@
     <Filter Include="01.Obj\07.Item\00.Magnet">
       <UniqueIdentifier>{33925aa7-55ad-4601-8eae-a07773fa7262}</UniqueIdentifier>
     </Filter>
+    <Filter Include="97.Manager\09.UIMgr">
+      <UniqueIdentifier>{0d3b0730-3e88-4cfa-8155-bae51df92d65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\08.Heart">
+      <UniqueIdentifier>{57730eec-57b2-4cd0-a32b-4709ceb43b80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="93.Scene\02.EndScene">
+      <UniqueIdentifier>{c54ac28b-b3b1-4013-923b-b8b1da718c9b}</UniqueIdentifier>
+    </Filter>
     <Filter Include="01.Obj\07.Item\01.PowerUp">
-      <UniqueIdentifier>{ca639b19-af74-4078-ab09-d86bf71be772}</UniqueIdentifier>
+      <UniqueIdentifier>{b4d33258-5fca-4bad-9832-3789a4722817}</UniqueIdentifier>
     </Filter>
     <Filter Include="97.Manager\03.LineMgr">
       <UniqueIdentifier>{49c11cc9-99b2-4b59-9f86-3fd21668ce44}</UniqueIdentifier>

@@ -4,13 +4,15 @@
 #include "Scene.h"
 #include "Stage.h"
 #include "MyMenu.h"
+#include "EndScene.h"
+#include "UIMgr.h"
 
 
 CSceneMgr* CSceneMgr::m_pInstance = nullptr;
 CSceneMgr::CSceneMgr()
 	: m_pScene(nullptr)
-	, m_eCurScene(SCENE_END)
-	, m_ePreScene(SCENE_END)
+	, m_eCurScene(SCENE::SCENE_END)
+	, m_ePreScene(SCENE::SCENE_END)
 {
 }
 
@@ -40,9 +42,11 @@ void CSceneMgr::Release()
 }
 
 
-void CSceneMgr::Scene_Change(SCENEID _eScene)
+void CSceneMgr::Scene_Change(SCENE::ID _eScene)
 {
 	m_eCurScene = _eScene;
+
+	using namespace SCENE;
 
 	if (m_ePreScene != m_eCurScene)
 	{
@@ -55,6 +59,10 @@ void CSceneMgr::Scene_Change(SCENEID _eScene)
 			break;
 		case SCENE_STAGE:
 			m_pScene = new CStage;
+			break;
+		case SCENE_END:
+			m_pScene = new CEndScene;
+			CUIMgr::Get_Instance()->Set_SceneID(SCENE::SCENE_END);
 			break;
 		default:
 			break;

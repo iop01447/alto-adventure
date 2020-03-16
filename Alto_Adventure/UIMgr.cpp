@@ -58,11 +58,19 @@ void CUIMgr::Update()
 
 void CUIMgr::Render()
 {
-	Render_Coin();
-	Render_HP();
-	Render_Distance();
-	Render_MagnetItem();
-	Render_PowerUpItem();
+	switch (m_eSceneID)
+	{
+	case SCENE::SCENE_STAGE:
+		Render_Coin();
+		Render_HP();
+		Render_Distance();
+		Render_MagnetItem();
+		Render_PowerUpItem();
+		break;
+	case SCENE::SCENE_END:
+		Render_EndScene();
+		break;
+	}
 }
 
 void CUIMgr::Release()
@@ -100,26 +108,26 @@ void CUIMgr::Render_Coin()
 
 void CUIMgr::Render_HP()
 {
-	TCHAR szBuff[50] = L"";
-	switch (m_iHP)
-	{
-	case 1:
-		swprintf_s(szBuff, L"♥");
-		break;
-	case 2:
-		swprintf_s(szBuff, L"♥ ♥");
-		break;
-	case 3:
-		swprintf_s(szBuff, L"♥ ♥ ♥");
-		break;
-	default:
-		break;
-	}
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Heart");
 
-	D3DXMATRIX matTrans;
-	D3DXMatrixTranslation(&matTrans, 38, 80, 0.f);
-	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matTrans);
-	m_pSmallFont->DrawTextW(CDevice::Get_Instance()->Get_Sprite(), szBuff, lstrlen(szBuff), nullptr, DT_LEFT, D3DCOLOR_ARGB(255, 255, 0, 0));
+	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
+
+	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMatrixScaling(&matScale, 0.03f, 0.03f, 0.f);
+
+	for (int i = 0; i < m_iHP; ++i) {
+		D3DXMatrixTranslation(&matTrans, 50 + i * (pTexInfo->tImageInfo.Width * 0.03f + 3), 90, 0.f);
+
+		matWorld = matScale * matTrans;
+		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+		CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+			nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+			nullptr,
+			D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
 }
 
 void CUIMgr::Render_Distance()
@@ -176,4 +184,43 @@ void CUIMgr::Render_PowerUpItem()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
 		D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+}
+
+void CUIMgr::Render_EndScene()
+{
+	int sum = int(m_fDistance) + m_iCoin * 10;
+	TCHAR szBuff[50] = L"내 점수";
+	const int d = 100;
+	const int x_offset = 200;
+
+	LONG lY = 100;
+	RECT rect = { 0, lY, WINCX, lY+ d };
+	m_pBigFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_CENTER, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += 200;
+	rect = { x_offset, lY, WINCX- x_offset, lY + d };
+	swprintf_s(szBuff, L"이동한 거리");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%.1fm", m_fDistance);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"획득한 동전");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%d x 10", m_iCoin);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"합계");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%d", sum);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"계속하려면 Enter를 누르시오.");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_CENTER, D3DCOLOR_ARGB(255, 255, 255, 255));
 }

@@ -34,7 +34,7 @@ void CMyMenu::Update()
 void CMyMenu::Late_Update()
 {
 	if (bGameStartButton && CKeyMgr::Get_Instance()->Key_Down(VK_LBUTTON))
-		CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::SCENE_STAGE);
+		CSceneMgr::Get_Instance()->Scene_Change(SCENE::SCENE_STAGE);
 
 }
 

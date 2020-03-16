@@ -159,11 +159,13 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="EndScene.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Extern.h" />
     <ClInclude Include="FrontEffect.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Functor.h" />
+    <ClInclude Include="Heart.h" />
     <ClInclude Include="Include.h" />
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Line.h" />
@@ -203,7 +205,9 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EndScene.cpp" />
     <ClCompile Include="FrontEffect.cpp" />
+    <ClCompile Include="Heart.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
