@@ -32,6 +32,7 @@ public:
 	}
 	OBJID::ID Get_ObjID() { return m_eObjID; }
 	const RECT& Get_Rect() { return m_tRect; }
+	GROUPID::ID Get_GroupID() { return m_eGroupID; }
 
 public:
 	void Set_Pos(float _x, float _y);
@@ -59,6 +60,7 @@ protected:
 	CLine*			m_pLine{ nullptr };
 
 	OBJID::ID		m_eObjID{ OBJID::END };
+	GROUPID::ID		m_eGroupID{ GROUPID::GAMEOBJECT };
 };
 
 #endif // !__OBJ_H__

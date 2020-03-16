@@ -1,24 +1,25 @@
 #include "stdafx.h"
-#include "Rock.h"
+#include "Tree.h"
 #include "TextureMgr.h"
 #include "ObjMgr.h"
 
 
-CRock::CRock()
+CTree::CTree()
 {
 }
 
 
-CRock::~CRock()
+CTree::~CTree()
 {
 }
 
-void CRock::Initialize()
+void CTree::Initialize()
 {
-	m_iID = rand() % 2;
+	m_iID = rand() % 3;
+	m_eGroupID = GROUPID::BEFORE_GAMEOBJECT;
 }
 
-int CRock::Update()
+int CTree::Update()
 {
 	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
 	Update_Rect();
@@ -27,20 +28,20 @@ int CRock::Update()
 	return OBJ_NOEVENT;
 }
 
-void CRock::Late_Update()
+void CTree::Late_Update()
 {
 }
 
-void CRock::Render()
+void CTree::Render()
 {
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Rock", L"Idle", m_iID);
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Tree", L"Idle", m_iID);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 
 	D3DXMATRIX matScale, matTrans, matWorld;
-	D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
-	m_tInfo.vSize = { pTexInfo->tImageInfo.Width * 0.1f, pTexInfo->tImageInfo.Height * 0.1f, 0.f };
+	D3DXMatrixScaling(&matScale, 0.5f, 0.5f, 0.f);
+	m_tInfo.vSize = { pTexInfo->tImageInfo.Width * 0.5f, pTexInfo->tImageInfo.Height * 0.5f, 0.f };
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
 	matWorld = matScale * matTrans;
@@ -53,6 +54,6 @@ void CRock::Render()
 		D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
-void CRock::Release()
+void CTree::Release()
 {
 }

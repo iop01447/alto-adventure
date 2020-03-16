@@ -4,9 +4,12 @@
 #include "Line.h"
 #include "ObjMgr.h"
 
-#include "Rock.h"
 #include "AbstractFactory.h"
 #include "TextureMgr.h"
+#include "Rock.h"
+#include "Tree.h"
+#include "BigTree.h"
+
 
 
 CLineMgr* CLineMgr::m_pInstance = nullptr;
@@ -22,6 +25,11 @@ CLineMgr::~CLineMgr()
 
 void CLineMgr::Initialize()
 {
+	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/rock/%d.png", L"Rock", L"Idle", 2);
+	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/tree/%d.png", L"Tree", L"Idle", 3);
+	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/big-tree.png", L"BigTree");
+	m_dwLastObjCreate = GetTickCount();
+
 //////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	D3DXVECTOR3 vLine0 = { -(WINCX >> 1), 250.f, 0.f };
@@ -73,8 +81,6 @@ void CLineMgr::Initialize()
 		m_vecPointList.emplace_back(vPoint) ;
 	}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::MULTITEX, L"../Image/rock/%d.png", L"Rock", L"Idle", 2);
 }
 
 void CLineMgr::Update()
@@ -131,17 +137,10 @@ void CLineMgr::Late_Update()
 			D3DXVECTOR2 vPoint = { pLine->Get_Info().tLeftPos.vPoint.x, pLine->Get_Info().tLeftPos.vPoint.y };
 			m_vecPointList.emplace_back(vPoint);
 		}
-
-		if (GetTickCount() - m_dwLastObjCreate > m_dwObjCreate) {
-			m_dwLastObjCreate = GetTickCount();
-
-			CObj* pObj = CAbstractFactory<CRock>::Create(m_vecLinePoint.back().x, m_vecLinePoint.back().y);
-			CObjMgr::Get_Instance()->Add_Object(OBJID::ROCK, pObj);
-			//pObj->Set_Line(m_listLine.back());
-
-			m_dwObjCreate = 1000 + rand() % 2000;
-		}
 	}
+
+	Create_RockObj();
+	Create_Object();
 }
 
 void CLineMgr::Render()
@@ -247,5 +246,46 @@ void CLineMgr::Set_LinePoint(float _x, float _y)
 	{
 		point.x -= _x;
 		point.y -= _y;
+	}
+}
+
+void CLineMgr::Create_RockObj()
+{
+	if (GetTickCount() - m_dwLastRockCreate < m_dwRockCreate) return;
+	m_dwLastRockCreate = GetTickCount();
+
+	CObj* pObj = CAbstractFactory<CRock>::Create(WINCX + 100, 0);
+	CObjMgr::Get_Instance()->Add_Object(OBJID::ROCK, pObj);
+
+	m_dwRockCreate = 3000 + rand() % 3000;
+}
+
+void CLineMgr::Create_Object()
+{
+	static int obj_id{ 0 };
+	static vector<OBJID::ID> obj_list = { OBJID::TREE, OBJID::BIGTREE, OBJID::END };
+
+	if (GetTickCount() - m_dwLastObjIDChange > m_dwObjIDChange)
+	{
+		obj_id = rand() % obj_list.size();
+		m_dwLastObjIDChange = GetTickCount();
+	}
+
+	if (GetTickCount() - m_dwLastObjCreate < m_dwObjCreate) return;
+	m_dwLastObjCreate = GetTickCount();
+
+	CObj* pObj = nullptr;
+	switch (obj_list[obj_id])
+	{
+	case OBJID::TREE:
+		pObj = CAbstractFactory<CTree>::Create(WINCX + 100, 0);
+		CObjMgr::Get_Instance()->Add_Object(OBJID::TREE, pObj);
+		break;
+	case OBJID::BIGTREE:
+		pObj = CAbstractFactory<CBigTree>::Create(WINCX + 100, 0);
+		CObjMgr::Get_Instance()->Add_Object(OBJID::BIGTREE, pObj);
+		break;
+	case OBJID::END:
+		break;
 	}
 }

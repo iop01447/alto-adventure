@@ -22,6 +22,8 @@ void CCloud::Initialize()
 	m_tInfo.vSize = { float(pTexInfo->tImageInfo.Width), float(pTexInfo->tImageInfo.Height), 0.f };
 
 	m_fSpeed = 1.f + (rand() / (float)RAND_MAX) * 1.f;
+
+	m_eGroupID = GROUPID::BACKGROUND;
 }
 
 int CCloud::Update()

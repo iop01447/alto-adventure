@@ -28,7 +28,7 @@ void CObj::Fall()
 	if (m_pLine)
 	{
 		m_tInfo.vPos.x = m_pLine->Get_Info().tRightPos.vPoint.x;
-		m_tInfo.vPos.y = m_pLine->Get_Info().tRightPos.vPoint.y - m_tInfo.vSize.y / 4.f;
+		m_tInfo.vPos.y = m_pLine->Get_Info().tRightPos.vPoint.y - m_tInfo.vSize.y / 2.f + 10.f;
 		return;
 	}
 }

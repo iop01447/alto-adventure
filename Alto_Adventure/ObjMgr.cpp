@@ -50,8 +50,8 @@ void CObjMgr::Late_Update()
 			if (m_listObj[i].empty())
 				break;
 
-			//GROUPID::ID		eID = pObj->Get_GroupID();
-			//m_listRender[eID].emplace_back(pObj);
+			GROUPID::ID		eID = pObj->Get_GroupID();
+			m_listRender[eID].emplace_back(pObj);
 		}
 	}
 
@@ -62,12 +62,23 @@ void CObjMgr::Late_Update()
 
 void CObjMgr::Render()
 {
-	for (int i = 0; i < OBJID::END; ++i)
+	//for (int i = 0; i < OBJID::END; ++i)
+	//{
+	//	for (auto& pObj : m_listObj[i])
+	//	{
+	//		pObj->Render();
+	//	}
+	//}
+
+	for (int i = 0; i < GROUPID::END; ++i)
 	{
-		for (auto& pObj : m_listObj[i])
+		for (auto& pObj : m_listRender[i])
 		{
+			if (m_listRender[i].empty())
+				break;
 			pObj->Render();
 		}
+		m_listRender[i].clear();
 	}
 }
 

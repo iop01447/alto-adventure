@@ -17,10 +17,6 @@
 #include <memory.h>
 #include <tchar.h>
 
-#include <io.h>
-#include "fmod.h"
-#pragma comment(lib, "fmodex_vc.lib")
-
 // TODO: 프로그램에 필요한 추가 헤더는 여기에서 참조합니다.
 // Windows 헤더 파일:
 #include "Include.h"
