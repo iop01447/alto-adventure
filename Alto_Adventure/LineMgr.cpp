@@ -13,6 +13,7 @@
 #include "Magnet.h"
 #include "Heart.h"
 #include "PowerUp.h"
+#include "WaterFall.h"
 
 
 
@@ -37,6 +38,9 @@ void CLineMgr::Initialize()
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/heart.png", L"Heart");
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/PowerUp.png", L"PowerUp");
 	m_dwLastBackObjCreate = GetTickCount();
+
+	//CObj* pObj = CAbstractFactory<CWaterFall>::Create(WINCX / 2, WINCY / 2);
+	//CObjMgr::Get_Instance()->Add_Object(OBJID::WATERFALL, pObj);
 
 //////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	

@@ -16,6 +16,7 @@ CHeart::~CHeart()
 void CHeart::Initialize()
 {
 	m_tInfo.vScale = { 0.03f, 0.03f, 0.03f };
+	m_eGroupID = GROUPID::FOREWORD_GAMEOBJECT;
 }
 
 int CHeart::Update()

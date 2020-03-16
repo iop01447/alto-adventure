@@ -34,6 +34,7 @@ public:
 public:
 	int Get_Coin() { return m_iCoin; }
 	int Get_HP() { return m_iHP; }
+	bool Get_UnDeadMode() { return m_bUnDead; }
 
 private:
 	//RECT m_tRect; 
@@ -57,6 +58,9 @@ private:
 	int				m_iCoin{ 0 };
 	int				m_iHP{ 3 };
 	CObj*			m_pRock{ nullptr };
+
+	bool			m_bUnDead{ false };
+
 };
 
 #endif // !__PLAYER_H__

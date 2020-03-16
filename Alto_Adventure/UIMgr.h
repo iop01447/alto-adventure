@@ -20,6 +20,7 @@ private:
 	void Render_Coin();
 	void Render_HP();
 	void Render_Distance();
+	void Render_UnDeadMode();
 	void Render_MagnetItem();
 	void Render_PowerUpItem();
 
@@ -33,5 +34,6 @@ private:
 	int m_iHP{ 3 };
 	float m_fDistance{ 0 };
 	SCENE::ID m_eSceneID{ SCENE::SCENE_STAGE };
+	bool m_bUnDeadMode{ false };
 };
 

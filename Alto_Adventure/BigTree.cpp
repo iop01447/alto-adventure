@@ -24,7 +24,7 @@ void CBigTree::Initialize()
 		m_tInfo.vScale = { 1.f, 1.f, 1.f };
 	}
 	else {
-		m_eGroupID = GROUPID::BEFORE_GAMEOBJECT;
+		m_eGroupID = GROUPID::BACKWORD_GAMEOBJECT;
 		m_tInfo.vScale = { 0.5f, 0.5f, 0.5f };
 	}
 }
