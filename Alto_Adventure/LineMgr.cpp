@@ -12,6 +12,8 @@
 #include "Coin.h"
 #include "Magnet.h"
 #include "Heart.h"
+#include "PowerUp.h"
+
 
 
 CLineMgr* CLineMgr::m_pInstance = nullptr;
@@ -33,7 +35,7 @@ void CLineMgr::Initialize()
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/coin.png", L"Coin");
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/Magnet.png", L"Magnet");
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/heart.png", L"Heart");
-
+	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/PowerUp.png", L"PowerUp");
 	m_dwLastBackObjCreate = GetTickCount();
 
 //////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,7 +260,7 @@ void CLineMgr::Set_LinePoint(float _x, float _y)
 void CLineMgr::Create_Object()
 {
 	static int obj_id{ 0 };
-	static vector<OBJID::ID> obj_list = { OBJID::ROCK, OBJID::COIN, OBJID::MAGNET, OBJID::HEART };
+	static vector<OBJID::ID> obj_list = { OBJID::ROCK, OBJID::COIN, OBJID::MAGNET, OBJID::POWERUP, OBJID::HEART };
 
 	if (GetTickCount() - m_dwLastObjCreate < m_dwObjCreate) return;
 	m_dwLastObjCreate = GetTickCount();
@@ -280,6 +282,9 @@ void CLineMgr::Create_Object()
 		break;
 	case OBJID::MAGNET:
 		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::MAGNET, CAbstractFactory<CMagnet>::Create(WINCX + 100, 0));
+		break;
+	case OBJID::POWERUP:
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::POWERUP, CAbstractFactory<CPowerUp>::Create(WINCX + 100, 0));
 		break;
 	case OBJID::HEART:
 		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::HEART, CAbstractFactory<CHeart>::Create(WINCX + 100, 0));
