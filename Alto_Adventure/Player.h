@@ -30,6 +30,9 @@ public:
 	void Jump();
 	void Fall();
 
+public:
+	int Get_Coin() { return m_iCoin; }
+
 private:
 	//RECT m_tRect; 
 	bool			m_bJump;

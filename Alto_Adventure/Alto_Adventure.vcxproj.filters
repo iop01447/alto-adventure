@@ -91,6 +91,9 @@
     <ClCompile Include="TextureMgr.cpp">
       <Filter>97.Manager\08.TextureMgr</Filter>
     </ClCompile>
+    <ClCompile Include="UIMgr.cpp">
+      <Filter>97.Manager\09.UIMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -213,6 +216,9 @@
     <ClInclude Include="TextureMgr.h">
       <Filter>97.Manager\08.TextureMgr</Filter>
     </ClInclude>
+    <ClInclude Include="UIMgr.h">
+      <Filter>97.Manager\09.UIMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Alto_Adventure.ico">
@@ -315,6 +321,9 @@
     </Filter>
     <Filter Include="97.Manager\08.TextureMgr">
       <UniqueIdentifier>{67be9310-027b-4173-b6fb-573d61bb6d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\09.UIMgr">
+      <UniqueIdentifier>{26a646d3-9b10-4d11-a112-a1e014efb0f7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

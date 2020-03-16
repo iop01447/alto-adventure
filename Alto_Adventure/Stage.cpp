@@ -3,11 +3,13 @@
 
 #include "Player.h"
 
+#include "UIMgr.h"
 #include "KeyMgr.h"
 #include "ObjMgr.h"
 #include "LineMgr.h"
 #include "SoundMgr.h"
 #include "BackgroundMgr.h"
+
 
 
 CStage::CStage()
@@ -34,6 +36,7 @@ void CStage::Update()
 	CLineMgr::Get_Instance()->Update();
 	CKeyMgr::Get_Instance()->Key_Update();
 	GET_INSTANCE(CBackgroundMgr)->Update();
+	CUIMgr::Get_Instance()->Update();
 }
 
 void CStage::Late_Update()
@@ -47,6 +50,7 @@ void CStage::Render()
 	GET_INSTANCE(CBackgroundMgr)->Render();
 	CObjMgr::Get_Instance()->Render();
 	CLineMgr::Get_Instance()->Render();
+	CUIMgr::Get_Instance()->Render();
 }
 
 void CStage::Release()
@@ -54,4 +58,5 @@ void CStage::Release()
 	CSoundMgr::Get_Instance()->StopAll();
 	CLineMgr::Get_Instance()->Release();
 	CObjMgr::Get_Instance()->Delete_ID(OBJID::EFFECT);
+	CUIMgr::Get_Instance()->Destroy_Instance();
 }
