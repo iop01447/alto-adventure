@@ -8,6 +8,7 @@
 #include "ObjMgr.h"
 #include "LineMgr.h"
 #include "TextureMgr.h"
+#include "SceneMgr.h"
 
 
 CPlayer::CPlayer()
@@ -98,6 +99,10 @@ void CPlayer::Late_Update()
 	if (8.f < m_fSpeed)
 	{
 		m_fSpeed -= 0.02f;
+	}
+
+	if (m_iHP <= 0) {
+		CSceneMgr::Get_Instance()->Scene_Change(SCENE::SCENE_END);
 	}
 }
 

@@ -33,7 +33,7 @@ void CMainGame::Initialize()
 	}
 
 	CSoundMgr::Get_Instance()->Initialize();
-	CSceneMgr::Get_Instance()->Scene_Change(CSceneMgr::SCENE_MENU);
+	CSceneMgr::Get_Instance()->Scene_Change(SCENE::SCENE_MENU);
 }
 
 void CMainGame::Update()

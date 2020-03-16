@@ -266,6 +266,8 @@ void CLineMgr::Create_Object()
 	m_dwLastObjCreate = GetTickCount();
 
 	obj_id = rand() % obj_list.size();
+	if (rand() % 3)
+		obj_id = 0; // 3분의 1의 확률로 ROCK
 
 	CObj* pObj = nullptr;
 	switch (obj_list[obj_id])
@@ -276,7 +278,7 @@ void CLineMgr::Create_Object()
 		break;
 	case OBJID::COIN:
 		for (int i = 0; i < 5; ++i) {
-			pObj = CAbstractFactory<CCoin>::Create(WINCX + 10 + i*50, 0);
+			pObj = CAbstractFactory<CCoin>::Create(WINCX + 10.f + i*50.f, 0);
 			CObjMgr::Get_Instance()->Add_Object(OBJID::COIN, pObj);
 		}
 		break;

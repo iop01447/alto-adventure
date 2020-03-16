@@ -58,9 +58,17 @@ void CUIMgr::Update()
 
 void CUIMgr::Render()
 {
-	Render_Coin();
-	Render_HP();
-	Render_Distance();
+	switch (m_eSceneID)
+	{
+	case SCENE::SCENE_STAGE:
+		Render_Coin();
+		Render_HP();
+		Render_Distance();
+		break;
+	case SCENE::SCENE_END:
+		Render_EndScene();
+		break;
+	}
 }
 
 void CUIMgr::Release()
@@ -130,4 +138,42 @@ void CUIMgr::Render_Distance()
 	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matTrans);
 	RECT rect = { WINCX - 500, 30, WINCX - 30, 200 };
 	m_pBigFont->DrawTextW(CDevice::Get_Instance()->Get_Sprite(), szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+
+void CUIMgr::Render_EndScene()
+{
+	int sum = int(m_fDistance) + m_iCoin * 10;
+	TCHAR szBuff[50] = L"내 점수";
+	const int d = 100;
+	const int x_offset = 200;
+
+	LONG lY = 100;
+	RECT rect = { 0, lY, WINCX, lY+ d };
+	m_pBigFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_CENTER, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += 200;
+	rect = { x_offset, lY, WINCX- x_offset, lY + d };
+	swprintf_s(szBuff, L"이동한 거리");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%.1fm", m_fDistance);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"획득한 동전");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%d x 10", m_iCoin);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"합계");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%d", sum);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"계속하려면 Enter를 누르시오.");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_CENTER, D3DCOLOR_ARGB(255, 255, 255, 255));
 }

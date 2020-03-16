@@ -13,10 +13,15 @@ public:
 	void Render();
 	void Release();
 
+public:
+	void Set_SceneID(SCENE::ID _id) { m_eSceneID = _id; }
+
 private:
 	void Render_Coin();
 	void Render_HP();
 	void Render_Distance();
+
+	void Render_EndScene();
 
 private:
 	LPD3DXFONT m_pSmallFont{ NULL };
@@ -25,5 +30,6 @@ private:
 	int m_iCoin;
 	int m_iHP{ 3 };
 	float m_fDistance{ 0 };
+	SCENE::ID m_eSceneID{ SCENE::SCENE_STAGE };
 };
 

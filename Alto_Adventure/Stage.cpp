@@ -60,5 +60,4 @@ void CStage::Release()
 	CSoundMgr::Get_Instance()->StopAll();
 	CLineMgr::Get_Instance()->Release();
 	CObjMgr::Get_Instance()->Delete_ID(OBJID::EFFECT);
-	CUIMgr::Get_Instance()->Destroy_Instance();
 }
