@@ -29,6 +29,17 @@ public:
 		return pObj;
 	}
 
+	static CObj* Create(float _x, float _y, BYTE _Color)
+	{
+		CObj* pObj = new T;
+		pObj->Initialize();
+		pObj->Set_Pos(_x, _y);
+
+		pObj->Set_State(_Color);
+
+		return pObj;
+	}
+
 	static CObj* Create(float _x, float _y, float _fAngle)
 	{
 		CObj* pObj = new T;

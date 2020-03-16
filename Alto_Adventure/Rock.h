@@ -16,5 +16,9 @@ public:
 
 private:
 	int m_iID{ 0 };
+	BYTE m_byAlphaValue;
+
+	float			m_fJumpPower;	// 점프 파워
+	float			m_fJumpAccel;	// 점프 진행 시간
 };
 

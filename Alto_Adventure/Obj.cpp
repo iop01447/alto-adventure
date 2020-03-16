@@ -8,6 +8,8 @@ CObj::CObj()
 	:m_fAngle(0)
 	, m_fSpeed(0)
 	, m_bDead(false)
+	, m_bIsMagnetON(false)
+	, m_bIsPowerUpON(false)
 	, m_iPlayerState(0)
 {
 }

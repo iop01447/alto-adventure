@@ -71,7 +71,7 @@
       <Filter>97.Manager\02.KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="LineMgr.cpp">
-      <Filter>97.Manager\03.LingMgr</Filter>
+      <Filter>97.Manager\03.LineMgr</Filter>
     </ClCompile>
     <ClCompile Include="ObjMgr.cpp">
       <Filter>97.Manager\04.ObjMgr</Filter>
@@ -94,6 +94,7 @@
     <ClCompile Include="FrontEffect.cpp">
       <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClCompile>
+    <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="Magnet.cpp">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClCompile>
@@ -214,7 +215,7 @@
       <Filter>97.Manager\02.KeyMgr</Filter>
     </ClInclude>
     <ClInclude Include="LineMgr.h">
-      <Filter>97.Manager\03.LingMgr</Filter>
+      <Filter>97.Manager\03.LineMgr</Filter>
     </ClInclude>
     <ClInclude Include="ObjMgr.h">
       <Filter>97.Manager\04.ObjMgr</Filter>
@@ -237,6 +238,7 @@
     <ClInclude Include="FrontEffect.h">
       <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClInclude>
+    <ClInclude Include="UIMgr.h" />
     <ClInclude Include="Magnet.h">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClInclude>
@@ -340,9 +342,6 @@
     <Filter Include="97.Manager\02.KeyMgr">
       <UniqueIdentifier>{fb925fda-cb45-4d1d-919d-9388bead6477}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\03.LingMgr">
-      <UniqueIdentifier>{49c11cc9-99b2-4b59-9f86-3fd21668ce44}</UniqueIdentifier>
-    </Filter>
     <Filter Include="97.Manager\04.ObjMgr">
       <UniqueIdentifier>{f524589d-268e-426b-b4b5-1a00f20888c5}</UniqueIdentifier>
     </Filter>
@@ -384,6 +383,9 @@
     </Filter>
     <Filter Include="01.Obj\09.WaterFall">
       <UniqueIdentifier>{603d65e2-a0c0-4d70-b49e-50eeae60b769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\03.LineMgr">
+      <UniqueIdentifier>{49c11cc9-99b2-4b59-9f86-3fd21668ce44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

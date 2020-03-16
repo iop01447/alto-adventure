@@ -21,6 +21,8 @@ private:
 	void Render_HP();
 	void Render_Distance();
 	void Render_UnDeadMode();
+	void Render_MagnetItem();
+	void Render_PowerUpItem();
 
 	void Render_EndScene();
 

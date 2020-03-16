@@ -277,7 +277,7 @@ void CLineMgr::Create_Object()
 	switch (obj_list[obj_id])
 	{
 	case OBJID::ROCK:
-		pObj = CAbstractFactory<CRock>::Create(WINCX + 100, 0);
+		pObj = CAbstractFactory<CRock>::Create(WINCX + 100, 0, BYTE(0));
 		CObjMgr::Get_Instance()->Add_Object(OBJID::ROCK, pObj);
 		break;
 	case OBJID::COIN:

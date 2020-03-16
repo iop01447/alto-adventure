@@ -66,6 +66,8 @@ void CUIMgr::Render()
 		Render_HP();
 		Render_Distance();
 		Render_UnDeadMode();
+		Render_MagnetItem();
+		Render_PowerUpItem();
 		break;
 	case SCENE::SCENE_END:
 		Render_EndScene();
@@ -142,6 +144,87 @@ void CUIMgr::Render_Distance()
 	m_pBigFont->DrawTextW(CDevice::Get_Instance()->Get_Sprite(), szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
+void CUIMgr::Render_MagnetItem()
+{
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Magnet");
+
+	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
+
+	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
+	//m_tInfo.vSize = { pTexInfo->tImageInfo.Width * m_tInfo.vScale.x, pTexInfo->tImageInfo.Height * m_tInfo.vScale.y, 0.f };
+	D3DXMatrixTranslation(&matTrans, 50.f, float(WINCY - 50), 0.f);
+
+	matWorld = matScale * matTrans;
+	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+		nullptr,
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+		nullptr,
+		D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+
+void CUIMgr::Render_PowerUpItem()
+{
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"PowerUp");
+
+	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
+
+	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMatrixScaling(&matScale, 0.25f, 0.25f, 0.f);
+	//m_tInfo.vSize = { pTexInfo->tImageInfo.Width * m_tInfo.vScale.x, pTexInfo->tImageInfo.Height * m_tInfo.vScale.y, 0.f };
+	D3DXMatrixTranslation(&matTrans, 130.f, float(WINCY - 50), 0.f);
+
+	matWorld = matScale * matTrans;
+	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+		nullptr,
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+		nullptr,
+		D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+}
+
+void CUIMgr::Render_EndScene()
+{
+	int sum = int(m_fDistance) + m_iCoin * 10;
+	TCHAR szBuff[50] = L"내 점수";
+	const int d = 100;
+	const int x_offset = 200;
+
+	LONG lY = 100;
+	RECT rect = { 0, lY, WINCX, lY+ d };
+	m_pBigFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_CENTER, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += 200;
+	rect = { x_offset, lY, WINCX- x_offset, lY + d };
+	swprintf_s(szBuff, L"이동한 거리");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%.1fm", m_fDistance);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"획득한 동전");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%d x 10", m_iCoin);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"합계");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_LEFT, D3DCOLOR_ARGB(255, 255, 255, 255));
+	swprintf_s(szBuff, L"%d", sum);
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	lY += d;
+	rect = { x_offset, lY, WINCX - x_offset, lY + d };
+	swprintf_s(szBuff, L"계속하려면 Enter를 누르시오.");
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_CENTER, D3DCOLOR_ARGB(255, 255, 255, 255));
 void CUIMgr::Render_UnDeadMode()
 {
 	if (!m_bUnDeadMode) return;

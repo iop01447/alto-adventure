@@ -33,11 +33,14 @@ public:
 	OBJID::ID Get_ObjID() { return m_eObjID; }
 	const RECT& Get_Rect() { return m_tRect; }
 	GROUPID::ID Get_GroupID() { return m_eGroupID; }
+	const bool& Get_MagnetON() const { return m_bIsMagnetON; }
+	const bool& Get_PowerUpON() const { return m_bIsPowerUpON; }
 
 public:
 	void Set_Pos(float _x, float _y);
 	void Set_Line(CLine* _line) { m_pLine = _line; }
 	void Set_ObjID(OBJID::ID _eID) { m_eObjID = _eID; }
+	void Set_State(BYTE _color) { m_iPlayerState = _color; }
 
 public:
 	bool Fall();
@@ -61,6 +64,9 @@ protected:
 
 	OBJID::ID		m_eObjID{ OBJID::END };
 	GROUPID::ID		m_eGroupID{ GROUPID::GAMEOBJECT };
+
+	bool			m_bIsPowerUpON;
+	bool			m_bIsMagnetON;
 };
 
 #endif // !__OBJ_H__

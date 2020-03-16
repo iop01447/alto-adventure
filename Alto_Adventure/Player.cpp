@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include "Player.h"
 
+#include "Rock.h"
 #include "Effect.h"
+#include "Magnet.h"
+#include "PowerUp.h"
 #include "FrontEffect.h"
 
 #include "KeyMgr.h"
@@ -11,12 +14,15 @@
 #include "SceneMgr.h"
 
 
+
 CPlayer::CPlayer()
 	:m_bJump(false)
 	, m_bFall(true)
 	, m_bHit(false)
 	, m_dwIdleTime(GetTickCount())
 	, m_dwFrontEffectTime(GetTickCount())
+	, m_dwDurationMagnet(0)
+	, m_dwDurationPowerUp(0)
 {
 	ZeroMemory(&m_vPoint, sizeof(D3DXVECTOR3) * 4);
 	ZeroMemory(&m_vOrigin, sizeof(D3DXVECTOR3) * 4);
@@ -129,6 +135,8 @@ void CPlayer::Render()
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
 		D3DCOLOR_ARGB(m_byColor[0], m_byColor[1], m_byColor[2], m_byColor[3]));
+
+	Render_ItemEffect();
 }
 
 void CPlayer::Release()
@@ -140,24 +148,71 @@ void CPlayer::Collision(CObj * pOther)
 	switch (pOther->Get_ObjID())
 	{
 	case OBJID::ROCK:
-		if (m_pRock != pOther) {
-			m_iHP = max(0, m_iHP - 1);
-			m_pRock = pOther;
+		if (!m_bIsPowerUpON)
+		{
+			if (m_pRock != pOther) {
+				m_iHP = max(0, m_iHP - 1);
+				m_pRock = pOther;
+			}
+			m_bHit = true;
+			m_dwHitEffectTime = GetTickCount();
 		}
-		m_bHit = true;
-		m_dwHitEffectTime = GetTickCount();
+		else
+		{
+			for( int i = 0; i < 10; ++i)
+				GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CRock>::Create(m_tInfo.vPos.x + 20.f, m_tInfo.vPos.y, BYTE(1)));
+		}
 		break;
 	case OBJID::COIN:
 		++m_iCoin;
 		break;
 	case OBJID::MAGNET:
-		//++m_iCoin;
+		m_dwDurationMagnet = GetTickCount();
+		m_dwFrontEffectTime = 0;
+		m_bIsMagnetON = true;
+		break;
+	case OBJID::POWERUP:
+		m_dwDurationPowerUp = GetTickCount();
+		m_dwFrontEffectTime = 0;
+		m_bIsPowerUpON = true;
 		break;
 	case OBJID::HEART:
 		m_iHP = min(5, m_iHP + 1);
 		break;
 	default:
 		break;
+	}
+}
+
+void CPlayer::Render_ItemEffect()
+{
+	// 바위 부수는 아이템 먹었을 때 지속시간동안 효과 발생
+	if (0 != m_dwDurationPowerUp && m_dwDurationPowerUp + 10000 > GetTickCount())
+	{
+		if (m_dwFrontEffectTime + 1000 < GetTickCount())
+		{
+			GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y, BYTE(1)));
+			m_dwFrontEffectTime = GetTickCount();
+		}
+	}
+	else
+	{
+		m_bIsPowerUpON = false;
+		m_dwDurationPowerUp = 0;
+	}
+
+	if (0 != m_dwDurationMagnet && m_dwDurationMagnet + 10000 > GetTickCount())
+	{
+		if (m_dwFrontEffectTime + 1000 < GetTickCount())
+		{
+			GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y, BYTE(0)));
+			m_dwFrontEffectTime = GetTickCount();
+		}
+	}
+	else
+	{
+		m_bIsMagnetON = false;
+		m_dwDurationMagnet = 0;
 	}
 }
 
@@ -264,13 +319,6 @@ void CPlayer::Jump()
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
 		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 15, m_vPoint[3].y - (rand()%10 + 15)));
-
-		// 바위 부수는 아이템 먹었을 때 지속시간동안 효과 발생
-		if (1 == m_iPlayerState && m_dwFrontEffectTime + 1000 < GetTickCount())
-		{
-			//GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y));
-			m_dwFrontEffectTime = GetTickCount();
-		}
 	}
 }
 
