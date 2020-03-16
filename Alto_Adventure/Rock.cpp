@@ -38,12 +38,13 @@ void CRock::Render()
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 
-	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMATRIX matScale, matTrans, matRotate, matWorld;
 	D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
 	m_tInfo.vSize = { pTexInfo->tImageInfo.Width * 0.1f, pTexInfo->tImageInfo.Height * 0.1f, 0.f };
+	D3DXMatrixRotationZ(&matRotate, D3DXToRadian(m_fAngle));
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
-	matWorld = matScale * matTrans;
+	matWorld = matScale * matRotate * matTrans;
 	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
 
 	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
