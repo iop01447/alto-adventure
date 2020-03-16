@@ -145,7 +145,7 @@ void CPlayer::Update_Size()
 void CPlayer::Key_Check()
 {
 	// 캐릭터 점프 중일 때 라인의 각도 보다 조금더 몸 세우고 내려오면서 다시 맵 각도에 맞게 몸 다시 눕힘
-	if (CKeyMgr::Get_Instance()->Key_Down(VK_SPACE))
+	if (CKeyMgr::Get_Instance()->Key_Pressing(VK_SPACE))
 	{
 		m_bJump = true;
 		m_dwIdleTime = GetTickCount();
@@ -162,7 +162,6 @@ void CPlayer::Key_Check()
 		Update_Size();
 	}
 }
-
 void CPlayer::Jump()
 {
 	float fY = 0.f;

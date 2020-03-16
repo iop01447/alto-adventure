@@ -2,6 +2,7 @@
 #include "Rock.h"
 #include "TextureMgr.h"
 #include "ObjMgr.h"
+#include "LineMgr.h"
 
 
 CRock::CRock()
@@ -23,6 +24,9 @@ int CRock::Update()
 	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
 	Update_Rect();
 	Fall();
+
+	float fY;
+	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(m_tInfo.vPos.x, &fY, int(m_tInfo.vPos.y), &m_fAngle);
 
 	return OBJ_NOEVENT;
 }

@@ -153,7 +153,6 @@
     <ClInclude Include="Alto_Adventure.h" />
     <ClInclude Include="BackgroundMgr.h" />
     <ClInclude Include="BigTree.h" />
-    <ClInclude Include="BmpMgr.h" />
     <ClInclude Include="Cloud.h" />
     <ClInclude Include="CollisionMgr.h" />
     <ClInclude Include="Define.h" />
@@ -169,7 +168,6 @@
     <ClInclude Include="LineMgr.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MultiTex.h" />
-    <ClInclude Include="MyBitmap.h" />
     <ClInclude Include="MyMenu.h" />
     <ClInclude Include="Obj.h" />
     <ClInclude Include="ObjMgr.h" />
@@ -195,7 +193,6 @@
     <ClCompile Include="Alto_Adventure.cpp" />
     <ClCompile Include="BackgroundMgr.cpp" />
     <ClCompile Include="BigTree.cpp" />
-    <ClCompile Include="BmpMgr.cpp" />
     <ClCompile Include="Cloud.cpp" />
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Device.cpp" />
@@ -205,7 +202,6 @@
     <ClCompile Include="LineMgr.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MultiTex.cpp" />
-    <ClCompile Include="MyBitmap.cpp" />
     <ClCompile Include="MyMenu.cpp" />
     <ClCompile Include="Obj.cpp" />
     <ClCompile Include="ObjMgr.cpp" />
