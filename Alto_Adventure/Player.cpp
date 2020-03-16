@@ -12,6 +12,7 @@
 #include "LineMgr.h"
 #include "TextureMgr.h"
 #include "SceneMgr.h"
+#include "SoundMgr.h"
 
 
 
@@ -150,6 +151,7 @@ void CPlayer::Collision(CObj * pOther)
 	switch (pOther->Get_ObjID())
 	{
 	case OBJID::ROCK:
+		CSoundMgr::Get_Instance()->PlaySound(L"demage.wav", CSoundMgr::CHANNELID::MONSTER);
 		if (!m_bIsPowerUpON)
 		{
 			if (m_pRock != pOther) {
@@ -168,19 +170,23 @@ void CPlayer::Collision(CObj * pOther)
 		}
 		break;
 	case OBJID::COIN:
+		CSoundMgr::Get_Instance()->PlaySound(L"coin.wav", CSoundMgr::CHANNELID::EFFECT);
 		++m_iCoin;
 		break;
 	case OBJID::MAGNET:
+		CSoundMgr::Get_Instance()->PlaySound(L"powerup.mp3", CSoundMgr::CHANNELID::EFFECT);
 		m_dwDurationMagnet = GetTickCount();
 		m_dwFrontEffectTime_PowerUp = 0;
 		m_bIsMagnetON = true;
 		break;
 	case OBJID::POWERUP:
+		CSoundMgr::Get_Instance()->PlaySound(L"item-get-inorganic.wav", CSoundMgr::CHANNELID::PLAYER);
 		m_dwDurationPowerUp = GetTickCount();
 		m_dwFrontEffectTime_Magnet = 0;
 		m_bIsPowerUpON = true;
 		break;
 	case OBJID::HEART:
+		CSoundMgr::Get_Instance()->PlaySound(L"heart.wav", CSoundMgr::CHANNELID::EFFECT);
 		m_iHP = min(5, m_iHP + 1);
 		break;
 	default:

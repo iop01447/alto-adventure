@@ -46,8 +46,10 @@ void CSoundMgr::PlaySound(TCHAR * pSoundKey, CHANNELID eID)
 		return !lstrcmp(pSoundKey, iter.first);
 	});
 
-	if (iter == m_mapSound.end())
+	if (iter == m_mapSound.end()) {
+		assert(false && "사운드가 없음");
 		return;
+	}
 
 	FMOD_BOOL bPlay = FALSE; 
 	if (FMOD_Channel_IsPlaying(m_pChannelArr[eID], &bPlay))
