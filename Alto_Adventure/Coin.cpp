@@ -41,13 +41,13 @@ void CCoin::Late_Update()
 		if (WINCX >> 1 > sqrtf((vPlayer.x * vPlayer.x) + (vPlayer.y * vPlayer.y)))
 			m_tInfo.vPos.x -= 15;
 	}
-
 	if (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f < 0)
 		m_bDead = true;
 }
 
 void CCoin::Render()
 {
+
 	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Coin");
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
