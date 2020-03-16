@@ -51,8 +51,9 @@ void CUIMgr::Update()
 {
 	CPlayer* player = dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Obj(OBJID::PLAYER));
 	m_iCoin = player->Get_Coin();
+	m_iHP = player->Get_HP();
 
-	m_iDistance += 10;
+	m_fDistance += 0.2f;
 }
 
 void CUIMgr::Render()
@@ -122,7 +123,7 @@ void CUIMgr::Render_HP()
 void CUIMgr::Render_Distance()
 {
 	TCHAR szBuff[50] = L"";
-	swprintf_s(szBuff, L"%dm", m_iDistance);
+	swprintf_s(szBuff, L"%.1fm", m_fDistance);
 
 	D3DXMATRIX matTrans;
 	D3DXMatrixTranslation(&matTrans, 0, 0, 0.f);

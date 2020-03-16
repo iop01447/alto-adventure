@@ -24,6 +24,6 @@ private:
 
 	int m_iCoin;
 	int m_iHP{ 3 };
-	int m_iDistance{ 0 };
+	float m_fDistance{ 0 };
 };
 

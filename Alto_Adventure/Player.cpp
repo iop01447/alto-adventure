@@ -135,6 +135,10 @@ void CPlayer::Collision(CObj * pOther)
 	switch (pOther->Get_ObjID())
 	{
 	case OBJID::ROCK:
+		if (m_pRock != pOther) {
+			m_iHP = max(0, m_iHP - 1);
+			m_pRock = pOther;
+		}
 		m_bHit = true;
 		m_dwHitEffectTime = GetTickCount();
 		break;

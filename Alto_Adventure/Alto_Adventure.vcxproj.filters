@@ -94,9 +94,11 @@
     <ClCompile Include="FrontEffect.cpp">
       <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClCompile>
-    <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="Magnet.cpp">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
+    </ClCompile>
+    <ClCompile Include="UIMgr.cpp">
+      <Filter>97.Manager\09.UIMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,9 +225,11 @@
     <ClInclude Include="FrontEffect.h">
       <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClInclude>
-    <ClInclude Include="UIMgr.h" />
     <ClInclude Include="Magnet.h">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
+    </ClInclude>
+    <ClInclude Include="UIMgr.h">
+      <Filter>97.Manager\09.UIMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +345,9 @@
     </Filter>
     <Filter Include="01.Obj\07.Item\00.Magnet">
       <UniqueIdentifier>{33925aa7-55ad-4601-8eae-a07773fa7262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\09.UIMgr">
+      <UniqueIdentifier>{0d3b0730-3e88-4cfa-8155-bae51df92d65}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
