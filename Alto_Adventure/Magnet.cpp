@@ -46,7 +46,7 @@ void CMagnet::Render()
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 
 	D3DXMATRIX matScale, matTrans, matWorld;
-	D3DXMatrixScaling(&matScale, m_tInfo.vScale.x, m_tInfo.vScale.y, 0.f);
+	D3DXMatrixScaling(&matScale, 0.08f, 0.08f, 0.f);
 	m_tInfo.vSize = { pTexInfo->tImageInfo.Width * m_tInfo.vScale.x, pTexInfo->tImageInfo.Height * m_tInfo.vScale.y, 0.f };
 	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 

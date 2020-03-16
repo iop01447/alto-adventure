@@ -61,6 +61,8 @@ void CUIMgr::Render()
 	Render_Coin();
 	Render_HP();
 	Render_Distance();
+	Render_MagnetItem();
+	Render_PowerUpItem();
 }
 
 void CUIMgr::Release()
@@ -130,4 +132,48 @@ void CUIMgr::Render_Distance()
 	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matTrans);
 	RECT rect = { WINCX - 500, 30, WINCX - 30, 200 };
 	m_pBigFont->DrawTextW(CDevice::Get_Instance()->Get_Sprite(), szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+
+void CUIMgr::Render_MagnetItem()
+{
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Magnet");
+
+	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
+
+	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
+	//m_tInfo.vSize = { pTexInfo->tImageInfo.Width * m_tInfo.vScale.x, pTexInfo->tImageInfo.Height * m_tInfo.vScale.y, 0.f };
+	D3DXMatrixTranslation(&matTrans, 50.f, float(WINCY - 50), 0.f);
+
+	matWorld = matScale * matTrans;
+	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+		nullptr,
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+		nullptr,
+		D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+
+void CUIMgr::Render_PowerUpItem()
+{
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"PowerUp");
+
+	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
+
+	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMatrixScaling(&matScale, 0.25f, 0.25f, 0.f);
+	//m_tInfo.vSize = { pTexInfo->tImageInfo.Width * m_tInfo.vScale.x, pTexInfo->tImageInfo.Height * m_tInfo.vScale.y, 0.f };
+	D3DXMatrixTranslation(&matTrans, 130.f, float(WINCY - 50), 0.f);
+
+	matWorld = matScale * matTrans;
+	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+		nullptr,
+		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+		nullptr,
+		D3DCOLOR_ARGB(255, 255, 255, 255));
 }

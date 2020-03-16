@@ -17,6 +17,8 @@ private:
 	void Render_Coin();
 	void Render_HP();
 	void Render_Distance();
+	void Render_MagnetItem();
+	void Render_PowerUpItem();
 
 private:
 	LPD3DXFONT m_pSmallFont{ NULL };

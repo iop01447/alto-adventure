@@ -58,7 +58,11 @@ void CFrontEffect::Render()
 {
 	m_fSize = 0.3f;
 
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"FrontEffect", L"FrontEffect", 0);
+	const TEXINFO* pTexInfo;
+	if(0 == m_iPlayerState)
+		pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"FrontEffect", L"FrontEffect", 1);
+	else
+		pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"FrontEffect", L"FrontEffect", 0);
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 

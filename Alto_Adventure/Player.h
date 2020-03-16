@@ -24,6 +24,7 @@ public:
 	virtual void Collision(CObj* pOther) override;
 
 public:
+	void Render_ItemEffect();
 	void Collision_Object();
 	void Update_Size();
 	void Key_Check();
@@ -48,13 +49,14 @@ private:
 	DWORD			m_dwIdleTime;
 	DWORD			m_dwHitEffectTime;
 	DWORD			m_dwFrontEffectTime;
+	DWORD			m_dwDurationPowerUp;
+	DWORD			m_dwDurationMagnet;
 
 	BYTE			m_byColor[4];
 
 	int				m_iCoin{ 0 };
 	int				m_iHP{ 3 };
 	CObj*			m_pRock{ nullptr };
-
 };
 
 #endif // !__PLAYER_H__

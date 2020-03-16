@@ -71,7 +71,7 @@
       <Filter>97.Manager\02.KeyMgr</Filter>
     </ClCompile>
     <ClCompile Include="LineMgr.cpp">
-      <Filter>97.Manager\03.LingMgr</Filter>
+      <Filter>97.Manager\03.LineMgr</Filter>
     </ClCompile>
     <ClCompile Include="ObjMgr.cpp">
       <Filter>97.Manager\04.ObjMgr</Filter>
@@ -94,14 +94,12 @@
     <ClCompile Include="FrontEffect.cpp">
       <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClCompile>
+    <ClCompile Include="UIMgr.cpp" />
     <ClCompile Include="Magnet.cpp">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClCompile>
     <ClCompile Include="PowerUp.cpp">
       <Filter>01.Obj\07.Item\01.PowerUp</Filter>
-    </ClCompile>
-    <ClCompile Include="UIMgr.cpp">
-      <Filter>97.Manager\09.UIMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,7 +203,7 @@
       <Filter>97.Manager\02.KeyMgr</Filter>
     </ClInclude>
     <ClInclude Include="LineMgr.h">
-      <Filter>97.Manager\03.LingMgr</Filter>
+      <Filter>97.Manager\03.LineMgr</Filter>
     </ClInclude>
     <ClInclude Include="ObjMgr.h">
       <Filter>97.Manager\04.ObjMgr</Filter>
@@ -228,14 +226,12 @@
     <ClInclude Include="FrontEffect.h">
       <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClInclude>
+    <ClInclude Include="UIMgr.h" />
     <ClInclude Include="Magnet.h">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClInclude>
     <ClInclude Include="PowerUp.h">
       <Filter>01.Obj\07.Item\01.PowerUp</Filter>
-    </ClInclude>
-    <ClInclude Include="UIMgr.h">
-      <Filter>97.Manager\09.UIMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -322,9 +318,6 @@
     <Filter Include="97.Manager\02.KeyMgr">
       <UniqueIdentifier>{fb925fda-cb45-4d1d-919d-9388bead6477}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\03.LingMgr">
-      <UniqueIdentifier>{49c11cc9-99b2-4b59-9f86-3fd21668ce44}</UniqueIdentifier>
-    </Filter>
     <Filter Include="97.Manager\04.ObjMgr">
       <UniqueIdentifier>{f524589d-268e-426b-b4b5-1a00f20888c5}</UniqueIdentifier>
     </Filter>
@@ -352,11 +345,11 @@
     <Filter Include="01.Obj\07.Item\00.Magnet">
       <UniqueIdentifier>{33925aa7-55ad-4601-8eae-a07773fa7262}</UniqueIdentifier>
     </Filter>
-    <Filter Include="97.Manager\09.UIMgr">
-      <UniqueIdentifier>{0d3b0730-3e88-4cfa-8155-bae51df92d65}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01.Obj\07.Item\01.PowerUp">
       <UniqueIdentifier>{ca639b19-af74-4078-ab09-d86bf71be772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\03.LineMgr">
+      <UniqueIdentifier>{49c11cc9-99b2-4b59-9f86-3fd21668ce44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

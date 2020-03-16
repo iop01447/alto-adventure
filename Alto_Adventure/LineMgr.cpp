@@ -269,12 +269,12 @@ void CLineMgr::Create_Object()
 	switch (obj_list[obj_id])
 	{
 	case OBJID::ROCK:
-		pObj = CAbstractFactory<CRock>::Create(WINCX + 100, 0);
+		pObj = CAbstractFactory<CRock>::Create(WINCX + 100, 0, BYTE(0));
 		CObjMgr::Get_Instance()->Add_Object(OBJID::ROCK, pObj);
 		break;
 	case OBJID::COIN:
 		for (int i = 0; i < 5; ++i) {
-			pObj = CAbstractFactory<CCoin>::Create(WINCX + 10 + i*50, 0);
+			pObj = CAbstractFactory<CCoin>::Create(float(WINCX + 10 + i*50), 0.f);
 			CObjMgr::Get_Instance()->Add_Object(OBJID::COIN, pObj);
 		}
 		break;
