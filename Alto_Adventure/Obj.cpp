@@ -21,7 +21,7 @@ void CObj::Set_Pos(float _x, float _y)
 	m_tInfo.vPos = { _x, _y, 0.f };
 }
 
-void CObj::Fall()
+bool CObj::Fall()
 {
 	m_pLine = CLineMgr::Get_Instance()->Collision_Line(m_tInfo.vPos.x);
 
@@ -30,8 +30,9 @@ void CObj::Fall()
 		m_fAngle = m_pLine->Get_Angle();
 		m_tInfo.vPos.x = m_pLine->Get_Info().tRightPos.vPoint.x;
 		m_tInfo.vPos.y = m_pLine->Get_Info().tRightPos.vPoint.y - m_tInfo.vSize.y / 2.f + 10.f;
-		return;
+		return true;
 	}
+	return false;
 }
 
 void CObj::Update_Rect()

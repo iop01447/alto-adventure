@@ -40,7 +40,7 @@ public:
 	void Set_ObjID(OBJID::ID _eID) { m_eObjID = _eID; }
 
 public:
-	void Fall();
+	bool Fall();
 	virtual void Collision(CObj* _pObj) {};
 	void Update_Rect();
 
