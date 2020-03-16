@@ -17,16 +17,18 @@ CRock::~CRock()
 void CRock::Initialize()
 {
 	m_iID = rand() % 2;
+	Update_Rect();
 }
 
 int CRock::Update()
 {
 	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
-	Update_Rect();
 	Fall();
 
 	float fY;
 	bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(m_tInfo.vPos.x, &fY, int(m_tInfo.vPos.y), &m_fAngle);
+
+	Update_Rect();
 
 	return OBJ_NOEVENT;
 }
@@ -37,6 +39,7 @@ void CRock::Late_Update()
 
 void CRock::Render()
 {
+	Update_Rect();
 	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Rock", L"Idle", m_iID);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;

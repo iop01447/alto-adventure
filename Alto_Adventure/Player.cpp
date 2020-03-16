@@ -47,6 +47,8 @@ void CPlayer::Initialize()
 
 	m_fJumpPower = 10.f;
 	m_fJumpAccel = 0.f;
+
+	Update_Rect();
 }
 
 int CPlayer::Update()
@@ -66,6 +68,7 @@ int CPlayer::Update()
 
 	Jump();
 	Fall();
+	Update_Rect();
 
 	return OBJ_NOEVENT;
 }
@@ -92,6 +95,8 @@ void CPlayer::Late_Update()
 
 void CPlayer::Render()
 {
+	Update_Rect();
+
 	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iPlayerState);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
@@ -122,7 +127,7 @@ void CPlayer::Collision(CObj * pOther)
 	switch (pOther->Get_ObjID())
 	{
 	case OBJID::ROCK:
-		///
+		
 		break;
 	default:
 		break;
