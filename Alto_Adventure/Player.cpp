@@ -12,10 +12,15 @@
 CPlayer::CPlayer()
 	:m_bJump(false)
 	, m_bFall(true)
+	, m_bHit(false)
 	, m_dwIdleTime(GetTickCount())
 {
 	ZeroMemory(&m_vPoint, sizeof(D3DXVECTOR3) * 4);
 	ZeroMemory(&m_vOrigin, sizeof(D3DXVECTOR3) * 4);
+	m_byColor[0] = 255;
+	m_byColor[1] = 255;
+	m_byColor[2] = 255;
+	m_byColor[3] = 255;
 }
 
 CPlayer::~CPlayer()
@@ -47,6 +52,8 @@ void CPlayer::Initialize()
 
 	m_fJumpPower = 10.f;
 	m_fJumpAccel = 0.f;
+
+	Update_Rect();
 }
 
 int CPlayer::Update()
@@ -66,6 +73,8 @@ int CPlayer::Update()
 
 	Jump();
 	Fall();
+	Collision_Object();
+	Update_Rect();
 
 	return OBJ_NOEVENT;
 }
@@ -92,6 +101,8 @@ void CPlayer::Late_Update()
 
 void CPlayer::Render()
 {
+	Update_Rect();
+
 	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Player", L"Idle", m_iPlayerState);
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
@@ -110,7 +121,7 @@ void CPlayer::Render()
 		nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
-		D3DCOLOR_ARGB(255, 255, 255, 255));
+		D3DCOLOR_ARGB(m_byColor[0], m_byColor[1], m_byColor[2], m_byColor[3]));
 }
 
 void CPlayer::Release()
@@ -122,13 +133,56 @@ void CPlayer::Collision(CObj * pOther)
 	switch (pOther->Get_ObjID())
 	{
 	case OBJID::ROCK:
-		///
+		m_bHit = true;
+		m_dwHitEffectTime = GetTickCount();
 		break;
 	case OBJID::COIN:
 		++m_iCoin;
 		break;
 	default:
 		break;
+	}
+}
+
+void CPlayer::Collision_Object()
+{
+	if(m_bHit)
+	{
+		if (0 != m_byColor[2] 
+			&& 0!= m_byColor[3] 
+			&& 255 == m_byColor[0] 
+			&& m_dwHitEffectTime < GetTickCount())
+		{
+			m_byColor[2] = 0;
+			m_byColor[3] = 0;
+		}
+		else if (m_dwHitEffectTime + 50 < GetTickCount())
+		{
+			m_byColor[2] = 255;
+			m_byColor[3] = 255;
+			m_byColor[0] = 0;
+		}
+		else if (m_dwHitEffectTime + 150 < GetTickCount())
+		{
+			m_byColor[0] = 75;
+		}
+		else if (m_dwHitEffectTime + 250 < GetTickCount())
+		{
+			m_byColor[0] = 150;
+		}
+		else if (m_dwHitEffectTime + 350 < GetTickCount())
+		{
+			m_byColor[0] = 255;
+		}
+		else
+		{
+			m_bHit = false;
+			m_byColor[0] = 255;
+			m_byColor[1] = 255;
+			m_byColor[2] = 255;
+			m_byColor[3] = 255;
+			m_dwHitEffectTime = GetTickCount();
+		}
 	}
 }
 
@@ -176,7 +230,7 @@ void CPlayer::Jump()
 
 	if (m_bJump)
 	{
-		m_fSpeed += 0.02f;
+		m_fSpeed += 0.06f;
 		m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel - 5.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;
 		m_fJumpAccel += 0.1f;
 

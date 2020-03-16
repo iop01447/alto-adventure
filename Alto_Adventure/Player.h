@@ -24,6 +24,7 @@ public:
 	virtual void Collision(CObj* pOther) override;
 
 public:
+	void Collision_Object();
 	void Update_Size();
 	void Key_Check();
 	void Jump();
@@ -40,6 +41,10 @@ private:
 	float			m_fRotHeight; // 캐릭터가 회전하면서 바뀐 중점~bottom 까지의 거리
 
 	DWORD			m_dwIdleTime;
+	DWORD			m_dwHitEffectTime;
+	bool			m_bHit;
+
+	BYTE			m_byColor[4];
 
 	int				m_iCoin{ 0 };
 
