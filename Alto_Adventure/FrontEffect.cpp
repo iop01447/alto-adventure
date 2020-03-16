@@ -30,6 +30,11 @@ void CFrontEffect::Initialize()
 	m_byColor[1] = 255;
 	m_byColor[2] = 255;
 	m_byColor[3] = 255;
+
+	if (0 == m_iPlayerState)
+		m_fSize = 0.9f;
+	else
+		m_fSize = 0.5f;
 }
 
 int CFrontEffect::Update()
@@ -56,8 +61,6 @@ void CFrontEffect::Late_Update()
 
 void CFrontEffect::Render()
 {
-
-
 	const TEXINFO* pTexInfo;
 	if(0 == m_iPlayerState)
 		pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"FrontEffect", L"FrontEffect", 1);
@@ -68,7 +71,6 @@ void CFrontEffect::Render()
 	
 	if (0 == m_iPlayerState)
 	{
-		m_fSize = 0.7f;
 		D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
 		D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
 		D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle + 45));
@@ -86,7 +88,7 @@ void CFrontEffect::Render()
 	}
 	else
 	{
-		m_fSize = 0.3f;
+		m_fSize = 0.5f;
 		D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
 		D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
 		D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle + 45));

@@ -22,12 +22,14 @@ void CRock::Initialize()
 	m_fJumpPower = 10.f;
 	m_fJumpAccel = 0.f;
 
-	m_fSpeed = float(rand() % 5 + - 8);
+	m_fSpeed = float(rand() % 15 + - 8);
+	m_fAngle = float(rand() % 360);
 	Update_Rect();
 }
 
 int CRock::Update()
 {
+
 	if (m_bDead)
 		return OBJ_DEAD;
 
