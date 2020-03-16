@@ -41,6 +41,8 @@ private:
 
 	DWORD			m_dwIdleTime;
 
+	int				m_iCoin{ 0 };
+
 };
 
 #endif // !__PLAYER_H__

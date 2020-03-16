@@ -29,8 +29,8 @@ public:
 	void Set_LinePoint(float _x, float _y);
 
 private:
-	void Create_RockObj();
 	void Create_Object();
+	void Create_BackObject();
 
 public:
 	static CLineMgr* Get_Instance()
@@ -52,13 +52,13 @@ private:
 
 	static CLineMgr*	m_pInstance;
 
-	DWORD m_dwLastObjCreate{ 0 };
-	DWORD m_dwObjCreate{ 500 };
-	DWORD m_dwLastObjIDChange{ 0 };
-	DWORD m_dwObjIDChange{ 5000 };
+	DWORD m_dwLastBackObjCreate{ 0 };
+	DWORD m_dwBackObjCreate{ 500 };
+	DWORD m_dwLastBackObjIDChange{ 0 };
+	DWORD m_dwBackObjIDChange{ 5000 };
 
-	DWORD m_dwLastRockCreate{ 0 };
-	DWORD m_dwRockCreate{ 3000 };
+	DWORD m_dwLastObjCreate{ 0 };
+	DWORD m_dwObjCreate{ 3000 };
 };
 
 

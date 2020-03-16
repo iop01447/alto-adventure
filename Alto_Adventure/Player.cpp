@@ -124,6 +124,9 @@ void CPlayer::Collision(CObj * pOther)
 	case OBJID::ROCK:
 		///
 		break;
+	case OBJID::COIN:
+		++m_iCoin;
+		break;
 	default:
 		break;
 	}
