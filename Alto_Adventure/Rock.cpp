@@ -111,7 +111,3 @@ void CRock::Render()
 void CRock::Release()
 {
 }
-
-void CRock::Collision(CObj * _pObj)
-{
-}

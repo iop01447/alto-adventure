@@ -56,7 +56,7 @@ void CFrontEffect::Late_Update()
 
 void CFrontEffect::Render()
 {
-	m_fSize = 0.3f;
+
 
 	const TEXINFO* pTexInfo;
 	if(0 == m_iPlayerState)
@@ -65,20 +65,42 @@ void CFrontEffect::Render()
 		pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"FrontEffect", L"FrontEffect", 0);
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
+	
+	if (0 == m_iPlayerState)
+	{
+		m_fSize = 0.7f;
+		D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
+		D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
+		D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle + 45));
+		D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
-	D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
-	D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
-	D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle + 45));
-	D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
+		matWorld = matScale * matRotZ * matTrans;
+		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
 
-	matWorld = matScale * matRotZ * matTrans;
-	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+		CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+			nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+			nullptr,
+			D3DCOLOR_ARGB(m_byColor[0], m_byColor[1], m_byColor[2], m_byColor[3]));
+		m_fSize -= 0.02f;
+	}
+	else
+	{
+		m_fSize = 0.3f;
+		D3DXMATRIX matScale, matRotZ, matTrans, matWorld;
+		D3DXMatrixScaling(&matScale, m_fSize, m_fSize, 0.f);
+		D3DXMatrixRotationZ(&matRotZ, D3DXToRadian(m_fAngle + 45));
+		D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
 
-	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
-		nullptr,
-		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
-		nullptr,
-		D3DCOLOR_ARGB(m_byColor[0], m_byColor[1], m_byColor[2], m_byColor[3]));
+		matWorld = matScale * matRotZ * matTrans;
+		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+		CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+			nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+			nullptr,
+			D3DCOLOR_ARGB(m_byColor[0], m_byColor[1], m_byColor[2], m_byColor[3]));
+	}
 }
 
 void CFrontEffect::Release()

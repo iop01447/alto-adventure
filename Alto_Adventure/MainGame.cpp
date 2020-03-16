@@ -69,4 +69,5 @@ void CMainGame::Release()
 
 	CSoundMgr::Get_Instance()->StopAll();
 	CSoundMgr::Destroy_Instance();
+	CDevice::Destroy_Instance();
 }
