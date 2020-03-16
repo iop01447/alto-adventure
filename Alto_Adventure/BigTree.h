@@ -16,5 +16,6 @@ public:
 
 private:
 	float m_fReflection{ 0 };
+	int m_zID{ 0 }; // 앞이냐 뒤냐
 };
 
