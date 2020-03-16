@@ -22,11 +22,15 @@ void CRock::Initialize()
 	m_fJumpPower = 10.f;
 	m_fJumpAccel = 0.f;
 
+	m_fSpeed = float(rand() % 5 + - 8);
 	Update_Rect();
 }
 
 int CRock::Update()
 {
+	if (m_bDead)
+		return OBJ_DEAD;
+
 	if (0 == m_iPlayerState)
 	{
 		if (0 > m_tInfo.vPos.x + (m_tInfo.vSize.x *0.5f))
@@ -42,13 +46,13 @@ int CRock::Update()
 	}
 	else
 	{
-		m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
-		m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel;
+		m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed()) + m_fSpeed;
+		m_tInfo.vPos.y -= m_fJumpPower * m_fJumpAccel - 6.8f * m_fJumpAccel * m_fJumpAccel * 0.5f;;
 		m_fJumpAccel += 0.2f;
 
-		m_fAngle += 15;
+		m_fAngle += rand()%15;
 
-		m_byAlphaValue -= 25;
+		m_byAlphaValue -= 10;
 		if (0 >= m_byAlphaValue)
 			return OBJ_DEAD;
 	}
@@ -86,9 +90,9 @@ void CRock::Render()
 			D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
 	else
-	{
+	{                                                                   
 		D3DXMATRIX matScale, matTrans, matRotate, matWorld;
-		D3DXMatrixScaling(&matScale, 0.02f, 0.02f, 0.2f);
+		D3DXMatrixScaling(&matScale, 0.04f, 0.04f, 0.2f);
 		m_tInfo.vSize = { pTexInfo->tImageInfo.Width * 0.1f, pTexInfo->tImageInfo.Height * 0.1f, 0.f };
 		D3DXMatrixRotationZ(&matRotate, D3DXToRadian(m_fAngle));
 		D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
@@ -100,10 +104,14 @@ void CRock::Render()
 			nullptr,
 			&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 			nullptr,
-			D3DCOLOR_ARGB(m_byAlphaValue, 255, 255, 255));
+			D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
 }
 
 void CRock::Release()
+{
+}
+
+void CRock::Collision(CObj * _pObj)
 {
 }

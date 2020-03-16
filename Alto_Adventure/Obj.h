@@ -41,6 +41,7 @@ public:
 	void Set_Line(CLine* _line) { m_pLine = _line; }
 	void Set_ObjID(OBJID::ID _eID) { m_eObjID = _eID; }
 	void Set_State(BYTE _color) { m_iPlayerState = _color; }
+	void Set_Dead() { m_bDead = true; }
 
 public:
 	bool Fall();

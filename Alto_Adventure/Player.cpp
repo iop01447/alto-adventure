@@ -160,7 +160,8 @@ void CPlayer::Collision(CObj * pOther)
 		}
 		else
 		{
-			for( int i = 0; i < 10; ++i)
+			pOther->Set_Dead();
+			for( int i = 0; i < 6; ++i)
 				GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CRock>::Create(m_tInfo.vPos.x + 20.f, m_tInfo.vPos.y, BYTE(1)));
 		}
 		break;
