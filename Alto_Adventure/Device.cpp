@@ -107,7 +107,7 @@ HRESULT CDevice::InitDevice()
 	tFontInfo.Height = static_cast<int>(tFontInfo.Width * 2.083f);
 	tFontInfo.Weight = FW_NORMAL;
 	tFontInfo.CharSet = HANGEUL_CHARSET;
-	lstrcpy(tFontInfo.FaceName, L"Time New Roman");
+	lstrcpy(tFontInfo.FaceName, L"");
 	// D3DXCreateFontIndirect - 폰트 구조체 정보를 토대로 폰트 객체를 생성하는 함수. 
 	if (FAILED(D3DXCreateFontIndirect(m_pDevice, &tFontInfo, &m_pFont)))
 	{

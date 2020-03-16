@@ -32,6 +32,7 @@ public:
 
 public:
 	int Get_Coin() { return m_iCoin; }
+	int Get_HP() { return m_iHP; }
 
 private:
 	//RECT m_tRect; 
@@ -51,6 +52,8 @@ private:
 	BYTE			m_byColor[4];
 
 	int				m_iCoin{ 0 };
+	int				m_iHP{ 3 };
+	CObj*			m_pRock{ nullptr };
 
 };
 
