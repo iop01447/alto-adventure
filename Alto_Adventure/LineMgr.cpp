@@ -11,6 +11,8 @@
 #include "BigTree.h"
 #include "Coin.h"
 #include "Magnet.h"
+#include "PowerUp.h"
+
 
 
 CLineMgr* CLineMgr::m_pInstance = nullptr;
@@ -31,6 +33,7 @@ void CLineMgr::Initialize()
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/big-tree.png", L"BigTree");
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/coin.png", L"Coin");
 	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/Magnet.png", L"Magnet");
+	CTextureMgr::Get_Instance()->InsertTexture(CTextureMgr::SINGLETEX, L"../Image/PowerUp.png", L"PowerUp");
 	m_dwLastBackObjCreate = GetTickCount();
 
 //////////////test¸Ê »ý¼º///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -255,7 +258,7 @@ void CLineMgr::Set_LinePoint(float _x, float _y)
 void CLineMgr::Create_Object()
 {
 	static int obj_id{ 0 };
-	static vector<OBJID::ID> obj_list = { OBJID::ROCK, OBJID::COIN, OBJID::MAGNET };
+	static vector<OBJID::ID> obj_list = { OBJID::ROCK, OBJID::COIN, OBJID::MAGNET, OBJID::POWERUP };
 
 	if (GetTickCount() - m_dwLastObjCreate < m_dwObjCreate) return;
 	m_dwLastObjCreate = GetTickCount();
@@ -277,6 +280,9 @@ void CLineMgr::Create_Object()
 		break;
 	case OBJID::MAGNET:
 		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::MAGNET, CAbstractFactory<CMagnet>::Create(WINCX + 100, 0));
+		break;
+	case OBJID::POWERUP:
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::POWERUP, CAbstractFactory<CPowerUp>::Create(WINCX + 100, 0));
 		break;
 	}
 

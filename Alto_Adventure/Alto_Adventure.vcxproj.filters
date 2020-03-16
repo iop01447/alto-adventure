@@ -98,6 +98,9 @@
     <ClCompile Include="Magnet.cpp">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClCompile>
+    <ClCompile Include="PowerUp.cpp">
+      <Filter>01.Obj\07.Item\01.PowerUp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -227,6 +230,9 @@
     <ClInclude Include="Magnet.h">
       <Filter>01.Obj\07.Item\00.Magnet</Filter>
     </ClInclude>
+    <ClInclude Include="PowerUp.h">
+      <Filter>01.Obj\07.Item\01.PowerUp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Alto_Adventure.ico">
@@ -341,6 +347,9 @@
     </Filter>
     <Filter Include="01.Obj\07.Item\00.Magnet">
       <UniqueIdentifier>{33925aa7-55ad-4601-8eae-a07773fa7262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\07.Item\01.PowerUp">
+      <UniqueIdentifier>{ca639b19-af74-4078-ab09-d86bf71be772}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
