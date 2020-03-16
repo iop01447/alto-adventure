@@ -148,6 +148,9 @@ void CPlayer::Collision(CObj * pOther)
 	case OBJID::MAGNET:
 		//++m_iCoin;
 		break;
+	case OBJID::HEART:
+		m_iHP = min(5, m_iHP + 1);
+		break;
 	default:
 		break;
 	}

@@ -98,26 +98,26 @@ void CUIMgr::Render_Coin()
 
 void CUIMgr::Render_HP()
 {
-	TCHAR szBuff[50] = L"";
-	switch (m_iHP)
-	{
-	case 1:
-		swprintf_s(szBuff, L"¢¾");
-		break;
-	case 2:
-		swprintf_s(szBuff, L"¢¾ ¢¾");
-		break;
-	case 3:
-		swprintf_s(szBuff, L"¢¾ ¢¾ ¢¾");
-		break;
-	default:
-		break;
-	}
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Heart");
 
-	D3DXMATRIX matTrans;
-	D3DXMatrixTranslation(&matTrans, 38, 80, 0.f);
-	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matTrans);
-	m_pSmallFont->DrawTextW(CDevice::Get_Instance()->Get_Sprite(), szBuff, lstrlen(szBuff), nullptr, DT_LEFT, D3DCOLOR_ARGB(255, 255, 0, 0));
+	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
+	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
+
+	D3DXMATRIX matScale, matTrans, matWorld;
+	D3DXMatrixScaling(&matScale, 0.03f, 0.03f, 0.f);
+
+	for (int i = 0; i < m_iHP; ++i) {
+		D3DXMatrixTranslation(&matTrans, 50 + i * (pTexInfo->tImageInfo.Width * 0.03f + 3), 90, 0.f);
+
+		matWorld = matScale * matTrans;
+		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+
+		CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
+			nullptr,
+			&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
+			nullptr,
+			D3DCOLOR_ARGB(255, 255, 255, 255));
+	}
 }
 
 void CUIMgr::Render_Distance()

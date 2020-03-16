@@ -100,6 +100,9 @@
     <ClCompile Include="UIMgr.cpp">
       <Filter>97.Manager\09.UIMgr</Filter>
     </ClCompile>
+    <ClCompile Include="Heart.cpp">
+      <Filter>01.Obj\08.Heart</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -231,6 +234,9 @@
     <ClInclude Include="UIMgr.h">
       <Filter>97.Manager\09.UIMgr</Filter>
     </ClInclude>
+    <ClInclude Include="Heart.h">
+      <Filter>01.Obj\08.Heart</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Alto_Adventure.ico">
@@ -348,6 +354,9 @@
     </Filter>
     <Filter Include="97.Manager\09.UIMgr">
       <UniqueIdentifier>{0d3b0730-3e88-4cfa-8155-bae51df92d65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\08.Heart">
+      <UniqueIdentifier>{57730eec-57b2-4cd0-a32b-4709ceb43b80}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
