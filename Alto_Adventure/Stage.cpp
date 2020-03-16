@@ -21,9 +21,6 @@ CStage::~CStage()
 
 void CStage::Initialize()
 {
-	D3DXCreateLine(GET_INSTANCE(CDevice)->Get_Device(), &g_pLine);
-	g_pLine->SetWidth(5);
-
 	CObjMgr::Get_Instance()->Add_Object(OBJID::PLAYER, CAbstractFactory<CPlayer>::Create());
 
 	//테스트용 라인
