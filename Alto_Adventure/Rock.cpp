@@ -19,10 +19,10 @@ void CRock::Initialize()
 {
 	m_iID = rand() % 2;
 
-	m_fJumpPower = 10.f;
+	m_fJumpPower = float(rand() % 3) + 10.f;
 	m_fJumpAccel = 0.f;
 
-	m_fSpeed = float(rand() % 15 + - 8);
+	m_fSpeed = float(rand() % 15 - 8);
 	m_fAngle = float(rand() % 360);
 	Update_Rect();
 }
@@ -80,7 +80,7 @@ void CRock::Render()
 		D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
 		m_tInfo.vSize = { pTexInfo->tImageInfo.Width * 0.1f, pTexInfo->tImageInfo.Height * 0.1f, 0.f };
 		D3DXMatrixRotationZ(&matRotate, D3DXToRadian(m_fAngle));
-		D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y, 0.f);
+		D3DXMatrixTranslation(&matTrans, m_tInfo.vPos.x, m_tInfo.vPos.y + 10.f, 0.f);
 
 		matWorld = matScale * matRotate * matTrans;
 		CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);

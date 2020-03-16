@@ -20,7 +20,8 @@ CPlayer::CPlayer()
 	, m_bFall(true)
 	, m_bHit(false)
 	, m_dwIdleTime(GetTickCount())
-	, m_dwFrontEffectTime(GetTickCount())
+	, m_dwFrontEffectTime_PowerUp(GetTickCount())
+	, m_dwFrontEffectTime_Magnet(GetTickCount())
 	, m_dwDurationMagnet(0)
 	, m_dwDurationPowerUp(0)
 {
@@ -161,7 +162,7 @@ void CPlayer::Collision(CObj * pOther)
 		else
 		{
 			pOther->Set_Dead();
-			for( int i = 0; i < 6; ++i)
+			for( int i = 0; i < 10; ++i)
 				GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CRock>::Create(m_tInfo.vPos.x + 20.f, m_tInfo.vPos.y, BYTE(1)));
 		}
 		break;
@@ -170,12 +171,12 @@ void CPlayer::Collision(CObj * pOther)
 		break;
 	case OBJID::MAGNET:
 		m_dwDurationMagnet = GetTickCount();
-		m_dwFrontEffectTime = 0;
+		m_dwFrontEffectTime_PowerUp = 0;
 		m_bIsMagnetON = true;
 		break;
 	case OBJID::POWERUP:
 		m_dwDurationPowerUp = GetTickCount();
-		m_dwFrontEffectTime = 0;
+		m_dwFrontEffectTime_Magnet = 0;
 		m_bIsPowerUpON = true;
 		break;
 	case OBJID::HEART:
@@ -191,10 +192,10 @@ void CPlayer::Render_ItemEffect()
 	// 바위 부수는 아이템 먹었을 때 지속시간동안 효과 발생
 	if (0 != m_dwDurationPowerUp && m_dwDurationPowerUp + 10000 > GetTickCount())
 	{
-		if (m_dwFrontEffectTime + 1000 < GetTickCount())
+		if (m_dwFrontEffectTime_PowerUp + 1000 < GetTickCount())
 		{
-			GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y, BYTE(1)));
-			m_dwFrontEffectTime = GetTickCount();
+			GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT_POWERUP, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y, BYTE(1)));
+			m_dwFrontEffectTime_PowerUp = GetTickCount();
 		}
 	}
 	else
@@ -205,10 +206,10 @@ void CPlayer::Render_ItemEffect()
 
 	if (0 != m_dwDurationMagnet && m_dwDurationMagnet + 10000 > GetTickCount())
 	{
-		if (m_dwFrontEffectTime + 1000 < GetTickCount())
+		if (m_dwFrontEffectTime_Magnet + 1000 < GetTickCount())
 		{
-			GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y, BYTE(0)));
-			m_dwFrontEffectTime = GetTickCount();
+			GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT_MAGNET, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y, BYTE(0)));
+			m_dwFrontEffectTime_Magnet = GetTickCount();
 		}
 	}
 	else
@@ -321,6 +322,7 @@ void CPlayer::Jump()
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
 		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 15, m_vPoint[3].y - (rand()%10 + 15)));
+		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 15, m_vPoint[3].y - (rand() % 10 + 15)));
 	}
 }
 

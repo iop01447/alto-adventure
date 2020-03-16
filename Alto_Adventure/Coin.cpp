@@ -34,6 +34,14 @@ int CCoin::Update()
 
 void CCoin::Late_Update()
 {
+	if (GET_INSTANCE(CObjMgr)->Get_Obj(OBJID::PLAYER)->Get_MagnetON())
+	{
+		D3DXVECTOR3 vPlayer = GET_INSTANCE(CObjMgr)->Get_Obj(OBJID::PLAYER)->Get_Info().vPos;
+		vPlayer -= m_tInfo.vPos;
+		if (WINCX >> 1 > sqrtf((vPlayer.x * vPlayer.x) + (vPlayer.y * vPlayer.y)))
+			m_tInfo.vPos.x -= 15;
+	}
+
 	if (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f < 0)
 		m_bDead = true;
 }

@@ -35,5 +35,7 @@ private:
 	float m_fDistance{ 0 };
 	SCENE::ID m_eSceneID{ SCENE::SCENE_STAGE };
 	bool m_bUnDeadMode{ false };
+	BYTE m_byMagnetAlphaValue;
+	BYTE m_byPowerUpAlphaValue;
 };
 

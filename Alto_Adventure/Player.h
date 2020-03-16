@@ -49,7 +49,8 @@ private:
 
 	DWORD			m_dwIdleTime;
 	DWORD			m_dwHitEffectTime;
-	DWORD			m_dwFrontEffectTime;
+	DWORD			m_dwFrontEffectTime_PowerUp;
+	DWORD			m_dwFrontEffectTime_Magnet;
 	DWORD			m_dwDurationPowerUp;
 	DWORD			m_dwDurationMagnet;
 

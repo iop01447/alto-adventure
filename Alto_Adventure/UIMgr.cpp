@@ -45,6 +45,8 @@ void CUIMgr::Initialize()
 	{
 		assert(false && L"Create Font Failed!");
 	}
+	m_byMagnetAlphaValue = 250;
+	m_byPowerUpAlphaValue = 250;
 }
 
 void CUIMgr::Update()
@@ -153,17 +155,22 @@ void CUIMgr::Render_MagnetItem()
 
 	D3DXMATRIX matScale, matTrans, matWorld;
 	D3DXMatrixScaling(&matScale, 0.1f, 0.1f, 0.f);
-	//m_tInfo.vSize = { pTexInfo->tImageInfo.Width * m_tInfo.vScale.x, pTexInfo->tImageInfo.Height * m_tInfo.vScale.y, 0.f };
 	D3DXMatrixTranslation(&matTrans, 50.f, float(WINCY - 50), 0.f);
 
 	matWorld = matScale * matTrans;
 	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
+	
+
+	if (GET_INSTANCE(CObjMgr)->Get_Obj(OBJID::PLAYER)->Get_MagnetON())
+		m_byMagnetAlphaValue -= 15;
+	else
+		m_byMagnetAlphaValue = 0;
 
 	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
 		nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
-		D3DCOLOR_ARGB(255, 255, 255, 255));
+		D3DCOLOR_ARGB(m_byMagnetAlphaValue, 255, 255, 255));
 }
 
 void CUIMgr::Render_PowerUpItem()
@@ -175,17 +182,21 @@ void CUIMgr::Render_PowerUpItem()
 
 	D3DXMATRIX matScale, matTrans, matWorld;
 	D3DXMatrixScaling(&matScale, 0.25f, 0.25f, 0.f);
-	//m_tInfo.vSize = { pTexInfo->tImageInfo.Width * m_tInfo.vScale.x, pTexInfo->tImageInfo.Height * m_tInfo.vScale.y, 0.f };
 	D3DXMatrixTranslation(&matTrans, 130.f, float(WINCY - 50), 0.f);
 
 	matWorld = matScale * matTrans;
 	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matWorld);
 
+	if (GET_INSTANCE(CObjMgr)->Get_Obj(OBJID::PLAYER)->Get_PowerUpON())
+		m_byPowerUpAlphaValue -= 15;
+	else
+		m_byPowerUpAlphaValue = 0;
+
 	CDevice::Get_Instance()->Get_Sprite()->Draw(pTexInfo->pTexture,
 		nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
-		D3DCOLOR_ARGB(255, 255, 255, 255));
+		D3DCOLOR_ARGB(m_byPowerUpAlphaValue, 255, 255, 255));
 }
 
 void CUIMgr::Render_EndScene()

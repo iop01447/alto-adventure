@@ -32,7 +32,7 @@ void CFrontEffect::Initialize()
 	m_byColor[3] = 255;
 
 	if (0 == m_iPlayerState)
-		m_fSize = 0.9f;
+		m_fSize = 1.2f;
 	else
 		m_fSize = 0.5f;
 }
