@@ -34,6 +34,7 @@ private:
 	//RECT m_tRect; 
 	bool			m_bJump;
 	bool			m_bFall;
+	bool			m_bHit;
 
 	float			m_fJumpPower;	// 점프 파워
 	float			m_fJumpAccel;	// 점프 진행 시간
@@ -42,7 +43,7 @@ private:
 
 	DWORD			m_dwIdleTime;
 	DWORD			m_dwHitEffectTime;
-	bool			m_bHit;
+	DWORD			m_dwFrontEffectTime;
 
 	BYTE			m_byColor[4];
 

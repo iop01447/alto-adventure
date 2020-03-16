@@ -40,9 +40,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>01.Obj\00.Player</Filter>
     </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>01.Obj\01.Effect</Filter>
-    </ClCompile>
     <ClCompile Include="Cloud.cpp">
       <Filter>01.Obj\02.Cloud</Filter>
     </ClCompile>
@@ -90,6 +87,12 @@
     </ClCompile>
     <ClCompile Include="TextureMgr.cpp">
       <Filter>97.Manager\08.TextureMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>01.Obj\01.Effect\01.BakEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="FrontEffect.cpp">
+      <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,9 +165,6 @@
     <ClInclude Include="Player.h">
       <Filter>01.Obj\00.Player</Filter>
     </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>01.Obj\01.Effect</Filter>
-    </ClInclude>
     <ClInclude Include="Cloud.h">
       <Filter>01.Obj\02.Cloud</Filter>
     </ClInclude>
@@ -212,6 +212,12 @@
     </ClInclude>
     <ClInclude Include="TextureMgr.h">
       <Filter>97.Manager\08.TextureMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>01.Obj\01.Effect\01.BakEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="FrontEffect.h">
+      <Filter>01.Obj\01.Effect\00.FrontEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +321,12 @@
     </Filter>
     <Filter Include="97.Manager\08.TextureMgr">
       <UniqueIdentifier>{67be9310-027b-4173-b6fb-573d61bb6d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\01.Effect\00.FrontEffect">
+      <UniqueIdentifier>{c88411e1-aded-4558-8aea-329bc93bf72c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\01.Effect\01.BakEffect">
+      <UniqueIdentifier>{68ea811b-bf3c-4b80-999c-f6264967087e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

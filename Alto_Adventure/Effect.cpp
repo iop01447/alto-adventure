@@ -20,8 +20,6 @@ CEffect::~CEffect()
 
 void CEffect::Initialize()
 {
-	INFO tInfo = CObjMgr::Get_Instance()->Get_Obj(OBJID::PLAYER)->Get_Info();
-
 	m_tInfo.vSize = { float(rand()%2+2), float(rand()%2+2), 0.f };
 	m_tInfo.vDir = { 1.f, 0.f, 0.f };
 	m_tInfo.vLook = { 1.f, 0.f, 0.f };

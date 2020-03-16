@@ -161,6 +161,7 @@
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enum.h" />
     <ClInclude Include="Extern.h" />
+    <ClInclude Include="FrontEffect.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Functor.h" />
     <ClInclude Include="Include.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="CollisionMgr.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="FrontEffect.cpp" />
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
