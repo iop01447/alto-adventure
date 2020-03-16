@@ -195,6 +195,7 @@
     <ClInclude Include="Mountain.h" />
     <ClInclude Include="Tree.h" />
     <ClInclude Include="UIMgr.h" />
+    <ClInclude Include="WaterFall.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Alto_Adventure.cpp" />
@@ -238,6 +239,7 @@
     <ClCompile Include="Mountain.cpp" />
     <ClCompile Include="Tree.cpp" />
     <ClCompile Include="UIMgr.cpp" />
+    <ClCompile Include="WaterFall.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Alto_Adventure.rc" />

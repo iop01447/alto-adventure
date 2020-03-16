@@ -52,6 +52,7 @@ void CUIMgr::Update()
 	CPlayer* player = dynamic_cast<CPlayer*>(CObjMgr::Get_Instance()->Get_Obj(OBJID::PLAYER));
 	m_iCoin = player->Get_Coin();
 	m_iHP = player->Get_HP();
+	m_bUnDeadMode = player->Get_UnDeadMode();
 
 	m_fDistance += 0.2f;
 }
@@ -64,6 +65,7 @@ void CUIMgr::Render()
 		Render_Coin();
 		Render_HP();
 		Render_Distance();
+		Render_UnDeadMode();
 		break;
 	case SCENE::SCENE_END:
 		Render_EndScene();
@@ -138,6 +140,15 @@ void CUIMgr::Render_Distance()
 	CDevice::Get_Instance()->Get_Sprite()->SetTransform(&matTrans);
 	RECT rect = { WINCX - 500, 30, WINCX - 30, 200 };
 	m_pBigFont->DrawTextW(CDevice::Get_Instance()->Get_Sprite(), szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
+}
+
+void CUIMgr::Render_UnDeadMode()
+{
+	if (!m_bUnDeadMode) return;
+
+	TCHAR szBuff[50] = L"무적 모드";
+	RECT rect = { WINCX - 500, 100, WINCX - 30, 200 };
+	m_pSmallFont->DrawTextW(nullptr, szBuff, lstrlen(szBuff), &rect, DT_RIGHT, D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
 void CUIMgr::Render_EndScene()

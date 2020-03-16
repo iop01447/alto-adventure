@@ -1,47 +1,46 @@
 #include "stdafx.h"
-#include "Heart.h"
+#include "WaterFall.h"
 #include "ObjMgr.h"
 #include "TextureMgr.h"
 
 
-CHeart::CHeart()
+CWaterFall::CWaterFall()
 {
 }
 
 
-CHeart::~CHeart()
+CWaterFall::~CWaterFall()
 {
 }
 
-void CHeart::Initialize()
+void CWaterFall::Initialize()
 {
-	m_tInfo.vScale = { 0.03f, 0.03f, 0.03f };
+	m_tInfo.vScale = { 0.5f, 0.5f, 0.f };
 	m_eGroupID = GROUPID::FOREWORD_GAMEOBJECT;
 }
 
-int CHeart::Update()
+int CWaterFall::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
 
-	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
+	//m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
 	Update_Rect();
-	if (Fall())
-		m_tInfo.vPos.y -= 25;
 
 	return OBJ_NOEVENT;
 }
 
-void CHeart::Late_Update()
+void CWaterFall::Late_Update()
 {
 	if (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f < 0)
 		m_bDead = true;
 }
 
-void CHeart::Render()
+void CWaterFall::Render()
 {
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Heart");
-
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"SnowEffect", L"Snow", 0);
+	
+	float fAlpha = 0.5f;
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
 
@@ -57,15 +56,9 @@ void CHeart::Render()
 		nullptr,
 		&D3DXVECTOR3(fCenterX, fCenterY, 0.f),
 		nullptr,
-		D3DCOLOR_ARGB(255, 255, 255, 255));
+		D3DCOLOR_ARGB(int(255 * fAlpha), 255, 255, 255));
 }
 
-void CHeart::Release()
+void CWaterFall::Release()
 {
-}
-
-void CHeart::Collision(CObj * pOther)
-{
-	if (pOther->Get_ObjID() != OBJID::PLAYER) return;
-	m_bDead = true;
 }

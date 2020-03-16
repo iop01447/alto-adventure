@@ -109,6 +109,9 @@
     <ClCompile Include="PowerUp.cpp">
       <Filter>01.Obj\07.Item\01.PowerUp</Filter>
     </ClCompile>
+    <ClCompile Include="WaterFall.cpp">
+      <Filter>01.Obj\09.WaterFall</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Alto_Adventure.h">
@@ -249,6 +252,9 @@
     <ClInclude Include="PowerUp.h">
       <Filter>01.Obj\07.Item\01.PowerUp</Filter>
     </ClInclude>
+    <ClInclude Include="WaterFall.h">
+      <Filter>01.Obj\09.WaterFall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Alto_Adventure.ico">
@@ -375,6 +381,9 @@
     </Filter>
     <Filter Include="01.Obj\07.Item\01.PowerUp">
       <UniqueIdentifier>{b4d33258-5fca-4bad-9832-3789a4722817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\09.WaterFall">
+      <UniqueIdentifier>{603d65e2-a0c0-4d70-b49e-50eeae60b769}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

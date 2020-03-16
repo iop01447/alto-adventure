@@ -101,7 +101,7 @@ void CPlayer::Late_Update()
 		m_fSpeed -= 0.02f;
 	}
 
-	if (m_iHP <= 0) {
+	if (m_iHP <= 0 && !m_bUnDead) {
 		CSceneMgr::Get_Instance()->Scene_Change(SCENE::SCENE_END);
 	}
 }
@@ -235,6 +235,9 @@ void CPlayer::Key_Check()
 		m_tInfo.vSize.y = 40.f;
 		Update_Size();
 	}
+
+	if (CKeyMgr::Get_Instance()->Key_Down('U'))
+		m_bUnDead = !m_bUnDead;
 }
 void CPlayer::Jump()
 {
