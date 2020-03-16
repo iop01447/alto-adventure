@@ -31,6 +31,9 @@ void CBigTree::Initialize()
 
 int CBigTree::Update()
 {
+	if (0 > m_tInfo.vPos.x + (m_tInfo.vSize.x *0.5f))
+		return OBJ_DEAD;
+
 	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
 	Update_Rect();
 	if (Fall() && m_zID)

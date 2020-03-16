@@ -21,6 +21,9 @@ void CTree::Initialize()
 
 int CTree::Update()
 {
+	if (0 > m_tInfo.vPos.x + (m_tInfo.vSize.x *0.5f))
+		return OBJ_DEAD;
+
 	m_tInfo.vPos.x -= (GET_INSTANCE(CObjMgr)->Get_Speed());
 	Update_Rect();
 	Fall();
