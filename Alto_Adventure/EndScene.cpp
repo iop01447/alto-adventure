@@ -5,6 +5,9 @@
 #include "KeyMgr.h"
 #include "SceneMgr.h"
 #include "TextureMgr.h"
+#include "ObjMgr.h"
+#include "LineMgr.h"
+#include "ScrollMgr.h"
 
 
 CEndScene::CEndScene()
@@ -42,6 +45,10 @@ void CEndScene::Render()
 void CEndScene::Release()
 {
 	CUIMgr::Get_Instance()->Destroy_Instance();
-	CBackgroundMgr::Get_Instance()->Destroy_Instance();
-	CTextureMgr::Get_Instance()->Destroy_Instance();
+	CLineMgr::Destroy_Instance();
+	CKeyMgr::Destroy_Instance();
+	CScrollMgr::Destroy_Instance();
+	CTextureMgr::Destroy_Instance();
+	CBackgroundMgr::Destroy_Instance();
+	CObjMgr::Destroy_Instance();
 }

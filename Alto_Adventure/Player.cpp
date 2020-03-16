@@ -109,6 +109,7 @@ void CPlayer::Late_Update()
 
 	if (m_iHP <= 0 && !m_bUnDead) {
 		CSceneMgr::Get_Instance()->Scene_Change(SCENE::SCENE_END);
+		m_iHP = 3;
 	}
 }
 
