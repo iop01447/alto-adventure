@@ -13,41 +13,14 @@
     <ClCompile Include="Obj.cpp">
       <Filter>01.Obj</Filter>
     </ClCompile>
-    <ClCompile Include="BackgroundMgr.cpp">
-      <Filter>97.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionMgr.cpp">
-      <Filter>97.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyMgr.cpp">
-      <Filter>97.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="LineMgr.cpp">
-      <Filter>97.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureMgr.cpp">
-      <Filter>97.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="ScrollMgr.cpp">
-      <Filter>97.Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneMgr.cpp">
-      <Filter>97.Manager</Filter>
-    </ClCompile>
     <ClCompile Include="Device.cpp">
       <Filter>96.Device</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundMgr.cpp">
-      <Filter>97.Manager</Filter>
     </ClCompile>
     <ClCompile Include="Line.cpp">
       <Filter>95.Line</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>94.Texture</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjMgr.cpp">
-      <Filter>97.Manager</Filter>
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>93.Scene</Filter>
@@ -58,35 +31,65 @@
     <ClCompile Include="Stage.cpp">
       <Filter>93.Scene\01.Stage</Filter>
     </ClCompile>
-    <ClCompile Include="BigTree.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="Cloud.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="Effect.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="Mountain.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="Rock.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="SkyGradient.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
-    <ClCompile Include="Tree.cpp">
-      <Filter>01.Obj</Filter>
-    </ClCompile>
     <ClCompile Include="MultiTex.cpp">
       <Filter>94.Texture\01.MultiTex</Filter>
     </ClCompile>
     <ClCompile Include="SingleTex.cpp">
       <Filter>94.Texture\00.SingleTex</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>01.Obj\00.Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>01.Obj\01.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Cloud.cpp">
+      <Filter>01.Obj\02.Cloud</Filter>
+    </ClCompile>
+    <ClCompile Include="Tree.cpp">
+      <Filter>01.Obj\03.Tree</Filter>
+    </ClCompile>
+    <ClCompile Include="Mountain.cpp">
+      <Filter>97.Manager\00.BackgroundMgr\00.Mountain</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyGradient.cpp">
+      <Filter>97.Manager\00.BackgroundMgr\01.SkyGradient</Filter>
+    </ClCompile>
+    <ClCompile Include="BigTree.cpp">
+      <Filter>01.Obj\04.BigTree</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>01.Obj\05.Rock</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundMgr.cpp">
+      <Filter>97.Manager\00.BackgroundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Coin.cpp">
+      <Filter>01.Obj\06.Coin</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionMgr.cpp">
+      <Filter>97.Manager\01.CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyMgr.cpp">
+      <Filter>97.Manager\02.KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="LineMgr.cpp">
+      <Filter>97.Manager\03.LingMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjMgr.cpp">
+      <Filter>97.Manager\04.ObjMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>97.Manager\05.SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ScrollMgr.cpp">
+      <Filter>97.Manager\06.ScrollMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundMgr.cpp">
+      <Filter>97.Manager\07.SoundMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureMgr.cpp">
+      <Filter>97.Manager\08.TextureMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,15 +114,6 @@
     <ClInclude Include="Define.h">
       <Filter>98.Include</Filter>
     </ClInclude>
-    <ClInclude Include="BackgroundMgr.h">
-      <Filter>97.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionMgr.h">
-      <Filter>97.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyMgr.h">
-      <Filter>97.Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Function.h">
       <Filter>98.Include</Filter>
     </ClInclude>
@@ -135,32 +129,14 @@
     <ClInclude Include="Enum.h">
       <Filter>98.Include</Filter>
     </ClInclude>
-    <ClInclude Include="LineMgr.h">
-      <Filter>97.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureMgr.h">
-      <Filter>97.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ScrollMgr.h">
-      <Filter>97.Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneMgr.h">
-      <Filter>97.Manager</Filter>
-    </ClInclude>
     <ClInclude Include="Device.h">
       <Filter>96.Device</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundMgr.h">
-      <Filter>97.Manager</Filter>
     </ClInclude>
     <ClInclude Include="Line.h">
       <Filter>95.Line</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>94.Texture</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjMgr.h">
-      <Filter>97.Manager</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
       <Filter>93.Scene</Filter>
@@ -177,35 +153,65 @@
     <ClInclude Include="Struct.h">
       <Filter>98.Include</Filter>
     </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="BigTree.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="Cloud.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="Effect.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="Mountain.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="Rock.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
-    <ClInclude Include="SkyGradient.h">
-      <Filter>01.Obj</Filter>
-    </ClInclude>
     <ClInclude Include="MultiTex.h">
       <Filter>94.Texture\01.MultiTex</Filter>
     </ClInclude>
     <ClInclude Include="SingleTex.h">
       <Filter>94.Texture\00.SingleTex</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>01.Obj\00.Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>01.Obj\01.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Cloud.h">
+      <Filter>01.Obj\02.Cloud</Filter>
+    </ClInclude>
+    <ClInclude Include="Tree.h">
+      <Filter>01.Obj\03.Tree</Filter>
+    </ClInclude>
+    <ClInclude Include="Mountain.h">
+      <Filter>97.Manager\00.BackgroundMgr\00.Mountain</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyGradient.h">
+      <Filter>97.Manager\00.BackgroundMgr\01.SkyGradient</Filter>
+    </ClInclude>
+    <ClInclude Include="BigTree.h">
+      <Filter>01.Obj\04.BigTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>01.Obj\05.Rock</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundMgr.h">
+      <Filter>97.Manager\00.BackgroundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Coin.h">
+      <Filter>01.Obj\06.Coin</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionMgr.h">
+      <Filter>97.Manager\01.CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyMgr.h">
+      <Filter>97.Manager\02.KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="LineMgr.h">
+      <Filter>97.Manager\03.LingMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjMgr.h">
+      <Filter>97.Manager\04.ObjMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>97.Manager\05.SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="ScrollMgr.h">
+      <Filter>97.Manager\06.ScrollMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundMgr.h">
+      <Filter>97.Manager\07.SoundMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureMgr.h">
+      <Filter>97.Manager\08.TextureMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -255,6 +261,60 @@
     </Filter>
     <Filter Include="94.Texture\01.MultiTex">
       <UniqueIdentifier>{8b195902-09df-43dc-8ea3-eb304dd6601c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\00.Player">
+      <UniqueIdentifier>{f99266e5-5d71-450b-a4dc-a36ce02f1145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\01.Effect">
+      <UniqueIdentifier>{3e051009-c131-43e0-aefa-80e1a0b2b076}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\02.Cloud">
+      <UniqueIdentifier>{03e0eea5-1687-40fd-b666-1d3102c00e83}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\03.Tree">
+      <UniqueIdentifier>{d684267f-637c-4b23-96c8-ae7d51b63c30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\00.BackgroundMgr">
+      <UniqueIdentifier>{f6102e38-cd9f-4492-a11d-fad01c70c20f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\00.BackgroundMgr\00.Mountain">
+      <UniqueIdentifier>{9faed17f-ac1e-49c2-81ce-de7b4af9d309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\00.BackgroundMgr\01.SkyGradient">
+      <UniqueIdentifier>{5384dd1b-b7b4-4cb6-963a-32188a5b107b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\04.BigTree">
+      <UniqueIdentifier>{3d990106-8c76-4e3f-af67-f98aeae0bb86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\05.Rock">
+      <UniqueIdentifier>{a7fd4986-b6ef-4fe9-bdcc-21ef5f78d745}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01.Obj\06.Coin">
+      <UniqueIdentifier>{faa757ba-6e0f-4d9d-ba28-8c0ab8f8aacb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\01.CollisionMgr">
+      <UniqueIdentifier>{6726776f-30b6-4608-8bf1-a297c8427de2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\02.KeyMgr">
+      <UniqueIdentifier>{fb925fda-cb45-4d1d-919d-9388bead6477}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\03.LingMgr">
+      <UniqueIdentifier>{49c11cc9-99b2-4b59-9f86-3fd21668ce44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\04.ObjMgr">
+      <UniqueIdentifier>{f524589d-268e-426b-b4b5-1a00f20888c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\05.SceneMgr">
+      <UniqueIdentifier>{244aeac6-4c61-463f-8742-0552f50141cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\06.ScrollMgr">
+      <UniqueIdentifier>{2098366d-c74a-4572-abfb-7e5b584dbcf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\07.SoundMgr">
+      <UniqueIdentifier>{a8e5b324-893b-4cac-95f5-309ed605c7e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="97.Manager\08.TextureMgr">
+      <UniqueIdentifier>{67be9310-027b-4173-b6fb-573d61bb6d8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
