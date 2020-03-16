@@ -57,6 +57,7 @@ void CObjMgr::Late_Update()
 
 	CCollisionMgr::Collision_Rect(m_listObj[OBJID::PLAYER], m_listObj[OBJID::ROCK]);
 	CCollisionMgr::Collision_Rect(m_listObj[OBJID::PLAYER], m_listObj[OBJID::COIN]);
+	CCollisionMgr::Collision_Rect(m_listObj[OBJID::PLAYER], m_listObj[OBJID::MAGNET]);
 }
 
 void CObjMgr::Render()

@@ -168,6 +168,7 @@
     <ClInclude Include="KeyMgr.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LineMgr.h" />
+    <ClInclude Include="Magnet.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="MultiTex.h" />
     <ClInclude Include="MyMenu.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="KeyMgr.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineMgr.cpp" />
+    <ClCompile Include="Magnet.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="MultiTex.cpp" />
     <ClCompile Include="MyMenu.cpp" />

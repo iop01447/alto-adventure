@@ -1,25 +1,25 @@
 #include "stdafx.h"
-#include "Coin.h"
+#include "Magnet.h"
 #include "ObjMgr.h"
 #include "TextureMgr.h"
 
 
-CCoin::CCoin()
+CMagnet::CMagnet()
 {
 }
 
-CCoin::~CCoin()
+CMagnet::~CMagnet()
 {
 	Release();
 }
 
-void CCoin::Initialize()
+void CMagnet::Initialize()
 {
-	m_tInfo.vScale = { 0.013f, 0.013f, 0.f };
+	m_tInfo.vScale = { 0.06f, 0.06f, 0.f };
 	m_eGroupID = GROUPID::FOREWORD_GAMEOBJECT;
 }
 
-int CCoin::Update()
+int CMagnet::Update()
 {
 	if (m_bDead)
 		return OBJ_DEAD;
@@ -32,15 +32,15 @@ int CCoin::Update()
 	return OBJ_NOEVENT;
 }
 
-void CCoin::Late_Update()
+void CMagnet::Late_Update()
 {
 	if (m_tInfo.vPos.x + m_tInfo.vSize.x * 0.5f < 0)
 		m_bDead = true;
 }
 
-void CCoin::Render()
+void CMagnet::Render()
 {
-	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Coin");
+	const TEXINFO* pTexInfo = GET_INSTANCE(CTextureMgr)->Get_TexInfo(L"Magnet");
 
 	float fCenterX = pTexInfo->tImageInfo.Width * 0.5f;
 	float fCenterY = pTexInfo->tImageInfo.Height * 0.5f;
@@ -60,12 +60,13 @@ void CCoin::Render()
 		D3DCOLOR_ARGB(255, 255, 255, 255));
 }
 
-void CCoin::Release()
+void CMagnet::Release()
 {
 }
 
-void CCoin::Collision(CObj * pOther)
+void CMagnet::Collision(CObj * pOther)
 {
-	if (pOther->Get_ObjID() != OBJID::PLAYER) return;
-		m_bDead = true;
+	if (pOther->Get_ObjID() != OBJID::PLAYER)
+		return;
+	m_bDead = true;
 }

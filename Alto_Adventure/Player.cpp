@@ -141,6 +141,9 @@ void CPlayer::Collision(CObj * pOther)
 	case OBJID::COIN:
 		++m_iCoin;
 		break;
+	case OBJID::MAGNET:
+		//++m_iCoin;
+		break;
 	default:
 		break;
 	}
@@ -246,9 +249,11 @@ void CPlayer::Jump()
 	else
 	{ // 점프상태 아닐 때 스키 뒤쪽으로 이펙트 생성
 		GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CEffect>::Create(m_vPoint[3].x - 15, m_vPoint[3].y - (rand()%10 + 15)));
+
+		// 바위 부수는 아이템 먹었을 때 지속시간동안 효과 발생
 		if (1 == m_iPlayerState && m_dwFrontEffectTime + 1000 < GetTickCount())
 		{
-			GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y));
+			//GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CFrontEffect>::Create(m_tInfo.vPos.x, m_tInfo.vPos.y));
 			m_dwFrontEffectTime = GetTickCount();
 		}
 	}
