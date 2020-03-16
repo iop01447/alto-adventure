@@ -191,7 +191,7 @@ void CPlayer::Collision(CObj * pOther)
 void CPlayer::Render_ItemEffect()
 {
 	// 바위 부수는 아이템 먹었을 때 지속시간동안 효과 발생
-	if (0 != m_dwDurationPowerUp && m_dwDurationPowerUp + 10000 > GetTickCount())
+	if (0 != m_dwDurationPowerUp && m_dwDurationPowerUp + 13000 > GetTickCount())
 	{
 		if (m_dwFrontEffectTime_PowerUp + 1000 < GetTickCount())
 		{
@@ -205,7 +205,7 @@ void CPlayer::Render_ItemEffect()
 		m_dwDurationPowerUp = 0;
 	}
 
-	if (0 != m_dwDurationMagnet && m_dwDurationMagnet + 10000 > GetTickCount())
+	if (0 != m_dwDurationMagnet && m_dwDurationMagnet + 15000 > GetTickCount())
 	{
 		if (m_dwFrontEffectTime_Magnet + 1000 < GetTickCount())
 		{
