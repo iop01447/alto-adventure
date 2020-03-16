@@ -85,10 +85,22 @@ void CMyMenu::Render()
 
 		g_pLine->Draw(Point, 5, D3DCOLOR_ARGB(255, 0, 0, 0));
 
+		if (!bGameStartButton)
+		{
+			GET_INSTANCE(CSoundMgr)->StopSound(CSoundMgr::UI);
+			GET_INSTANCE(CSoundMgr)->PlaySound(L"Button.wav", CSoundMgr::UI);
+		}
+
 		bGameStartButton = true;
 	}
 	else
 	{
+		if (bGameStartButton)
+		{
+			GET_INSTANCE(CSoundMgr)->StopSound(CSoundMgr::UI);
+			GET_INSTANCE(CSoundMgr)->PlaySound(L"Button.wav", CSoundMgr::UI);
+		}
+
 		bGameStartButton = false;
 	}
 }

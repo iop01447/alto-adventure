@@ -154,6 +154,7 @@ void CPlayer::Collision(CObj * pOther)
 		{
 			if (m_pRock != pOther) {
 				m_iHP = max(0, m_iHP - 1);
+				m_dwIdleTime = GetTickCount();
 				m_pRock = pOther;
 			}
 			m_bHit = true;
@@ -297,6 +298,7 @@ void CPlayer::Key_Check()
 	if (CKeyMgr::Get_Instance()->Key_Down('U'))
 		m_bUnDead = !m_bUnDead;
 }
+
 void CPlayer::Jump()
 {
 	float fY = 0.f;
