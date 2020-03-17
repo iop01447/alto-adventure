@@ -165,6 +165,8 @@ void CPlayer::Collision(CObj * pOther)
 		}
 		else
 		{
+			CSoundMgr::Get_Instance()->StopSound(CSoundMgr::CHANNELID::EFFECT);
+			CSoundMgr::Get_Instance()->PlaySound(L"Hit_Monster.wav", CSoundMgr::CHANNELID::EFFECT);
 			pOther->Set_Dead();
 			for( int i = 0; i < 10; ++i)
 				GET_INSTANCE(CObjMgr)->Add_Object(OBJID::EFFECT, CAbstractFactory<CRock>::Create(m_tInfo.vPos.x + 20.f, m_tInfo.vPos.y, BYTE(1)));

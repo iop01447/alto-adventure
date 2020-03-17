@@ -8,7 +8,7 @@
 #include "ObjMgr.h"
 #include "LineMgr.h"
 #include "ScrollMgr.h"
-
+#include "SoundMgr.h"
 
 CEndScene::CEndScene()
 {
@@ -23,6 +23,7 @@ CEndScene::~CEndScene()
 void CEndScene::Initialize()
 {
 	CUIMgr::Get_Instance()->Update();
+	CSoundMgr::Get_Instance()->PlayBGM(L"VillageBGM.wav");
 }
 
 void CEndScene::Update()
@@ -44,6 +45,7 @@ void CEndScene::Render()
 
 void CEndScene::Release()
 {
+	CSoundMgr::Get_Instance()->StopAll();
 	CUIMgr::Get_Instance()->Destroy_Instance();
 	CLineMgr::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
